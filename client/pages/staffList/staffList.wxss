@@ -1,0 +1,81 @@
+/* pages/member/member.wxss */
+.ListBox{
+padding-top: 10rpx;
+padding-bottom: 10rpx;
+display: flex;
+flex-direction: row;
+justify-content:flex-start;
+width: 100%;
+border: solid 2rpx #ddd;
+margin: 0rpx;
+background-color: #fff;
+}
+
+.memberBox{
+display: flex;
+flex-direction: row;
+justify-content:flex-start;
+flex-wrap: wrap;
+width: 70%;
+padding-left:40rpx;
+
+}
+
+.nameBox{
+display: flex;
+flex-direction: row;
+justify-content:flex-start;
+width: 100%;
+font-size: 25rpx;
+color: #000;
+font-family: "宋体";
+padding-top: 11rpx; 
+
+}
+
+.tellBox{
+display: flex;
+flex-direction: row;
+justify-content:flex-start;
+width: 100%;
+font-size: 25rpx;
+color: #000;
+font-family: "宋体"；
+}
+
+.DeleteBox{
+display: flex;
+justify-content:space-around;
+width: 16%;
+border-left:solid 2rpx #ddd;
+padding-top:30rpx;
+color: #808080;
+font-family: "楷书";
+font-size: 29rpx;
+}
+
+.headBox{
+display: flex;
+margin-right: 0rpx;
+padding-left:18rpx;
+margin-top:6rpx;
+margin-bottom:6rpx;
+
+
+}
+.imageSize{
+width: 85rpx;
+height: 85rpx;
+
+}
+
+.label{
+display: flex;
+margin-right: 0rpx;
+width: 95%;
+color: #808080;
+font-family: "宋体";
+margin:8rpx;
+font-size: 25rpx;
+
+}

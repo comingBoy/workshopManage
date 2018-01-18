@@ -1,0 +1,38 @@
+<!--申请加入部门-->
+<view class='container'>
+  <form  class='form'>
+    <!--头像-->
+    <view class='headBox'>
+      <image background-size="cover" class="imageSize"src="{{avatar}}" bindtap='changeAvatar'></image>
+    </view>
+    <!--姓名-->
+    <view class='putinBox'>
+      <text class='NameTel'>姓名:</text>
+      <input bindinput="input" id='0' value="{{name}}" name='name' type="text" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+    <!--手机号-->
+    <view class='putinBox'>
+      <text class='NameTel'>手机号:</text>
+      <input bindinput="input" id='1' name='tel' type="number" value="{{tel}}" maxlength="11" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+    <!--工号-->
+    <view class='putinBox'>
+      <text class='NameTel'>工号:</text>
+      <input bindinput="input" id='2' name='staffId' type="number"  maxlength="8" placeholder="请输入工号" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+    <!--性别-->
+    <view class='putinBox0'>
+      <text class='NameTel'>性别:</text>
+      <radio-group bindchange="input" id='3' name='sex'>
+        <label class="radio" wx:for="{{sex}}">
+          <radio value="{{item}}" />{{item}}
+        </label>
+      </radio-group>
+    </view>
+
+    <view wx:if="{{finishFlag}}" class='finish' bindtap="submit"> 注册 </view>
+    <view wx:else class='finish0'>注册</view>
+  </form>
+</view>
+  
+

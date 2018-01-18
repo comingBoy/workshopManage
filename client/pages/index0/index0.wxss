@@ -1,0 +1,69 @@
+/* pages/index0/index0.wxss */
+.groupBox{
+  padding-top: 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+  border-top: solid #fff 5rpx;
+}
+.groupInfo{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right:17rpx;
+  margin-left: 17rpx;
+  margin-bottom: 50rpx;
+  background-color: #fff;
+  border-radius: 25rpx;
+  height: 340rpx;
+}
+.groupImage{
+  width: 100%;
+  height: 250rpx;
+  border-top-left-radius: 25rpx;
+  border-top-right-radius: 25rpx;
+}
+.groupName{
+  width: 100%;
+  height: 50rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 67rpx;
+  font-size: 30rpx;
+  font-family: "微软雅黑";
+}
+.groupAdmin{
+  width: 100%;
+  height: 50rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 49rpx;
+  font-size: 25rpx;
+  font-family: "微软雅黑";
+  border-bottom-left-radius: 25rpx;
+  border-bottom-right-radius: 25rpx;
+  color: #c0c0c0;
+}
+.add{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 100rpx;
+}
+.addInfo{
+  font-size: 30rpx;
+  color: #c0c0c0;
+}
+.about{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  color:#c0c0c0; 
+  padding-top: 35rpx;
+  padding-bottom:35rpx;
+  font-size: 35rpx; 
+}

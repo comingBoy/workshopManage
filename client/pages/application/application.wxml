@@ -1,0 +1,26 @@
+<!--申请加入部门-->
+<view class='container'>
+<!--部门名称-->
+<view>{{groupName}}</view>
+<!--头像-->
+<view class='headBox'>
+<image background-size="cover" class="imageSize"src="../../images/cimu.jpg" bindtap='changeHead'></image>
+</view>
+<!--姓名-->
+<view class='putinBox'>
+<text class='NameTel0'>姓名:</text>
+<input disabled='true' value="{{name}}" bindinput="getName" type="text" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+</view>
+<!--手机号-->
+<view class='putinBox'>
+<text class='NameTel'>手机号:</text>
+<input disabled='true' bindinput="getTel" type="number" value="{{Tel}}" maxlength="11" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+</view>
+<!--部门码-->
+<view class='putinBox'>
+<text class='NameTel'>部门码:</text>
+<input bindinput="getGroupCode" type="number" placeholder="输入部门码" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+</view> 
+</view>
+<view wx:if="{{finishFlag}}" class='finish'bindtap="finishApplication"> 申请加入 </view>
+<view wx:else class='finish0'>申请加入</view>

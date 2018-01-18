@@ -1,0 +1,27 @@
+/* pages/changeNameTell0/changeNameTell0.wxss */
+/* pages/changeNameTell/changeNameTell.wxss */
+/* pages/buildgroup/buildgroup.wxss */
+.putin {
+  margin-top:100rpx;
+  display: flex;
+  
+  justify-content:space-around;
+  flex-wrap: wrap;
+  width: 100%;
+
+} 
+.inputid{
+border:1px solid #ddd; 
+border-radius:8rpx;
+padding:0rpx 10rpx;
+margin: 20rpx 20rpx 0rpx 20rpx;
+height: 60rpx;
+}
+.groupBox{
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+}

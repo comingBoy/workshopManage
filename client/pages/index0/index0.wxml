@@ -1,0 +1,19 @@
+<!--首页部门界面-->
+<view class='container'>
+  <view class='groupBox'>
+    <!--部门列表-->
+    <view wx:for='{{groupList}}' id="{{index}}" class='groupInfo' bindtap="enterApplication" >
+      <image src='{{item.groupCover}}' class='groupImage' mode='aspectFill'></image>
+      <text class='groupName'>{{item.groupName}}</text>
+      <text class='groupAdmin'>管理员:{{item.adminName}}</text>
+    </view>
+    <!--新增部门-->
+    
+    <view class='groupInfo' bindtap="enterBiuldGroup">
+      <image  src='../../images/add.png' class='add' mode='aspectFill'></image>
+      <text class='addInfo'>创建部门</text>
+    </view>
+  </view>
+  
+</view>
+<view class='about'>关于</view> 

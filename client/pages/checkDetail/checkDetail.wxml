@@ -1,0 +1,22 @@
+<!--pages/checkDetail/checkDetail.wxml-->
+<view class='container'>
+  <view class='frame'>
+    <!--车间名-->
+    <view class='workShopName'>
+      车间名： {{workShopName}}
+    </view>
+    <!--检查点-->
+    <view class='checkPoint'>
+      检查点： {{checkPoint}}
+    </view>
+    <!--检查点状态-->
+    <view class='checkState'>
+      状态： {{checkState}}
+    </view>
+    <!--详情-->
+    <view class='detail'>
+      <image class='checkPointImage' src='../../images/cimu.jpg'></image>
+      <text class='detailReport'>没毛病</text> 
+    </view>
+  </view>
+</view>

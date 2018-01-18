@@ -1,0 +1,32 @@
+<!--pages/group/group.wxml-->
+<view class='container'>
+  <!--框架-->
+  <view class='frame'>
+    <!--部门名称banner-->
+      <view class='bannerBox'>
+        <view class='returnBox'>
+          <image src="../../images/return.png" class='returnImage' bindtap='chooseCover' bindtap='back'></image>
+        </view>
+        <view class='groupBanner'>
+          {{groupInfo.groupName}}
+        </view>
+      </view>
+
+    <!--车间列表-->
+    <view class='workshopList'>
+      <view class='workshop' wx:for='{{workshopList}}' id='{{index}}' bindtap='toWorkshop'>
+        <text >{{item.workshopName}}</text>
+        <text class='groupAdmin'>负责人:{{item.name}}</text>
+        <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
+        <text class='textBox'>正常工作点：{{item.normal}}</text>
+        <text class='textBox'>待修复个数：{{item.abnormal}}</text> 
+        <text class='textBox'>本月任务：{{item.inspectTimes}}/{{item.totalTimes}}</text> 
+      </view>
+      <!--新建车间-->
+      <view class='workshop' bindtap='toNewWorkshop'>
+        <image src='../../images/add.png' class='add' mode='aspectFill'></image>
+        <text class='textBox0'>创建车间</text>
+      </view>
+    </view>
+  </view>
+</view>

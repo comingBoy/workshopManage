@@ -1,0 +1,6 @@
+  <live-pusher url="rtmp://18812.livepush.myqcloud.com/live/18812_611277c985?bizid=18812&txSecret=3b7dc437fb220364f0e952dc415704e1&txTime=5A43C37F" mode="SD" beauty='1' bindstatechange="statechange" style="width: 100%; height: 225px;" />
+<button bindtap='start'>开始录制</button>
+<button bindtap='pause'>暂停录制</button>
+<button bindtap='resume'>继续录制</button>
+<button bindtap='stop'>停止录制</button>
+<button bindtap='switchCamera'> 切换摄像头 </button>

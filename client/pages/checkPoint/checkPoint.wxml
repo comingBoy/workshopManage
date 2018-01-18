@@ -1,0 +1,20 @@
+<!--pages/checkPoint/checkPoint.wxml-->
+<view class='container'>
+  <view class='frame'>
+    <!--检查日期-->
+    <view class='checkDateBanner'>
+      日期: {{checkDate}} 
+    </view>
+    <!--检查点列表-->
+    <view wx:for="{{checkPoint}}" class='checkPointList' id="{{index}}" bindtap='toCheckDetail'>
+      <view class='checkPoint'>
+        <text class='checkPointName'>
+          {{item.name}}
+        </text>
+        <text class='checkPointState'>
+          {{item.state}}
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

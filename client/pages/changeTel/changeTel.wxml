@@ -1,0 +1,15 @@
+<!--修改手机号信息 -->
+<view class='container'>
+
+
+  <view class='putinBox'>
+      <view class='putin'>输入手机号</view>
+      <input bindinput="getTell"   type="number" placeholder="输入手机号" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+  </view>
+
+  <view class='putinBox'>
+      <button  class="putin "  bindtap="finishBuild"> 修改完成 </button>
+  </view> 
+   
+
+</view>

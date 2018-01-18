@@ -1,0 +1,15 @@
+<!--修改姓名信息 -->
+<view class='container'>
+  <view class='putinBox'>
+      <view class='putin'>输入姓名</view>
+      <input bindinput="getName"   type="text" placeholder="输入姓名" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+  </view>
+
+
+
+  <view class='putinBox'>
+      <button  class="putin "  bindtap="finishBuild"> 修改完成 </button>
+  </view> 
+   
+
+</view>

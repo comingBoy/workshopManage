@@ -1,0 +1,73 @@
+/* pages/myMes/myMes.wxss */
+.container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  box-sizing:border-box;
+  margin-bottom:100rpx;
+  margin-top:50rpx;
+  background-color:#fff;
+}
+
+.headBox{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:95%;
+}
+
+.imageSize{
+  width:120rpx;
+  height:120rpx;
+  margin:0rpx 20rpx;
+}
+
+.nameBoxA{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size:32rpx;
+}
+.nameBoxB{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  font-size:30rpx;
+  color: #808080;
+}
+.MesBox{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  border-bottom:solid 0.5rpx #ddd;
+  padding:22rpx 0rpx;
+}
+.changeSave{
+  margin:0rpx;
+  background-color:green;
+  color:white;
+  padding:11rpx 20rpx;
+  line-height:32rpx;
+  font-size:26rpx;
+  height:55rpx;
+}
+.changeInfo{
+  background-color: #fff;
+  padding:23rpx;
+  font-size:30rpx;
+
+}
+.changeCtx{
+  display: flex;
+  justify-content: space-between;
+  margin-top:24rpx
+}
+.changeTitle{
+  margin-bottom: 1rpx;
+}
+.changeInput{
+  border-bottom: solid green 2rpx;
+}

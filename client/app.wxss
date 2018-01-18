@@ -1,0 +1,26 @@
+/**app.wxss**/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 100rpx;
+} 
+
+.frame{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input{
+  border:1px solid #ddd; 
+  border-radius:8rpx;
+  padding:0rpx 10rpx;
+  margin: 20rpx 0px 0rpx 0rpx;
+  height: 60rpx;
+}
+page{
+  background-color: #f5f5f5;
+}

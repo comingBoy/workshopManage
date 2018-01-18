@@ -1,0 +1,111 @@
+/* pages/register/register.wxss */
+.form{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  box-sizing:border-box;
+  width:100%;
+
+}
+.bigInfoBox{
+margin-top: 25rpx;
+display:flex;
+flex-direction:column;
+flex-wrap:wrap;
+width:57%;
+text-align: center;
+background-color: #fff;
+align-items:center;
+}
+
+.headBox{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+
+.imageSize{
+width:120rpx;
+height:120rpx;
+margin:20rpx;
+border-radius:50%;
+
+}
+
+.putinBox{
+margin-top: 50rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+}
+.putinBox0{
+  margin-top: 50rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+}
+.radio{
+  margin-left: 60rpx
+}
+.NameTel{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.NameTel0{
+display: flex;
+flex-direction: column;
+align-items: center;
+width:20%;
+
+}
+
+.putin {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content:flex-start;
+border-bottom:1px solid #ddd; 
+} 
+
+
+
+.inputid{
+border:1px solid #ddd; 
+border-radius:8rpx;
+padding:0rpx 10rpx;
+margin: 20rpx 20rpx 0rpx 20rpx;
+height: 60rpx;
+text-align: center;
+background-color: #fff;
+}
+
+
+
+.finish{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: green;
+  text-align: center;
+  color:#fff; 
+  padding-top: 35rpx;
+  padding-bottom:35rpx;
+  left: 0;
+}
+
+.finish0{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color:#fff;
+  text-align: center;
+  color:#c0c0c0; 
+  padding-top: 35rpx;
+  padding-bottom:35rpx;
+  font-size: 35rpx; 
+  left: 0;
+}

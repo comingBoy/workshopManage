@@ -1,0 +1,84 @@
+/* pages/buildgroup/buildgroup.wxss */
+
+.bigCameraBox{
+margin-top: 25rpx;
+display:flex;
+flex-direction:column;
+flex-wrap:wrap;
+width:90%;
+text-align: center;
+background-color: #fff;
+align-items:center;
+padding-bottom:50rpx;
+border-radius:0 0 25rpx 25rpx;
+
+}
+.putin {
+display: flex;
+justify-content:space-around;
+flex-wrap: wrap;
+width: 100%;
+
+} 
+.inputid{
+border-bottom:1px solid #ddd; 
+border-radius:8rpx;
+padding:0rpx 10rpx;
+margin: 20rpx 20rpx 0rpx 20rpx;
+height: 60rpx;
+color: #c0c0c0;
+font-size: 25rpx;
+margin-bottom:8rpx;
+
+}
+
+
+.cameraBox{
+
+display:flex;
+flex-direction:column;
+
+flex-wrap:wrap;
+width:100%;
+text-align: center;
+background-color: #d8d8d8;
+margin-bottom: 25rpx;
+align-items:center;
+
+
+}
+
+.cameraImage{
+width: 52%;
+height: 250rpx;
+}
+
+.wordSize{
+color: #fff;
+margin-bottom: 25rpx;
+font-size: 40rpx;
+}
+
+.build{
+position: fixed;
+bottom: 0;
+width: 100%;
+background-color: green;
+text-align: center;
+color:#fff; 
+padding-top: 35rpx;
+padding-bottom:35rpx;
+font-size: 35rpx; 
+}
+
+.build0{
+position: fixed;
+bottom: 0;
+width: 100%;
+background-color:#fff;
+text-align: center;
+color:#c0c0c0; 
+padding-top: 35rpx;
+padding-bottom:35rpx;
+font-size: 35rpx; 
+}

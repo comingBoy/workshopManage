@@ -1,0 +1,33 @@
+/* pages/checkPoint/checkPoint.wxss */
+.checkDateBanner{
+  width: 100%;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: solid 2rpx #ddd;
+}
+.checkPointList{
+  width: 100%;
+  margin-top: 50rpx;
+  padding-bottom: 50rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border-bottom: solid 2rpx #ddd;
+}
+.checkPoint{
+    display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 35rpx;
+  
+  width: 100%;
+  margin: 20rpx 0;
+}
+.checkPointName{
+  margin-left: 30rpx;
+}
+.checkPointState{
+  margin-left: 30rpx;
+}

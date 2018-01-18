@@ -1,0 +1,25 @@
+<!--创建部门-->
+<view class='container' >
+  <view class='bigCameraBox'>
+    <view class='cameraBox'>
+      <image src="{{cover}}" class='cameraImage' mode='aspectFill' bindtap='chooseCover'></image>
+      <text class='wordSize'>点击选取图片</text>
+    </view>
+
+    <view class='putinBox'>
+      <input bindinput="getGroupName" type="text" placeholder="输入部门名称" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+
+    <view class='putinBox'>
+      <input bindinput="getGroupCode" type="number" placeholder="设置部门码" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+
+    <view class='putinBox'>
+      <input bindinput="getPassword" type="number" placeholder="填写管理员密码" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+
+</view>
+  <view wx:if="{{finishFlag}}" bindtap='finishBuild' class='build'>创立部门</view> 
+  <view wx:else  class='build0'>创立部门</view> 
+</view>
+

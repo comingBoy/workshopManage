@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/index0/index0",
+    "pages/group/group",
+    "pages/staff/staff",
+    "pages/inspect/inspect",
+    "pages/newWorkshop/newWorkshop",
+    "pages/workshop/workshop",
+    "pages/checkPoint/checkPoint",
+    "pages/checkDetail/checkDetail",
+    "pages/groupManagement/groupManagement",
+    "pages/addCgi/addCgi",
+    "pages/application/application",
+    "pages/buildgroup/buildgroup",
+    "pages/changeName/changeName",
+    "pages/changeTel/changeTel",
+    "pages/myInfo/myInfo",
+    "pages/staffList/staffList",
+    "pages/register/register"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "Wafer Quick Start",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "list":[{
+      "pagePath":"pages/group/group",
+      "text":"车间"
+    },{
+      "pagePath":"pages/staffList/staffList",
+      "text":"成员"
+    },{
+      "pagePath": "pages/inspect/inspect",
+      "text": "检查"
+    },{
+      "pagePath": "pages/myInfo/myInfo",
+      "text": "我的"
+    }
+    ]
+  }
+}
