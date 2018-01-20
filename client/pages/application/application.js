@@ -20,13 +20,13 @@ Page({
   onLoad: function (options) {
     this.setData({
       name: getApp().globalData.myInfo.name,
-      Tel: getApp().globalData.myInfo.telNumber,
+      Tel: getApp().globalData.myInfo.telNum,
     })
 
     //初始化申请参数
     groupIndex = options.index
     ApplicationMes = {
-      groupId: getApp().globalData.groupList[groupIndex].id,
+      groupId: getApp().globalData.groupList[groupIndex].groupId,
       openId: getApp().globalData.myInfo.openId,
       groupCode: null,
     }
