@@ -10,14 +10,12 @@ module.exports = {
 
   getGroupWorkshop: async ctx => {
     let req = ctx.request.body
-    var status, res, res0, res1, res2, t, t0, t1, t2, result0, i, j
-    var normal, abnormal
+    var status, res, res0, res1, res2, t, t0, t1, t2, result0, i, j, error
     var info = {
       workshopName: '',
       name: '',
       totalCheckpoints: '',
-      normal: '',
-      abnormal: '',
+      error: '',
       inspectTimes: '',
       totalTimes: ''
     }
@@ -49,22 +47,20 @@ module.exports = {
           res1 = await inspectdb.getError(req1)
           t1 = typeof (res1)
           if (t1 == 'object') {
-            normal = 0
-            abnormal = 0
-            var date = res1[res1.length-1].date
-            for (j = res1.length-1; j >= 0; j--) {
-              if (date == res1[j].date) {
-                if (res1[j].error == 1) {
-                  abnormal++
+            error = 0
+            if (res1.length-1 > 0) {
+              var date = res1[res1.length - 1].date
+              for (j = res1.length - 1; j >= 0; j--) {
+                if (date == res1[j].date) {
+                  if (res1[j].error == 1) {
+                    error++
+                  }
                 } else {
-                  normal++
+                  break
                 }
-              } else {
-                break
               }
             }
-            info.normal = normal
-            info.abnormal = abnormal
+            info.error = error
           } else {
             status = -1
             break
@@ -81,14 +77,12 @@ module.exports = {
             status = -1
             break
           }
-          console.log(info)
           infoQueue.push(info)
           info = {
             workshopName: '',
             name: '',
             totalCheckpoints: '',
-            normal: '',
-            abnormal: '',
+            error: '',
             inspectTimes: '',
             totalTimes: ''
           }
@@ -183,7 +177,7 @@ module.exports = {
       name: '',
       totalCheckpoints: '',
       normal: '',
-      abnormal: '',
+      error: '',
       inspectTimes: '',
       totalTimes: ''
     }
@@ -213,7 +207,7 @@ module.exports = {
             workshopId: res[i].id
           }
           res2 = await timesdb.getWorkshopInspect(req0)
-          var normal = 0, abnormal = 0
+          var normal = 0, error = 0
           info.openId = res0.openId
           t0 = typeof (res0)
           t1 = typeof (res1)
@@ -228,10 +222,10 @@ module.exports = {
               if (res1[j].error == 0)
                 normal++
               else
-                abnormal++
+                error++
             }
             info.normal = normal
-            info.abnormal = abnormal
+            info.error = error
           } else {
             result0 = {
               status: -1
@@ -244,7 +238,7 @@ module.exports = {
             name: '',
             totalCheckpoints: '',
             normal: '',
-            abnormal: '',
+            error: '',
             inspectTimes: '',
             totalTimes: ''
           }
