@@ -22,6 +22,6 @@
 <view class='nameBox'>{{item.name}}</view>
 <view class='tellBox'>{{item.telNumber}}</view>
 </view>
-<view class='DeleteBox' bindtap="deleteMember">删除</view>
+<view class='DeleteBox' id='{{index}}' bindtap="deleteMember">删除</view>
 </view>
 </view>

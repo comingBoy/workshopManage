@@ -1,91 +1,22 @@
 <!--pages/inspect/inspect.wxml-->
 <view class='container'>
+  <!--框架-->
   <view class='frame'>
-    <view class='timeSelector'>
-      <picker class='picker' value="{{indexNum}}" range-key="workshopName" range="{{myWorkshop}}" bindchange="bindWorkshopChange">
-      {{myWorkshop[indexNum].workshopName}} ▼
-      </picker>
-    </view>
-    <!--时间栏-->
-    <view class='timeSelector'>
-      <picker class='picker' mode = "date" value="{{date}}" fields = "month" start = "2017-12" end = "2100-01" bindchange="bindDateChange" disabled='true'>
-      {{date}} 
-      </picker>
-    </view>
-    <!--检查进度-->
-    <view class='detail' hidden='{{hiddenDetail}}'>
-      <view class='allCheck'>
-        <text class='allCheckText'>本月检查次数 {{inspectTimes}}/{{totalTimes}}</text>
-        
-        <image src='../../images/add.jpg' class='add' bindtap='newProgress'></image>
-      </view>
-      
-      <!--需要检查的日期表-->
-      <view class='checkTimeTable'>
-        <view wx:for='{{progressQueue}}' class='checkTime' bindtap='inCheckPiont' >
-          <text class='checkTimeInfo' id='{{index}}'>
-          {{item.date}}日 {{item.weekday}}
-          </text>
-          <text class='checkTimeInfo' id='{{index}}'>
-          检查进度:{{item.inspectNum}}/{{item.checkpointNum}}
-          </text>
+    <!--标题-->
+      <view class='bannerBox'>
+        <view class='groupBanner'>
+          我负责的车间
         </view>
       </view>
-     
-    </view>
-    <!--检查表--> 
-    <view class='dangersTable' hidden='{{hiddenDangers}}'>
-      <view class='listName'>
-        <text>隐患表</text>
-      </view >
-      <view wx:if = '{{dangersList.length == 0}}'>
-        <text>暂无隐患</text>
-      </view>
-      <view wx:else>
-        <view class="dangersList" wx:for="{{dangersList}}"> 
-          <text class='dangersText'>发现人:{{item.finder}}</text> <text class='dangersText'>隐患点:{{item.checkPoint}} </text>
-          <text class='dangersText'>查看详情</text>
-        </view>
-      </view>
-     
-      <view class='specialPiont' wx:for="{{specialPiontList}}">
-        <view class='label'>
-          <icon type="warn" size="15" color="red"/>
-        </view>
-        <view class='specialPiontBox'>
-          <text>{{item.name}}：</text> 
-          <text>{{item.description}} </text>
-        </view>
-      </view>
-    </view>
-    <view class='checkTable' hidden='{{hiddenCheckTable}}'>
-      <view class='whichCheck'>
-        {{progressQueue[whichCheck].date}}日 {{progressQueue[whichCheck].weekday}}
-      </view>
-      <view class='checkpointName'>
-        <picker value="{{checkpointNum}}" range-key="name" range="{{checkpoint}}" bindchange="bindCheckPointChange">
-        {{checkpoint[checkpointNum].name}}
-        </picker>
-      </view>
-      <view class='ifDanger'>
-        <radio-group class="radio-group" bindchange="radioChange">
-        有无隐患:
-          <label class="radio" wx:for="{{ifDanger}}">
-            <radio value="{{item.value}}" checked="{{item.checked}}"/> {{item.value}}
-          </label>
-        </radio-group>
-              
-       
-      </view>
-      <view class='checkPointBox'> 上传图片</view>
-      <image src="../../images/camera.png" class='cameraImage' mode='aspectFill' bindtap='chooseCover'></image>
-      <view class='checkPointBox'> 隐患描述</view>
-      <textarea class="textArea" placeholder="请输入文本" bindinput='textInput' />
-      <button class='finish'>确认提交</button>
-    </view>
-    <view class='dangersDetail' hidden='{{hiddenDangersDetail}}'>
-      <view class='listName'>
-        <text>隐患详情</text>
+
+    <!--车间列表-->
+    <view class='workshopList'>
+      <view class='workshop' wx:for='{{myWorkshop}}' id='{{index}}' bindtap='toWorkshop'>
+        <text >{{item.workshopName}}</text>
+        <text class='groupAdmin'>负责人:{{item.name}}</text>
+        <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
+        <text class='textBox'>待修复个数：{{item.error}}</text> 
+        <text class='textBox'>本月任务：{{item.inspectTimes}}/{{item.totalTimes}}</text> 
       </view>
     </view>
   </view>
