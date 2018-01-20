@@ -13,6 +13,7 @@ module.exports = {
   */
   getInspect: function (data, callback) {
     var data = data
+    console.log(data)
     var configure = {
       url: config.service.getInspectUrl,
       method: 'POST',

@@ -8,7 +8,7 @@ const checkpointdb = require('../db/checkpointdb.js')
 module.exports = {
   getInspect: async ctx => {
     let req = ctx.request.body
-    var res, res0, res1, t, t0, t1, result0
+    var res, t, result0, status
     res = await timesdb.getTimes(req)
     t = typeof (res)
     if (t == 'object') {

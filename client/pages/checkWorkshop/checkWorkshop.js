@@ -1,18 +1,27 @@
 // pages/checkWorkshop/checkWorkshop.js
+var inspect = require('../../utils/inspect.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    workshopId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var date = '^2018-01'
+    var workshopId = options.workshopId
+    var data = {
+      date: date,
+      workshopId: workshopId
+    }
+    inspect.getInspect(data, function (res) {
+      console.log(res)
+    })
   },
 
   /**
@@ -26,7 +35,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**

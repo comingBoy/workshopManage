@@ -172,6 +172,7 @@ module.exports = {
     let req = ctx.request.body
     var status, res, res0, res1, res2, t, t0, t1, t2, result0, i, j, error
     var info = {
+      workshopId: '',
       workshopName: '',
       totalCheckpoints: '',
       error: '',
@@ -224,8 +225,10 @@ module.exports = {
             status = -1
             break
           }
+          info.workshopId = res[i].workshopId
           infoQueue.push(info)
           info = {
+            workshopId: '',
             workshopName: '',
             totalCheckpoints: '',
             error: '',
