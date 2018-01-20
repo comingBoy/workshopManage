@@ -1,2 +1,7 @@
 <!--pages/checkWorkshop/checkWorkshop.wxml-->
-<text>pages/checkWorkshop/checkWorkshop.wxml</text>
+<view class='container'>
+  <view class='frame'>
+    <!--workshop-->
+    
+  </view>
+</view>
