@@ -11,7 +11,7 @@
 
     <!--车间列表-->
     <view class='workshopList'>
-      <view class='workshop' wx:for='{{myWorkshop}}' id='{{index}}' bindtap='toWorkshop'>
+      <view class='workshop' wx:for='{{myWorkshop}}' id='{{index}}' bindtap='toCheckWorkshop'>
         <text >{{item.workshopName}}</text>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>

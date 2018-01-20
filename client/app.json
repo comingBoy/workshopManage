@@ -17,8 +17,8 @@
     "pages/changeTel/changeTel",
     "pages/myInfo/myInfo",
     "pages/staffList/staffList",
-    "pages/register/register"
-    
+    "pages/register/register",
+    "pages/checkWorkshop/checkWorkshop"
   ],
   "window":{
     "backgroundTextStyle":"light",

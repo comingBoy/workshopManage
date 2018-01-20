@@ -1,25 +1,18 @@
-// pages/inspect/inspect.js
-
+// pages/checkWorkshop/checkWorkshop.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    myWorkshop: [{ 
-      workshopName: "ins",
-      inspectTimes: 0,
-      error: 0,
-      totalCheckpoints: 4,
-      totalTimes: 3,
-    }]
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+  
   },
 
   /**
@@ -33,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+  
   },
 
   /**
@@ -69,17 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  
-  /**
-   * 跳转到相应的车间检查界面
-   */
-  toCheckWorkshop: function(){
-    wx.navigateTo({
-      url: '',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
   }
 })
