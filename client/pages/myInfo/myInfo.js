@@ -53,7 +53,7 @@ Page({
         index: e.currentTarget.id,
         changeFlag: false,
         changeSex: false,
-        changeCtx: myInfo.telNumber,
+        changeCtx: myInfo.telNum,
       })
     }
     
@@ -103,7 +103,7 @@ Page({
       if (changeInfo.length != "11") {
         util.showModel('提示', '请输入11位手机号！')
       } else {
-        myInfo.telNumber = changeInfo
+        myInfo.telNum = changeInfo
         staff.modifyUserInfo(myInfo, function () {
           getApp().globalData.myInfo = myInfo
           that.setData({

@@ -22,7 +22,7 @@
 
     <view class="MesBox" bindtap='changeInfo' id='3'> 
        <text class='nameBoxA'>手机号</text>
-       <view class='nameBoxB'> {{myInfo.telNumber}}</view>
+       <view class='nameBoxB'> {{myInfo.telNum}}</view>
     </view>
   </view>
 </view>
