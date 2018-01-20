@@ -82,8 +82,10 @@ Page({
    * 跳转到相应的车间检查界面
    */
   toCheckWorkshop: function(e){
+
     console.log(e)
     getApp().globalData.workshopInfo = this.data.myWorkshop[e.currentTarget.id]
+
     wx.navigateTo({
       url: '../checkWorkshop/checkWorkshop',
       success: function(res) {},
