@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       name: getApp().globalData.myInfo.name,
-      Tel: getApp().globalData.myInfo.telNum,
+      Tel: getApp().globalData.myInfo.telNumber,
     })
 
     //初始化申请参数

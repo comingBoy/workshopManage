@@ -114,7 +114,6 @@ module.exports = {
   },
   //验证是否加入部门
   verifyStaff: function (data, urls) {
-    console.log(data)
     var data = data
     var configure = {
       url: config.service.verifyStaffUrl,
@@ -161,9 +160,9 @@ module.exports = {
     }
     net.request(data, configure, function (res) {
       if (res.data.result.status == 1) {
-      } else if (res.data.result == 0) {
+      } else if (res.data.result.status == 0) {
         util.showModel('提示', '尚无员工！')
-      } else if (res.data.result == -1) {
+      } else if (res.data.result.status == -1) {
         util.showModel('提示', '获取失败，请重试！')
       } else {
         util.showModel('提示', '请求出错！')

@@ -42,7 +42,7 @@ Page({
     var that = this
     console.log(getApp().globalData.currentGroup)
     var data = {
-      groupId: getApp().globalData.currentGroup.id
+      groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data,function(res){
       var staffList = res

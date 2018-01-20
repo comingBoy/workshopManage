@@ -38,7 +38,7 @@ module.exports = {
             if (t0 == 'object') {
               info.name = res0[0].name
             } else {
-              status: -1
+              status = -1
               break
             }
           }
@@ -66,7 +66,7 @@ module.exports = {
             info.normal = normal
             info.abnormal = abnormal
           } else {
-            status: -1
+            status = -1
             break
           }
           var req0 = {
@@ -78,7 +78,7 @@ module.exports = {
           if (t2 == 'object') {
             info.inspectTimes = res2.length
           } else {
-            status: -1
+            status = -1
             break
           }
           console.log(info)
@@ -95,15 +95,18 @@ module.exports = {
         }
         status = 1
       } else {
-        status: 0
+        status = 0
       }
     } else {
-      status: -1
+      status = -1
     }
+
     result0 = {
       status: status,
       res: infoQueue
     }
+    console.log(result0)
+
     ctx.body = {
       result: result0
     }

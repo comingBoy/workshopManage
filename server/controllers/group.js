@@ -105,6 +105,13 @@ module.exports = {
       staff.push(tmp[0])
     }
     staff.length > 0 ? status = 1 : status = -1
+    if (staff.length > 0) {
+      status = 1
+    } else if (staff.length == 0) {
+      status = 0
+    } else {
+      status = -1
+    }
     let result0 = {
       res: staff,
       status: status

@@ -99,7 +99,7 @@ module.exports = {
     if (data.name) {
       if (data.sex) {
         if (data.staffId) {
-          if (data.telNumber) {
+          if (data.telNum) {
             net.request(data, configure, function (res) {
               if (res.data.result.status == 1) {
                 wx.showModal({

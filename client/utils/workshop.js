@@ -100,6 +100,7 @@ module.exports = {
       util.showModel('提示', '车间名不能为空！')
     }
   },
+
   getMyWorkshop: function(data, callback){
     var data = data
     console.log(data)
@@ -113,5 +114,28 @@ module.exports = {
     net.request(data, configure, function (res) {
       callback(res.data.result.res)
     })
-  }
+  },
+
+  //获取已完成次数记录
+  /*
+    data = {
+      date: date,
+      
+    }
+  */
+  getTimes: function (data, callback) {
+    var data = data
+    console.log(data)
+    var configure = {
+      url: config.service.getMyWorkshopUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result.res)
+    })
+  },
+
 }
