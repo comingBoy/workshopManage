@@ -102,7 +102,7 @@ Page({
     realDate = getdate()
     var data = {
       openId: myInfo.openId,
-      groupId: groupInfo.id
+      groupId: groupInfo.groupId
     }
     workshop.getMyWorkshop(data, function (res) {
       that.setData({
@@ -112,7 +112,7 @@ Page({
       var data2 = {
         thisMonth: true,
         date: '^' + that.data.date,
-        workshopId: that.data.myWorkshop[that.data.indexNum].id
+        workshopId: that.data.myWorkshop[that.data.indexNum].workshopId
       }
       console.log(data2)
       inspect.getInspect(data2,function(res){

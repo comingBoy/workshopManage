@@ -7,7 +7,6 @@ module.exports = {
   //查看车间检查
   /*
   var data = {
-  thisMonth: true,
   date: date,
   workshopId: app.globalData.currentWorkshopId
   }
