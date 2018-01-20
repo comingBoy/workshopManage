@@ -253,5 +253,33 @@ module.exports = {
     ctx.body = {
       result: result0
     }
-  }
+  },
+
+  getError: async ctx => {
+    let req = ctx.request.body
+    var res = await inspectdb.getInspect(req)
+    var t = typeof(res)
+    var status, i, result0
+    var adminError = []
+    var staffError = []
+    if (t == 'object') {
+      for (i = res.length - 1; i >= 0; i--) {
+        if (res[i].error == 1 && admin ==1) {
+          adminError.push(res[i])
+        } else if (res[i].error == 1 && admin == 0) {
+          staffError.push(res[i])
+        }
+      }
+    } else {
+      status = -1
+    }
+    result0 = {
+      status : status,
+      adminError : adminError,
+      staffError : staffError
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
 }

@@ -67,4 +67,6 @@ router.post('/newWorkshopStatus', controllers.workshopstatus.newWorkshopStatus)
 router.post('/getInspectHis', controllers.inspect.getInspectHis)
 
 router.post('/getCheckpoint', controllers.checkpoint.getCheckpoint)
+
+router.post('/getError', controllers.workshop.getError)
 module.exports = router
