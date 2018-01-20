@@ -114,6 +114,7 @@ module.exports = {
   },
   //验证是否加入部门
   verifyStaff: function (data, urls) {
+    console.log(data)
     var data = data
     var configure = {
       url: config.service.verifyStaffUrl,
