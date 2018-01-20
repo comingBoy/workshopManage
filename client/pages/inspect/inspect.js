@@ -1,4 +1,6 @@
 // pages/inspect/inspect.js
+var workshop = require('../../utils/workshop.js')
+var utils = require('../../utils/util.js')
 
 Page({
 
@@ -6,13 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    myWorkshop: [{ 
-      workshopName: "ins",
-      inspectTimes: 0,
-      error: 0,
-      totalCheckpoints: 4,
-      totalTimes: 3,
-    }]
+    myWorkshop: null
   },
 
   /**
@@ -34,34 +30,15 @@ Page({
    */
   onShow: function () {
     var that = this
-    myInfo = getApp().globalData.myInfo
-    groupInfo = getApp().globalData.currentGroup
-    realDate = getdate()
+    var groupId = getApp().globalData.currentGroup.groupId
+    var openId = getApp().globalData.myInfo.openId
     var data = {
-      openId: myInfo.openId,
-      groupId: groupInfo.groupId
+      groupId : groupId,
+      openId : openId
     }
-    workshop.getMyWorkshop(data, function (res) {
+    workshop.getMyWorkshop(data, function(res){
       that.setData({
-        myWorkshop: res,
-        date: getdate(),
-      })
-      var data2 = {
-        thisMonth: true,
-        date: '^' + that.data.date,
-        workshopId: that.data.myWorkshop[that.data.indexNum].workshopId
-      }
-      console.log(data2)
-      inspect.getInspect(data2,function(res){
-        console.log(res)
-        var progressQueue = res.progressQueue
-        addWeekday(progressQueue)
-        console.log(progressQueue)
-        that.setData({
-          progressQueue,
-          totalTimes: res.totalTimes,
-          inspectTimes: res.inspectTimes,
-        })
+        myWorkshop: res
       })
     })
   },
@@ -106,7 +83,7 @@ Page({
    */
   toCheckWorkshop: function(){
     wx.navigateTo({
-      url: '',
+      url: '../checkWorkshop/checkWorkshop',
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
