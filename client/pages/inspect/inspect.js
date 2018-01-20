@@ -33,7 +33,37 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var that = this
+    myInfo = getApp().globalData.myInfo
+    groupInfo = getApp().globalData.currentGroup
+    realDate = getdate()
+    var data = {
+      openId: myInfo.openId,
+      groupId: groupInfo.groupId
+    }
+    workshop.getMyWorkshop(data, function (res) {
+      that.setData({
+        myWorkshop: res,
+        date: getdate(),
+      })
+      var data2 = {
+        thisMonth: true,
+        date: '^' + that.data.date,
+        workshopId: that.data.myWorkshop[that.data.indexNum].workshopId
+      }
+      console.log(data2)
+      inspect.getInspect(data2,function(res){
+        console.log(res)
+        var progressQueue = res.progressQueue
+        addWeekday(progressQueue)
+        console.log(progressQueue)
+        that.setData({
+          progressQueue,
+          totalTimes: res.totalTimes,
+          inspectTimes: res.inspectTimes,
+        })
+      })
+    })
   },
 
   /**

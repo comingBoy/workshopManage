@@ -30,8 +30,8 @@ module.exports = {
     return result
   },
   async getMyWorkshop(args) {
-    let sql = 'SELECT workshopId,workshopName,checkpointNum,openId,times FROM workshopdb where groupId = ? AND openId = ?'
-    let params = [args.groupId,args.openId]
+    let sql = 'SELECT * FROM workshopdb where groupId = ? AND openId = ?'
+    let params = [args.groupId, args.openId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
