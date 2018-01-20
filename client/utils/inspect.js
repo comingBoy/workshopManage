@@ -65,6 +65,52 @@ module.exports = {
     net.request(data, configure, function (res) {
       callback(res.data.result)
     })
+  },
+  //修复隐患
+  /*
+  data = {
+    inspectId : inspectId,
+    date : date,
+    describtion : describtion,
+    photo
   }
+
+  urls = {
+    checkWorkshop : checkWorkshop
+  }
+  */
+  fixError: function (data, urls) {
+    var data = data
+    console.log(data)
+    var configure = {
+      url: config.service.fixErrorUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      if (res.data.result.status == 1) {
+        wx.showModal({
+          title: '提示',
+          content: '修复报告提交成功！',
+          showCancel: false,
+          success: function (res) {
+            wx.redirectTo({
+              url: urls.checkWorkshop,
+            })
+          }
+        })
+      } else if (res.data.result.status == 0) {
+        util.showModel('提示', '数据库异常！')
+      }
+      else if (res.data.result.status == -1) {
+        util.showModel('提示', '获取失败，请重试！')
+      } else {
+        util.showModel('提示', '请求出错！')
+      }
+    })
+  },
 }
 

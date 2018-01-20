@@ -11,8 +11,8 @@ module.exports = {
   },
   //更新检查点是否检查状态
   async refreshStatus(args) {
-    let sql = 'UPDATE checkpointdb SET status = ? where workshopId = ?'
-    let params = [args.status, args.workshopId]
+    let sql = 'UPDATE checkpointdb SET status = ? where inspectId = ?'
+    let params = [args.status, args.inspectId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },

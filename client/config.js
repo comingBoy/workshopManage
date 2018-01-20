@@ -60,6 +60,8 @@ var config = {
         getInspectHisUrl: `${host}/weapp/getInspectHis`,
 
         getErrorUrl: `${host}/weapp/getError`,
+
+        fixErrorUrl: `${host}/weapp/fixError`,
     }
 };
 
