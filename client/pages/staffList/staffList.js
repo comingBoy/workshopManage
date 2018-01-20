@@ -13,6 +13,7 @@ Page({
 
 
   deleteMember:function(e){
+    console.log(e)
     if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId){
       var that = this
       var data = {

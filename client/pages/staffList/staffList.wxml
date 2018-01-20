@@ -10,7 +10,7 @@
       <view class='tellBox'>{{admin.telNum}}</view>
     </view>
   </view>
-
+  
   <view class='label'>员工</view>
     <view wx:for='{{staffList}}' class='ListBox'>
       <view class='headBox'>
