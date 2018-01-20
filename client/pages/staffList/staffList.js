@@ -18,20 +18,16 @@ Page({
       var that = this
       var data = {
         openId: that.data.staffList[e.currentTarget.id].openId,
-        groupId: getApp().globalData.currentGroup.id
+        groupId: getApp().globalData.currentGroup.groupId
       }
-      if (data.openId == getApp().globalData.currentGroup.adminId){
-        util.showModel('提示', '您删除自己干啥？？？！')
-      }else{
-        group.delStaff(data, function (res) {
-          console.log(res)
-          var staffList = that.data.staffList
-          staffList.splice(e.currentTarget.id, 1)
-          that.setData({
-            staffList: staffList
-          })
+      group.delStaff(data, function (res) {
+        console.log(res)
+        var staffList = that.data.staffList
+        staffList.splice(e.currentTarget.id, 1)
+        that.setData({
+          staffList: staffList
         })
-      }
+      })
     }else{
       util.showModel('提示', '您不是管理员！')
     }
@@ -58,7 +54,7 @@ Page({
       that.setData({
         staffList: staffList,
         admin: admin
-      }) 
+      })
     })
     
   },

@@ -1,27 +1,25 @@
 <!--部门成员信息-->
 <view class='container'>
-<view class='label'>管理员</view>
-<view class='ListBox'>
-<view class='headBox'>
-<image src='{{admin.avatar}}' class='imageSize' mode='aspectFill'></image>
-</view>
-<view class='memberBox'>
-<view class='nameBox'>{{admin.name}}</view>
-<view class='tellBox'>{{admin.telNumber}}</view>
-</view>
-
-<view class='DeleteBox' bindtap="deleteMember">删除</view>
-</view>
-
-<view class='label'>员工</view>
-<view wx:for='{{staffList}}' class='ListBox'>
-<view class='headBox'>
-<image src='{{item.avatar}}' class='imageSize' mode='aspectFill'></image>
-</view>
-<view class='memberBox'>
-<view class='nameBox'>{{item.name}}</view>
-<view class='tellBox'>{{item.telNumber}}</view>
-</view>
-<view class='DeleteBox' id='{{index}}' bindtap="deleteMember">删除</view>
-</view>
+  <view class='label'>管理员</view>
+    <view class='ListBox'>
+      <view class='headBox'>
+        <image src='{{admin.avatar}}' class='imageSize' mode='aspectFill'></image>
+      </view>
+      <view class='memberBox'>
+      <view class='nameBox'>{{admin.name}}</view>
+      <view class='tellBox'>{{admin.telNum}}</view>
+    </view>
+  </view>
+  
+  <view class='label'>员工</view>
+    <view wx:for='{{staffList}}' class='ListBox'>
+      <view class='headBox'>
+        <image src='{{item.avatar}}' class='imageSize' mode='aspectFill'></image>
+      </view>
+      <view class='memberBox'>
+      <view class='nameBox'>{{item.name}}</view>
+      <view class='tellBox'>{{item.telNum}}</view>
+    </view>
+    <view class='DeleteBox' bindtap="deleteMember" id='{{index}}'>删除</view>
+  </view>
 </view>
