@@ -81,9 +81,10 @@ Page({
   /**
    * 跳转到相应的车间检查界面
    */
-  toCheckWorkshop: function(){
+  toCheckWorkshop: function(e){
+    console.log(e)
     wx.navigateTo({
-      url: '../checkWorkshop/checkWorkshop',
+      url: '../checkWorkshop/checkWorkshop?workshopId=' + workshopId,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

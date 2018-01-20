@@ -4,28 +4,28 @@
   font-size:30rpx;
 }
 .workshopList{
-width: 100%;
-margin-top: 50rpx;
-padding-bottom: 50rpx;
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify-content: space-between;
-border-bottom: solid 2rpx #ddd;
+  width: 100%;
+  margin-top: 50rpx;
+  padding-bottom: 50rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: solid 2rpx #ddd;
 }
 .workshop{
-width:44%;
-display:flex;
-flex-direction:column;
-align-items:center;
-margin-right:17rpx;
-margin-left:17rpx;
-margin-bottom:50rpx;
-background-color:#fff;
-border-radius:25rpx;
-height:340rpx;
-border: solid #c0c0c0 1rpx;
-color: #696969;
+  width:44%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-right:17rpx;
+  margin-left:17rpx;
+  margin-bottom:50rpx;
+  background-color:#fff;
+  border-radius:25rpx;
+  height:288rpx;
+  border: solid #c0c0c0 1rpx;
+  color: #696969;
 }
 
 .returnImage{
@@ -33,13 +33,13 @@ color: #696969;
 }
 
 .returnBox{
-display:flex;
-flex-direction:column;
-flex-wrap:wrap;
-width:30%;
-height:58rpx;
-margin-bottom: 25rpx;
-padding-top:23rpx;
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  width:30%;
+  height:58rpx;
+  margin-bottom: 25rpx;
+  padding-top:23rpx;
 }
 
 .bannerBox{
@@ -52,26 +52,27 @@ padding-top:23rpx;
 }
 
 .groupAdmin{
-width: 100%;
-height: 50rpx;
-background-color: #fff;
-text-align: center;
-line-height: 49rpx;
-font-size: 29rpx;
-font-family: "微软雅黑";
-padding-top: 15rpx;
-padding-bottom: 10rpx;
-color: #c0c0c0;
+  width: 100%;
+  height: 50rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 49rpx;
+  font-size: 29rpx;
+  font-family: "微软雅黑";
+  padding-top: 15rpx;
+  padding-bottom: 10rpx;
+  color: #c0c0c0;
 }
 .textBox{
-width: 100%;
-height: 50rpx;
-background-color: #fff;
-text-align: center;
-line-height: 49rpx;
-font-size: 30rpx;
-font-family: "楷书";
-color: #708090;
+  width: 100%;
+  height: 50rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 49rpx;
+  font-size: 30rpx;
+  font-family: "楷书";
+  color: #708090;
+  margin-top:14rpx;
 }
 
 .textBox0{
