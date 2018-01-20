@@ -26,13 +26,13 @@ Page({
     var that = this
     var data = {
       date: getCurrentDate(),
-      groupId: getApp().globalData.currentGroup.id      
+      groupId: getApp().globalData.currentGroup.groupId      
     }
     workshop.getGroupWorkshop(data,function(res){
+      console.log(res)
       that.setData({
         workshopList: res
       })
-      console.log(that.data.workshopList)
     })
     that.setData({
       groupInfo: getApp().globalData.currentGroup

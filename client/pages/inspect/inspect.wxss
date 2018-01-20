@@ -168,3 +168,27 @@ margin-bottom: 20rpx;
 .dangersText{
   color:#708090;
 }
+.checkTable{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  font-size:30rpx;
+  color:#708090;
+  border:solid white;
+  border-radius:30rpx;
+}
+.checkpointName{
+  margin-top:20rpx;
+  font-size:34rpx;
+}
+.ifDanger{
+  font-size:25rpx;
+  margin-top:30rpx;
+}
+.whichCheck{
+  position:relative;
+  font-size:24rpx;
+  left: -200rpx;
+  top:10rpx
+}

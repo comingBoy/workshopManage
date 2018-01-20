@@ -2,6 +2,7 @@
 var workshop = require('../../utils/workshop.js')
 var inspect = require('../../utils/inspect.js')
 var workshopstatus = require('../../utils/workshopstatus.js')
+var checkpoint = require('../../utils/checkpoint.js')
 var util = require('../../utils/util.js')
 var myInfo = null
 var groupInfo = null
@@ -32,6 +33,7 @@ var addWeekday = function(array){
     array[i].date = array[i].date.slice(8, 10)
   }
 }
+
 var realDate = null
 
 Page({
@@ -44,6 +46,8 @@ Page({
     myWorkshop: null,
     inspectTimes: null,
     totalTimes: null,
+    checkpoint: null,
+    inspectHis: null,
     dangersList: [
       {
         finder: "李林峰",
@@ -54,11 +58,23 @@ Page({
         checkPoint: "检查点二号",
       }
     ],
+    ifDanger:[
+      {
+        value: "未发现",
+        checked: true,
+      },{
+        value: "发现",
+        checked: false,
+      }
+    ]
+    ,
     indexNum: 0,
-    indexNum0: 0,
+    checkpointNum: 0,
     indexNum1: 0,
-    hiddenPointFlag: true,
-    hiddenTabelFlag: false,
+    hiddenDetail: false,
+    hiddenDangers: false,
+    hiddenCheckTable: true,
+    hiddenDangersDetail: true,
     progressQueue: null,
   },
 
@@ -167,6 +183,10 @@ Page({
         progressQueue,
         totalTimes: res.totalTimes,
         inspectTimes: res.inspectTimes,
+        hiddenDetail: false,
+        hiddenDangers: false,
+        hiddenCheckTable: true,
+        hiddenDangersDetail: true,
       })
     })
   },
@@ -199,7 +219,7 @@ Page({
 
   bindCheckPointChange: function (e) {
     this.setData({
-      indexNum0: e.detail.value
+      checkpointNum: e.detail.value
     })
   },
 
@@ -213,8 +233,49 @@ Page({
 
   inCheckPiont: function (e) {
     console.log(e.target.id)
-    //this.setData({ hiddenPointFlag: false })
-    //this.setData({ hiddenTabelFlag: true })
+    var that = this
+    this.setData({
+      hiddenDetail: false,
+      hiddenDangers: !that.data.hiddenDangers,
+      hiddenCheckTable: !that.data.hiddenCheckTable,
+      hiddenDangersDetail: true,
+      whichCheck: e.target.id,
+    })
+    var data = {
+      workshopId: that.data.myWorkshop[that.data.indexNum].id,
+      workshopStatusId: that.data.progressQueue[e.target.id].workshopStatusId
+    }
+    console.log(data)
+    checkpoint.getCheckpoint(data, function (res) {
+      if (res.status == 1) {
+        console.log(res)
+        that.setData({
+          checkpoint: res.res
+        })
+        inspect.getInspectHis(data, function (res) {
+          console.log(res)
+          var checkpointBelong = new Array()
+          for (var j = 0; j < that.data.checkpoint.length; j++){
+            for (var i = 0; i < res.res.length; i++){
+              if(res.res[i].checkpointId == that.data.checkpoint[j].id){
+                checkpointBelong[j] = i
+                break;
+              }else{
+                checkpointBelong[j] = -1
+              }
+            }
+          }
+          that.setData({
+            inspectHis: res.res,
+            checkpointBelong: checkpointBelong
+          })
+        })
+      } else if (res.status == 0) {
+        utils.showModel('提示', '尚无检查点！')
+      } else {
+        utils.showModel('提示', '请求出错！')
+      }
+    })
   },
 
   textInput: function (e) {

@@ -17,6 +17,7 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
+      console.log(res)
       if (res.data.result.status == 1) {
       } else if (res.data.result.status == 0) {
         wx.showModal({
@@ -59,31 +60,39 @@ module.exports = {
     }
     if (data.workshopName) {
       if (data.groupId) {
-        net.request(data, configure, function (res) {
-          console.log(res)
-          if (res.data.result.status == 1) {
-            wx.showModal({
-              title: '提示',
-              content: '新建成功',
-              showCancel: false,
-              success: function (res) {
-                if (res.confirm) {
-                  wx.reLaunch({
-                    url: urls.groupIndex,
-                  })
-                }
+        if (data.checkpointNum) {
+          if (data.times) {
+            net.request(data, configure, function (res) {
+              console.log(res)
+              if (res.data.result.status == 1) {
+                wx.showModal({
+                  title: '提示',
+                  content: '新建成功',
+                  showCancel: false,
+                  success: function (res) {
+                    if (res.confirm) {
+                      wx.reLaunch({
+                        url: urls.groupIndex,
+                      })
+                    }
+                  }
+                })
+              } else if (res.data.result.status == -1) {
+                util.showModel('提示', '新建失败，请重试！')
+              } else if (res.data.result.status == 2) {
+                util.showModel('提示', '新建失败，请重试！')
+              } else if (res.data.result.status == -2 || res.data.result.status == 3) {
+                util.showModel('提示', '回滚失败，请从数据库删除或联系开发人员！')
+              } else {
+                util.showModel('提示', '请求出错！')
               }
             })
-          } else if (res.data.result.status == -1) {
-            util.showModel('提示', '新建失败，请重试！')
-          } else if (res.data.result.status == 2) {
-            util.showModel('提示', '新建失败，请重试！')
-          } else if (res.data.result.status == -2 || res.data.result.status == 3) {
-            util.showModel('提示', '回滚失败，请从数据库删除或联系开发人员！')
           } else {
-            util.showModel('提示', '请求出错！')
+            util.showModel('提示', '检查点数不能为空！')
           }
-        })
+        } else {
+          util.showModel('提示', '检查次数不能为空！')
+        }
       } else {
         util.showModel('提示', '未知部门！')
       }

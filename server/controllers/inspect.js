@@ -2,7 +2,7 @@
 const inspectdb = require('../db/inspectdb.js')
 const staffdb = require('../db/staffdb.js')
 const workshopdb = require('../db/workshopdb.js')
-const workshopstatusdb = require('../db/workshopstatusdb.js')
+const timesdb = require('../db/timesdb.js')
 const checkpointdb = require('../db/checkpointdb.js')
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
     var progressQueue = []
     var repairedQueue = []
     var notrepairedQueue = []
-    res = await workshopstatusdb.getWorkshopInspect(req)
+    res = await timesdb.getWorkshopInspect(req)
     t = typeof (res)
     if (t == 'object') {
       if (res.length > 0) {

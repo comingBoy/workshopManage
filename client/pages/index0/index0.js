@@ -80,7 +80,7 @@ Page({
     var that = this
     var data = {
       openId: getApp().globalData.myInfo.openId,
-      groupId: that.data.groupList[e.currentTarget.id].id
+      groupId: that.data.groupList[e.currentTarget.id].groupId
     }
     urls.groupIndex = urls.groupIndex + '?index=' + e.currentTarget.id
     urls.joinGroup = urls.joinGroup + '?index=' + e.currentTarget.id

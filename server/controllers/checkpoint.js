@@ -1,4 +1,3 @@
-//server/controllers/checkpoint.js
 const checkpointdb = require('../db/checkpointdb.js')
 module.exports = {
   getCheckpoint: async ctx => {

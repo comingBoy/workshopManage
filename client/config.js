@@ -57,7 +57,7 @@ var config = {
 
         getCheckpointUrl: `${host}/weapp/getCheckpoint`,
 
-        getInspectHis: `${host}/weapp/getInspectHis`,
+        getInspectHisUrl: `${host}/weapp/getInspectHis`,
     }
 };
 

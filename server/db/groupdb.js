@@ -3,12 +3,14 @@
 var mysqlHelper = require("./mysqlHelper.js")
 
 module.exports = {
+
   async getAllGroup() {
-    let sql = 'SELECT id,groupName,adminId,groupCover,groupCode FROM groupdb'
+    let sql = 'SELECT groupId,groupName,adminId,groupCover,groupCode FROM groupdb'
     let params = []
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+  
   async newGroup(args) {
     let sql = 'INSERT INTO groupdb(groupName,adminId,groupCode,groupCover) VALUE(?,?,?,?)'
     let params = [args.groupName, args.adminId, args.groupCode, args.groupCover]
@@ -17,21 +19,21 @@ module.exports = {
   },
   //获取管理员
   async getAdmin(args) {
-    let sql = 'SELECT adminId FROM groupdb where id = ?'
-    let params = [args.id]
+    let sql = 'SELECT adminId FROM groupdb where groupId = ?'
+    let params = [args.groupId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
   //查看我管理的部门
   async getAdminGroup(args) {
-    let sql = 'SELECT id FROM groupdb where adminId = ?'
+    let sql = 'SELECT groupId FROM groupdb where adminId = ?'
     let params = [args.adminId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
   //获取部门码
   async getGroupCode(args) {
-    let sql = 'SELECT groupCode FROM groupdb where id = ?'
+    let sql = 'SELECT groupCode FROM groupdb where groupId = ?'
     let params = [args.groupId]
     let result = await mysqlHelper.query(sql, params)
     return result

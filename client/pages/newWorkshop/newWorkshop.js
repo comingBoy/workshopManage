@@ -29,7 +29,7 @@ Page({
     } 
     var that = this
     var data = {
-      groupId: getApp().globalData.currentGroup.id
+      groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data, function (res) {
       var staffList = res
@@ -49,7 +49,7 @@ Page({
       })
       console.log(staffList)
     })
-    workshopInfo.groupId = getApp().globalData.currentGroup.id
+    workshopInfo.groupId = getApp().globalData.currentGroup.groupId
   },
 
   /**

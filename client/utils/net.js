@@ -11,7 +11,7 @@ function request(data, config, callback) {
     success: function (res) {
       callback(res)
     },
-    fail: function () {
+    fail: function (res) {
       callback(res)
     }
   })

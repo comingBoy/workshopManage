@@ -2,12 +2,12 @@
 const workshopdb = require('../db/workshopdb.js')
 const inspectdb = require('../db/inspectdb.js')
 const checkpointdb = require('../db/checkpointdb.js')
-const workshopstatusdb = require('../db/workshopstatusdb.js')
+const timesdb = require('../db/timesdb.js')
 const groupdb = require('../db/groupdb.js')
 
 module.exports = {
   newWorkshopStatus: async ctx => {
-    var res, res0, res1, t, t0, t1, req, req0, status, workshopStatusId, result0
+    var res, res0, res1, t, t0, t1, req, req0, status, timesId, result0
     req = ctx.request.body
     res = await workshopdb.getWorkshopInfo(req)
     t = typeof (res)
@@ -24,14 +24,14 @@ module.exports = {
       if (req.checkpointNum == 0) {
         req0.status = 1
       }
-      res0 = await workshopstatusdb.newWorkshopStatus(req0)
+      res0 = await timesdb.newtimes(req0)
       t0 = typeof (res0)
       if (t0 == 'object') {
-        res1 = await workshopstatusdb.getWorkshopInspect0(req)
+        res1 = await timesdb.getWorkshopInspect0(req)
         t1 = typeof (res0)
         if (t1 == 'object' && res1.length > 0) {
           status = 1
-          workshopStatusId = res1[res1.length - 1].id
+          timesId = res1[res1.length - 1].id
         } else {
           status = 0
         }
@@ -43,7 +43,7 @@ module.exports = {
     }
     result0 = {
       status: status,
-      workshopStatusId: workshopStatusId
+      timesId: timesId
     }
     ctx.body = {
       result: result0
