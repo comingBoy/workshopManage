@@ -58,6 +58,14 @@ var config = {
         getCheckpointUrl: `${host}/weapp/getCheckpoint`,
 
         getInspectHisUrl: `${host}/weapp/getInspectHis`,
+
+        getErrorUrl: `${host}/weapp/getError`,
+
+        fixErrorUrl: `${host}/weapp/fixError`,
+
+        InspectUrl: `${host}/weapp/Inspect`,
+
+        getFixUrl: `${host}/weapp/getFix`,
     }
 };
 

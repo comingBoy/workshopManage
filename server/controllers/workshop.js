@@ -5,6 +5,7 @@ const checkpointdb = require('../db/checkpointdb.js')
 const timesdb = require('../db/timesdb.js')
 const groupdb = require('../db/groupdb.js')
 const inspectdb = require('../db/inspectdb.js')
+const fixdb = require('../db/fixdb.js')
 
 module.exports = {
 
@@ -253,5 +254,68 @@ module.exports = {
     ctx.body = {
       result: result0
     }
-  }
+  },
+
+  getError: async ctx => {
+    let req = ctx.request.body
+    var res = await inspectdb.getInspect(req)
+    var t = typeof(res)
+    var status, i, result0, inspect
+    var adminError = []
+    var staffError = []
+    if (t == 'object') {
+      for (i = res.length - 1; i >= 0; i--) {
+        if ((res[i].error == 1 || res[i].error == 2) && admin ==1) {
+          inspect = {
+            date: res[i].date,
+            inspectId: res[i].inspectId,
+            checkpointName: res[i].checkpointName,
+            error: res[i].error
+          }
+          adminError.push(inspect)
+        } else if ((res[i].error == 1 || res[i].error == 2) && admin == 0) {
+          inspect = {
+            date: res[i].date,
+            inspectId: res[i].inspectId,
+            checkpointName: res[i].checkpointName,
+            error: res[i].error
+          }
+          staffError.push(inspect)
+        }
+      }
+    } else {
+      status = -1
+    }
+    result0 = {
+      status : status,
+      adminError : adminError,
+      staffError : staffError
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+  getFix: async ctx => {
+    var req, res, res0, t, t0, status, result0
+    req = ctx.request.body
+    res = await inspectdb.getInspect0(req)
+    t = typeof (res)
+    if (t == 'objetc') {
+      res0 = await fixdb.getFix(req)
+      t0 = typeof (res0)
+      t0 == 'object' ? status = 1 : status = -1
+    } else {
+      status = -1
+    }
+
+    result0 = {
+      status: status,
+      error: res,
+      fix: res0
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
 }

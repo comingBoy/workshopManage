@@ -1,7 +1,7 @@
 //server/db/inspectdb.js
 const mysqlHelper = require("./mysqlHelper.js")
 const config = require('./config.js')
-//查询检查情况(模糊)
+
 module.exports = {
   async getInspect(args) {
     let sql = 'SELECT * FROM inspectdb where workshopId = ? and date REGEXP ?'
@@ -9,10 +9,18 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async getInspect0(args) {
+    let sql = 'SELECT * FROM inspectdb where inspectId = ?'
+    let params = [args.inspectId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
+  
   //更新检查点是否检查状态
   async refreshStatus(args) {
-    let sql = 'UPDATE checkpointdb SET status = ? where workshopId = ?'
-    let params = [args.status, args.workshopId]
+    let sql = 'UPDATE checkpointdb SET status = ? where inspectId = ?'
+    let params = [args.status, args.inspectId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },

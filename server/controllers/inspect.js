@@ -4,8 +4,10 @@ const staffdb = require('../db/staffdb.js')
 const workshopdb = require('../db/workshopdb.js')
 const timesdb = require('../db/timesdb.js')
 const checkpointdb = require('../db/checkpointdb.js')
+const fixdb = require('../db/fixdb.js')
 
 module.exports = {
+
   getInspect: async ctx => {
     let req = ctx.request.body
     var res, t, result0, status
@@ -63,19 +65,80 @@ module.exports = {
       result: result0
     }
   },
+
   getInspectHis: async ctx => {
-    let req = ctx.request.body
-    let res = await inspectdb.getInspectHis(req)
-    var result0, status
-    let t = typeof (res)
-    if (t == 'object') {
-      res.length > 0 ? status = 1 : status = 0
-    } else {
-      status = -1
-    }
+    var req, res, t, status, result0
+    req = ctx.request.body
+    res = await inspectdb.getInspectHis(req)
+    t = typeof (res)
+    t == 'object' ? status = 1 : status = -1
     result0 = {
       status: status,
       res: res
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+  fixError: async ctx => {
+    var res, res0, req, req0, t, t0, status, result0
+    req = ctx.request.body
+    res = await fixdb.fixError(req)
+    t = typeof (res)
+    if (res == 'object') {
+      req0 = {
+        status : 2,
+        inspectId : req.inspectId
+      }
+      res0 = await inspectdb.refreshStatus(req0)
+      t0 = typeof (res0)
+      if (t0 == 'object') {
+        status = 1
+      } else {
+        res = await fixdb.delFix(req)
+        t = typeof (res)
+        if (t == 'object') {
+          status = -1
+        } else {
+          status = 0
+        }
+      } 
+    } else {
+      status = -1
+    }
+    
+    result0 = {
+      status: status,
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+  Inspect: async ctx => {
+    var req, res, t, result0, status, i, j
+    req = ctx.request.body
+    status = 1
+    for (i = 0; i < req.length; i++) {
+      res = await inspectdb.Inspect(req[i])
+      t = typeof (res)
+      if (t != 'object') {
+        status = -1
+        for (j = i-1; j >= 0; j--) {
+          res = await inspectdb.delInspect(req[j])
+          t = typeof (res)
+          if (t != 'object') {
+            status = 0
+            break
+          }
+        }
+        break
+      }
+    }
+    
+    result0 = {
+      status: status
     }
     ctx.body = {
       result: result0
