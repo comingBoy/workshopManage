@@ -7,6 +7,7 @@ const checkpointdb = require('../db/checkpointdb.js')
 const fixdb = require('../db/fixdb.js')
 
 module.exports = {
+
   getInspect: async ctx => {
     let req = ctx.request.body
     var res, t, result0, status
@@ -64,6 +65,7 @@ module.exports = {
       result: result0
     }
   },
+
   getInspectHis: async ctx => {
     let req = ctx.request.body
     let res = await inspectdb.getInspectHis(req)
@@ -112,6 +114,35 @@ module.exports = {
     
     result0 = {
       status: status,
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+  Inspect: async ctx => {
+    var req, res, t, result0, status, i, j
+    req = ctx.request.body
+    status = 1
+    for (i = 0; i < req.length; i++) {
+      res = await inspectdb.Inspect(req[i])
+      t = typeof (res)
+      if (t != 'object') {
+        status = -1
+        for (j = i-1; j >= 0; j--) {
+          res = await inspectdb.delInspect(req[j])
+          t = typeof (res)
+          if (t != 'object') {
+            status = 0
+            break
+          }
+        }
+        break
+      }
+    }
+    
+    result0 = {
+      status: status
     }
     ctx.body = {
       result: result0

@@ -71,4 +71,6 @@ router.post('/getCheckpoint', controllers.checkpoint.getCheckpoint)
 router.post('/getError', controllers.workshop.getError)
 
 router.post('/fixError', controllers.inspect.fixError)
+
+router.post('/Inspect', controllers.inspect.Inspect)
 module.exports = router

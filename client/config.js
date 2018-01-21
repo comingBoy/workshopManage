@@ -62,6 +62,8 @@ var config = {
         getErrorUrl: `${host}/weapp/getError`,
 
         fixErrorUrl: `${host}/weapp/fixError`,
+
+        InspectUrl: `${host}/weapp/Inspect`,
     }
 };
 
