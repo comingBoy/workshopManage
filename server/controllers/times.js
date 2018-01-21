@@ -49,4 +49,19 @@ module.exports = {
       result: result0
     }
   },
+
+  getTimes: async ctx => {
+    var req, res, t, status, result0
+    req = ctx.request.body
+    res = await timesdb.getTimes(req)
+    t = typeof (res)
+    t == 'object' ? status = 1 : status = -1
+    result0 = {
+      status: status,
+      times: res,
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
 }

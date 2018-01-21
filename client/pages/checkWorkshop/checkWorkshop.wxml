@@ -8,7 +8,7 @@
     <view class='listContainer'>
       <text class='title'>检查记录({{workshopInfo.inspectTimes}}/{{workshopInfo.totalTimes}})</text>
       <view class='list' wx:for='{{checkRecord}}'>检查日期{{item.date}}</view>
-      <view wx:if='{{checkRecord.length()==0}}' class='list'>暂无检查记录</view>
+      <view wx:if='{{checkRecord.length==0}}' class='list'>暂无检查记录</view>
     </view>
     <view class='listContainer'>
       <text class='title'>隐患记录</text>
@@ -22,7 +22,7 @@
           <view class='dangerError'>{{errorList[item.error]}}</view>
         </view>
       </view>
-      <view wx:if='{{dangerListByMyself.length()==0}}' class='list'>
+      <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
         暂无隐患记录
       </view>
       <view class='title2'>
@@ -35,7 +35,7 @@
           <view class='dangerError'>{{errorList[item.error]}}</view>
         </view>
       </view>
-      <view wx:if='{{dangerListByMyself.length()==0}}' class='list'>
+      <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
         暂无隐患记录
       </view>
     </view>
