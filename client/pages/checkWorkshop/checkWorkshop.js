@@ -85,5 +85,16 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  /**
+   * 开始检查
+   */
+  startCheck: function(){
+    wx.navigateTo({
+      url: '../startCheck/startCheck',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
 })

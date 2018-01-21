@@ -39,7 +39,7 @@
         暂无隐患记录
       </view>
     </view>
-    <view class='startCheck'>开始检查</view>
+    <view class='startCheck' bindtap='startCheck'>开始检查</view>
   </view>
   <view></view>
 </view>

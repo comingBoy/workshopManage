@@ -18,7 +18,8 @@
     "pages/myInfo/myInfo",
     "pages/staffList/staffList",
     "pages/register/register",
-    "pages/checkWorkshop/checkWorkshop"
+    "pages/checkWorkshop/checkWorkshop",
+    "pages/startCheck/startCheck"
   ],
   "window":{
     "backgroundTextStyle":"light",
