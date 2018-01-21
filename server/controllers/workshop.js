@@ -271,7 +271,7 @@ module.exports = {
     if (t == 'object') {
       status = 1
       for (i = res.length - 1; i >= 0; i--) {
-        if ((res[i].error == 1 || res[i].error == 2) && admin ==1) {
+        if ((res[i].error == 1 || res[i].error == 2) && res[i].admin ==1) {
           inspect = {
             date: res[i].date,
             inspectId: res[i].inspectId,
@@ -279,7 +279,7 @@ module.exports = {
             error: res[i].error
           }
           adminError.push(inspect)
-        } else if ((res[i].error == 1 || res[i].error == 2) && admin == 0) {
+        } else if ((res[i].error == 1 || res[i].error == 2) && res[i].admin == 0) {
           inspect = {
             date: res[i].date,
             inspectId: res[i].inspectId,
