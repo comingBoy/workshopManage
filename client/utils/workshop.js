@@ -136,21 +136,22 @@ module.exports = {
   /*
     data = {
       date: date,
-      
+      workshopId: workshopId
     }
   */
   getTimes: function (data, callback) {
     var data = data
     console.log(data)
     var configure = {
-      url: config.service.getMyWorkshopUrl,
+      url: config.service.getTimesUrl,
       method: 'POST',
       header: {
         'content-type': 'application/json'
       }
     }
     net.request(data, configure, function (res) {
-      callback(res.data.result.res)
+      console.log(res)
+      callback(res.data.result)
     })
   },
 

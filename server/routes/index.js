@@ -75,4 +75,6 @@ router.post('/fixError', controllers.inspect.fixError)
 router.post('/Inspect', controllers.inspect.Inspect)
 
 router.post('/getFix', controllers.workshop.getFix)
+
+router.post('/getTimes', controllers.times.getTimes)
 module.exports = router

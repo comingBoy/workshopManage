@@ -13,6 +13,7 @@ module.exports = {
     let req = ctx.request.body
     var status, res, res0, res1, res2, t, t0, t1, t2, result0, i, j, error
     var info = {
+      workshopId: '',
       workshopName: '',
       name: '',
       totalCheckpoints: '',
@@ -78,8 +79,10 @@ module.exports = {
             status = -1
             break
           }
+          info.workshopId = res[i].workshopId
           infoQueue.push(info)
           info = {
+            workshopId: '',
             workshopName: '',
             name: '',
             totalCheckpoints: '',
@@ -218,7 +221,9 @@ module.exports = {
             date: req.date,
             workshopId: res[i].workshopId
           }
+          console.log(req0)
           res2 = await timesdb.getTimes(req0)
+          console.log(res2)
           t2 = typeof (res2)
           if (t2 == 'object') {
             info.inspectTimes = res2.length
@@ -264,6 +269,7 @@ module.exports = {
     var adminError = []
     var staffError = []
     if (t == 'object') {
+      status = 1
       for (i = res.length - 1; i >= 0; i--) {
         if ((res[i].error == 1 || res[i].error == 2) && admin ==1) {
           inspect = {

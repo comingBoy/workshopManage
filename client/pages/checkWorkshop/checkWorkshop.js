@@ -1,30 +1,27 @@
 // pages/checkWorkshop/checkWorkshop.js
+function mGetDate() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  month = month < 10 ? '0' + month : month
+  var date0 = '^' + year.toString() + '-' + month.toString()
+  return date0;
+}
+
+var workshop = require('../../utils/workshop.js')
+var utils = require('../../utils/util.js')
+var checkWorkshop = require('../../utils/checkWorkshop.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    date: mGetDate(),
     workshopInfo: null,
-    checkRecord:[{
-      date: "2018-01-21"
-    }],
-    dangerListByAdmin:[
-      {
-        date: "2018-01-21",
-        checkpointName: "检查点一号",
-        inspectId: 3,
-        error: 2,
-      }
-    ],
-    dangerListByMyself:[
-      {
-        date: "2018-01-20",
-        checkpointName: "检查点二号",
-        inspectId:4,
-        error: 1,
-      }
-    ],
+    checkRecord:null,
+    dangerListByAdmin: null,
+    dangerListByMyself: null,
     errorList:["无","存在故障","故障已修复"]
   },
 
@@ -35,6 +32,32 @@ Page({
     console.log(getApp().globalData.workshopInfo)
     this.setData({
       workshopInfo: getApp().globalData.workshopInfo
+    })
+    var that = this
+    var workshopId = getApp().globalData.workshopInfo.workshopId
+    var date = that.data.date
+    var data = {
+      workshopId: workshopId,
+      date: date
+    }
+    workshop.getTimes(data, function(res) {
+      if (res.status == -1) {
+        utils.showModel('提示','检查记录获取失败！')
+      } else {
+        that.setData({
+          checkRecord: res.times
+        })
+      }
+    })
+    checkWorkshop.getError(data, function(res) {
+      if (res.status == -1) {
+        utils.showModel('提示', '隐患记录获取失败！')
+      } else {
+        that.setData({
+          dangerListByAdmin: res.adminError,
+          dangerListByMyself: res.staffError
+        })
+      }
     })
   },
 

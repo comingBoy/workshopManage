@@ -1,4 +1,12 @@
 // pages/inspect/inspect.js
+function mGetDate() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  month = month < 10 ? '0' + month : month
+  var date0 = '^' + year.toString() + '-' + month.toString()
+  return date0;
+}
 var workshop = require('../../utils/workshop.js')
 var utils = require('../../utils/util.js')
 
@@ -8,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    date: mGetDate(),
     myWorkshop: null
   },
 
@@ -32,11 +41,15 @@ Page({
     var that = this
     var groupId = getApp().globalData.currentGroup.groupId
     var openId = getApp().globalData.myInfo.openId
+    var date = that.data.date
     var data = {
+      date: date,
       groupId : groupId,
       openId : openId
     }
+
     workshop.getMyWorkshop(data, function(res){
+      console.log(res)
       that.setData({
         myWorkshop: res
       })

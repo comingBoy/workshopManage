@@ -66,6 +66,8 @@ var config = {
         InspectUrl: `${host}/weapp/Inspect`,
 
         getFixUrl: `${host}/weapp/getFix`,
+
+        getTimesUrl: `${host}/weapp/getTimes`,
     }
 };
 
