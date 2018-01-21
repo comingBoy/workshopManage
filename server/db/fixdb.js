@@ -24,4 +24,11 @@ module.exports = {
     return result
   },
 
+  async getFix() {
+    let sql = 'SELECT * FROM errordb where inspectId = ?'
+    let params = [args.inspectId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
+
 }

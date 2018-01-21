@@ -67,15 +67,11 @@ module.exports = {
   },
 
   getInspectHis: async ctx => {
-    let req = ctx.request.body
-    let res = await inspectdb.getInspectHis(req)
-    var result0, status
-    let t = typeof (res)
-    if (t == 'object') {
-      res.length > 0 ? status = 1 : status = 0
-    } else {
-      status = -1
-    }
+    var req, res, t, status, result0
+    req = ctx.request.body
+    res = await inspectdb.getInspectHis(req)
+    t = typeof (res)
+    t == 'object' ? status = 1 : status = -1
     result0 = {
       status: status,
       res: res
