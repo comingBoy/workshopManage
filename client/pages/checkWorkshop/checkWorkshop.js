@@ -5,14 +5,37 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    workshopInfo: null,
+    checkRecord:[{
+      date: "2018-01-21"
+    }],
+    dangerListByAdmin:[
+      {
+        date: "2018-01-21",
+        checkpointName: "检查点一号",
+        inspectId: 3,
+        error: 2,
+      }
+    ],
+    dangerListByMyself:[
+      {
+        date: "2018-01-20",
+        checkpointName: "检查点二号",
+        inspectId:4,
+        error: 1,
+      }
+    ],
+    errorList:["无","存在故障","故障已修复"]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log(getApp().globalData.workshopInfo)
+    this.setData({
+      workshopInfo: getApp().globalData.workshopInfo
+    })
   },
 
   /**

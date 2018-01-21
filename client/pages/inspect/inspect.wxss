@@ -26,6 +26,7 @@
   height:288rpx;
   border: solid #c0c0c0 1rpx;
   color: #696969;
+  padding-top:36rpx;
 }
 
 .returnImage{

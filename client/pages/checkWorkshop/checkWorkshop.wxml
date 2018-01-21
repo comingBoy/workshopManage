@@ -2,6 +2,44 @@
 <view class='container'>
   <view class='frame'>
     <!--workshop-->
-    
+    <view class='workshopName'>
+      {{workshopInfo.workshopName}}
+    </view>
+    <view class='listContainer'>
+      <text class='title'>检查记录({{workshopInfo.inspectTimes}}/{{workshopInfo.totalTimes}})</text>
+      <view class='list' wx:for='{{checkRecord}}'>检查日期{{item.date}}</view>
+      <view wx:if='{{checkRecord.length()==0}}' class='list'>暂无检查记录</view>
+    </view>
+    <view class='listContainer'>
+      <text class='title'>隐患记录</text>
+      <view class='title2'>
+        自检隐患
+      </view>
+      <view class='list' wx:for='{{dangerListByMyself}}'>
+        <view class='dangerInfo'>
+          <view class='dangerDate'>发现日期{{item.date}}  </view>
+          <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
+          <view class='dangerError'>{{errorList[item.error]}}</view>
+        </view>
+      </view>
+      <view wx:if='{{dangerListByMyself.length()==0}}' class='list'>
+        暂无隐患记录
+      </view>
+      <view class='title2'>
+        管理员发现隐患
+      </view>
+      <view class='list' wx:for='{{dangerListByAdmin}}'>
+        <view class='dangerInfo'>
+          <view class='dangerDate'>发现日期{{item.date}}  </view>
+          <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
+          <view class='dangerError'>{{errorList[item.error]}}</view>
+        </view>
+      </view>
+      <view wx:if='{{dangerListByMyself.length()==0}}' class='list'>
+        暂无隐患记录
+      </view>
+    </view>
+    <view class='startCheck'>开始检查</view>
   </view>
+  <view></view>
 </view>
