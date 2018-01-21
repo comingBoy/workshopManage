@@ -1,18 +1,37 @@
 // pages/startCheck/startCheck.js
+var util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    ifSubmit: true,
+    workshopInfo:null,
+    checkpointInfo: [
+      {
+        checkpointId:1,
+        workshopId:3,
+        name: "检查点一",
+        status: "未完成检查",
+      },
+      {
+        checkpointId:2,
+        workshopId:3,
+        name:"检查点二",
+        status: "已完成检查"
+      }
+    ],
+    checkInfo:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      workshopInfo: getApp().globalData.workshopInfo
+    })
   },
 
   /**
@@ -62,5 +81,27 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   *弹出检查界面 
+   */
+  toCheck: function(e) {
+    console.log(e)
+    var that = this
+    this.setData({
+      checkInfo: this.data.checkpointInfo[e.currentTarget.id]
+    })
+    console.log(this.data.checkInfo)
+    if(this.data.checkInfo.status == "已完成检查"){
+      util.showModel("提示","该检查点已经完成检查")
+      that.setData({
+        ifSubmit: true
+      })
+    }else{
+      that.setData({
+        ifSubmit: false
+      })
+    }
   }
 })

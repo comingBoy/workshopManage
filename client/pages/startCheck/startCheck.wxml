@@ -1,2 +1,45 @@
 <!--pages/startCheck/startCheck.wxml-->
-<text>pages/startCheck/startCheck.wxml</text>
+<view class='container'>
+  <view class='frame'>
+    <!--检查点框架-->
+    <view class='checkpointContainer'>
+      <view class='tip'>tip:请点击检查点进行检查</view>
+      <view class='checkpointList'>
+        <view wx:for='{{checkpointInfo}}' class='checkpointInfo'>
+          <view class='checkpointName'>
+            {{item.name}}
+          </view>
+          <view class='checkpointStatus'>
+            {{item.status}}
+          </view>
+          <button class='toCheck' bindtap='toCheck' id='{{index}}'>检查</button>
+        </view>
+      </view>
+    </view>
+
+    <!--检查界面-->
+    <view class='fillCheckInfo' hidden='{{ifSubmit}}'>
+      <view class='error'>
+        <picker value="{{indexNum1}}" range-key="description" range="{{descriptionList}}" bindchange="bindDescriptionChange">
+        {{descriptionList[indexNum1].description}}
+        </picker>
+      </view>
+      <view class='photo'> 上传图片</view>
+      <image src="../../images/camera.png" class='cameraImage' mode='aspectFill' bindtap='chooseCover'></image>
+      <view class='description'> 故障描述</view>
+      <textarea class="textArea" placeholder="请输入文本" bindinput='textInput' />
+      <button class='finish'>确认提交</button>
+    </view>
+
+    <!--提交检查-->
+    <view hidden='{{!ifSubmit}}' class='ifSubmit'>
+      <view wx:if='true' class='submit'>
+        提交检查记录
+      </view>
+      <view wx:else class='noSubmit'>
+        提交检查记录
+      </view>  
+    </view>
+    
+  </view>
+</view>
