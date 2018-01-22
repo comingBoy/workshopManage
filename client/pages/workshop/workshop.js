@@ -1,15 +1,13 @@
 // pages/workshop/workshop.js
+var workshop = require('../../utils/workshop.js')
+var checkWorkshop = require('../../utils/checkWorkshop.js')
 function mGetDate() {
   var date = new Date();
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
-  var d = new Date(year, month, 0);
-
-  var time0 = []
-  for (var i=0; i < d.getDate(); i++) {
-    time0.push(i + 1)
-  }
-  return time0;
+  month = month < 10 ? '0' + month : month
+  var date0 =year.toString() + '-' + month.toString()
+  return date0;
 }
 
 
@@ -25,7 +23,7 @@ Page({
     checkRecord:[],
     dangerListByMyself:[],
     dangerListByAdmin:[],
-    date: '2017-12',
+    date: mGetDate(),
   },
 
   /**
@@ -34,6 +32,33 @@ Page({
   onLoad: function (options) {
     this.setData({
       workshopInfo: getApp().globalData.showWorkshop
+    })
+
+    var that = this
+    var workshopId = getApp().globalData.showWorkshop.workshopId
+    var date = '^' + that.data.date
+    var data = {
+      workshopId: workshopId,
+      date: date
+    }
+    workshop.getTimes(data, function (res) {
+      if (res.status == -1) {
+        utils.showModel('提示', '检查记录获取失败！')
+      } else {
+        that.setData({
+          checkRecord: res.times
+        })
+      }
+    })
+    checkWorkshop.getError(data, function (res) {
+      if (res.status == -1) {
+        utils.showModel('提示', '隐患记录获取失败！')
+      } else {
+        that.setData({
+          dangerListByAdmin: res.adminError,
+          dangerListByMyself: res.staffError
+        })
+      }
     })
   },
 

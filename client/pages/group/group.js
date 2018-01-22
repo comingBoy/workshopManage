@@ -96,7 +96,6 @@ Page({
     })
   },
   toWorkshop: function(e){
-    console.log(e.currentTarget.id)
     getApp().globalData.showWorkshop = this.data.workshopList[e.currentTarget.id]
     wx.navigateTo({
       url: '../workshop/workshop',
