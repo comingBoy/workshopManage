@@ -39,4 +39,15 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+var getDate = function() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  month = month < 10 ? '0' + month : month
+  day = day < 10? '0' + day : day
+  var date0 = year.toString() + '-' + month.toString() + '-' + day.toString()
+  return date0;
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, getDate }

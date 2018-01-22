@@ -17,6 +17,7 @@
   display:flex;
   width:100%;
   justify-content:space-around;
+  flex-wrap: wrap;
 }
 
 .checkpointInfo{
@@ -26,7 +27,7 @@
   padding:25rpx;
   border-radius:26rpx;
   margin-top:28rpx;
-  width:25%;
+  width:30%;
 }
 
 .checkpointName{
@@ -71,4 +72,49 @@
 
 .toCheck{
   font-size:28rpx;
+}
+
+.fillCheckInfo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  font-size:30rpx;
+  color:#708090;
+  border:solid white;
+  margin-top:49rpx;
+  padding:20rpx 0rpx;
+  border-radius:30rpx;
+}
+
+.error{
+  font-size: 25rpx;
+}
+
+.checkBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 25rpx;
+  width: 60%;
+  padding-top:20rpx;
+}
+
+.cameraImage{
+  width:66%;
+  height:272rpx;
+  margin-top:16rpx;
+}
+
+.textArea{
+  width: 77%;
+  height:204rpx;
+  background-color: #fff;
+  margin-bottom:16px;
+  border: solid 2rpx #ddd;
+}
+
+.finish{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
 }
