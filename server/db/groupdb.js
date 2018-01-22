@@ -5,7 +5,7 @@ var mysqlHelper = require("./mysqlHelper.js")
 module.exports = {
 
   async getAllGroup() {
-    let sql = 'SELECT groupId,groupName,adminId,groupCover,groupCode FROM groupdb'
+    let sql = 'SELECT * FROM groupdb'
     let params = []
     let result = await mysqlHelper.query(sql, params)
     return result

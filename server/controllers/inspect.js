@@ -116,25 +116,38 @@ module.exports = {
     }
   },
 
-  Inspect: async ctx => {
-    var req, res, t, result0, status, i, j
-    req = ctx.request.body
-    status = 1
-    for (i = 0; i < req.length; i++) {
-      res = await inspectdb.Inspect(req[i])
-      t = typeof (res)
-      if (t != 'object') {
-        status = -1
-        for (j = i-1; j >= 0; j--) {
-          res = await inspectdb.delInspect(req[j])
+  inspect: async ctx => {
+    var req, res, res0, t, t0, result0, status, i, j
+    req = ctx.request.body  
+    res = await timesdb.newTimes(req.inspectArray[0])
+    t = typeof (res)
+    if (t == 'object') {
+      status = 1
+      for (i = 0; i < req.inspectArray.length; i++) {
+        res = await inspectdb.inspect(req.inspectArray[i])
+        t = typeof (res)
+        if (t != 'object') {
+          status = -1
+          res = await timesdb.delTimes(req.inspectArray[0])
           t = typeof (res)
-          if (t != 'object') {
+          if (t == 'object') {
+            for (j = i - 1; j >= 0; j--) {
+              res = await inspectdb.delInspect(req.inspectArray[j])
+              t = typeof (res)
+              if (t != 'object') {
+                status = 0
+                break
+              }
+            }
+          } else {
             status = 0
             break
-          }
+          }        
+          break
         }
-        break
       }
+    } else {
+      status = -1
     }
     
     result0 = {

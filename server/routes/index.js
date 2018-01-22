@@ -72,7 +72,7 @@ router.post('/getError', controllers.workshop.getError)
 
 router.post('/fixError', controllers.inspect.fixError)
 
-router.post('/Inspect', controllers.inspect.Inspect)
+router.post('/inspect', controllers.inspect.inspect)
 
 router.post('/getFix', controllers.workshop.getFix)
 

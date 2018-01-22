@@ -14,7 +14,7 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      var group = res.data.result.res
+      console.log(res)
       if (res.data.result.status == 1) {
       } else if (res.data.result.status == 0) {
         util.showModel('提示', '当前无部门！')

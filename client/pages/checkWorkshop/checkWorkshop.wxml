@@ -35,7 +35,7 @@
           <view class='dangerError'>{{errorList[item.error]}}</view>
         </view>
       </view>
-      <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
+      <view wx:if='{{dangerListByAmdin.length==0}}' class='list'>
         暂无隐患记录
       </view>
     </view>

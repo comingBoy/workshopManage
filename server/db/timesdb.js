@@ -9,11 +9,19 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
-  //新建车间状态
+  //增加检查轮数
   async newTimes(args) {
-    let sql = 'INSERT INTO timesdb(workshopId,groupId,date,status,inspectNum,checkpointNum,times) VALUE(?,?,?,?,?,?,?)'
-    let params = [args.workshopId, args.groupId, args.date, args.status, args.inspectNum, args.checkpointNum, args.times]
+    let sql = 'INSERT INTO timesdb(workshopId, date) VALUE(?,?)'
+    let params = [args.workshopId, args.date]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  //删除轮数
+  async delTimes(args) {
+    let sql = 'DELETE FROM timesdb WHERE workshopId = ? AND date = ?'
+    let params = [args.workshopId, args.date]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  }
 }
