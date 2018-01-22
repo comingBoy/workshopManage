@@ -32,23 +32,16 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data, function (res) {
-      console.log(res)
+
       var staffList = res
-      var admin = null
-      for (var i = 0; i < staffList.length; i++) {
-        if (staffList[i].openId == getApp().globalData.currentGroup.adminId) {
-          staffList.splice(i, 1)
-          break
-        }
-      }
       staffList.unshift({
         name: "暂无",
         openId: '-1'
       }) 
+
       that.setData({
-        staffList: staffList,
+        staffList: res,
       })
-      console.log(staffList)
     })
     workshopInfo.groupId = getApp().globalData.currentGroup.groupId
   },

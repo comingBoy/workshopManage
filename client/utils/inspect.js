@@ -132,10 +132,10 @@ module.exports = {
     inspectArray: inspectArray
   }
   */
-  Inspect: function (data, callback) {
+  inspect: function (data, callback) {
     var data = data
     var configure = {
-      url: config.service.InspectUrl,
+      url: config.service.inspectUrl,
       method: 'POST',
       header: {
         'content-type': 'application/json'

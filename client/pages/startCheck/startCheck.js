@@ -1,6 +1,8 @@
 // pages/startCheck/startCheck.js
 var util = require('../../utils/util.js')
 var net =require('../../utils/net.js')
+var checkpoint = require('../../utils/checkpoint.js')
+var inspect = require('../../utils/inspect.js')
 var checkpointData = new Object
 var checkpointIndex = null
 var checkData = null
@@ -17,28 +19,7 @@ Page({
     ],
     ifSubmit: true,
     workshopInfo:null,
-    checkpointInfo: [
-      {
-        checkpointId:1,
-        workshopId:3,
-        name: "检查点一",
-      },
-      {
-        checkpointId:2,
-        workshopId:3,
-        name:"检查点二",
-      },
-      {
-        checkpointId: 2,
-        workshopId: 3,
-        name: "检查点二",
-      },
-      {
-        checkpointId: 2,
-        workshopId: 3,
-        name: "检查点二",
-      }
-    ],
+    checkpointInfo: null,
     checkInfo:null,
     checkData:null,
     initText:"请输入文本",
@@ -55,27 +36,49 @@ Page({
     this.setData({
       workshopInfo: getApp().globalData.workshopInfo
     })
+    var workshopId = getApp().globalData.workshopInfo.workshopId
+    var data = {
+      workshopId: workshopId
+    }
+    checkpoint.getCheckpoint(data, function(res) {
+      console.log(res)
+      that.setData({
+        checkpointInfo: res.res
+      })
+    })
+
     //获取缓存的检查数据
     wx.getStorage({
       key: getApp().globalData.workshopInfo.workshopId.toString(),
       success: function(res) {
-        console.log("读取数据成功")
-        console.log("打印数据:")
-        checkData = res.data
-        console.log(checkData)
-        that.setData({
-          checkData: checkData
-        })
-        var ifCompleteFill = null
-        for(var i=0; i<res.length; i++){
-          if(res[i].status == "未完成检查"){
-            ifCompleteFill = false          
-            break;
-          }else ifCompleteFill = true
+        if (res.data == null) {
+          checkData = new Array(getApp().globalData.workshopInfo.totalCheckpoints)
+          for (var i = 0; i < checkData.length; i++) {
+            checkData[i] = {
+              data: null,
+              status: "未完成检查"
+            }
+          }
+          that.setData({
+            checkData: checkData,
+            ifCompleteFill: false
+          })
+        } else {
+          checkData = res.data
+          that.setData({
+            checkData: checkData
+          })
+          var ifCompleteFill = null
+          for (var i = 0; i < res.length; i++) {
+            if (res[i].status == "未完成检查") {
+              ifCompleteFill = false
+              break;
+            } else ifCompleteFill = true
+          }
+          that.setData({
+            ifCompleteFill: ifCompleteFill
+          })
         }
-        that.setData({
-          ifCompleteFill: ifCompleteFill
-        })
       },
       fail: function(){
         checkData = new Array(getApp().globalData.workshopInfo.totalCheckpoints)
@@ -269,7 +272,17 @@ Page({
    *提交全部检查记录 
    */
   submit: function(){
-
+    var inspectArray = []
+    for (var i = 0; i < checkData.length; i++) {
+      inspectArray.push(checkData[i].data)
+    }
+    var data = {
+      inspectArray: inspectArray
+    }
+    inspect.inspect(data, function(res) {
+      console.log(res)
+      checkData = null
+    })
   },
   /**
    * 无法提交情况下点击提交

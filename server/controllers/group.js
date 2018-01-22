@@ -4,7 +4,7 @@ var memberdb = require('../db/memberdb.js')
 var staffdb = require('../db/staffdb.js')
 module.exports = {
 
-  getAllGroup: async ctx => { //function(ctx){}
+  getAllGroup: async ctx => { 
     let res = await groupdb.getAllGroup()
     if(typeof(res)=='object' && res.length > 0){
       for (var i = 0; i < res.length; i++) {
