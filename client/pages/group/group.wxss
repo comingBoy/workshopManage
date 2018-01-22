@@ -96,5 +96,5 @@ padding-top:28rpx;
 .add{
 width: 100rpx;
 height: 100rpx;
-margin-top: 100rpx;
+margin-top: 55rpx;
 }

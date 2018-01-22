@@ -32,6 +32,7 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data, function (res) {
+      console.log(res)
       var staffList = res
       var admin = null
       for (var i = 0; i < staffList.length; i++) {

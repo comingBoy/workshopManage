@@ -19,10 +19,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    time: mGetDate(),
     index: 0,
     hiddenFlag: true,
-    workshop:null,
+    workshopInfo:null,
+    checkRecord:[],
+    dangerListByMyself:[],
+    dangerListByAdmin:[],
     date: '2017-12',
   },
 
@@ -31,7 +33,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      workshop: getApp().globalData.workshop
+      workshopInfo: getApp().globalData.showWorkshop
     })
   },
 

@@ -3,7 +3,7 @@
   <view class="headBox">
     <view class="MesBox" bindtap='changeAvatar'>
       <text class='nameBoxA'>头像</text>
-      <image background-size="cover" class="imageSize" src="{{myInfo.avatar}}" bindtap='changeHead'/>
+      <image background-size="cover" class="imageSize" src="{{myInfo.avatar}}"/>
     </view>
     <view class="MesBox" bindtap='changeInfo' id='0'> 
        <text class='nameBoxA'>姓名</text>

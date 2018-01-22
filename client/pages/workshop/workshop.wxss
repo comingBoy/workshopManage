@@ -1,64 +1,61 @@
-/* pages/workshop/workshop.wxss */
-.workshopBanner{
-  width: 100%;
-  text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
-  border-bottom: solid 2rpx #ddd;
-}
-.examiner{
-  margin-top: 30rpx;
-  border-bottom:solid 2rpx #ddd;
-  padding-bottom: 5rpx;
-}
-.timeSelector{
-  margin-top: 30rpx;
-  border-bottom:solid 2rpx #ddd;
-  padding-bottom: 5rpx;
-}
-.checkTimeTable{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30rpx;
-  margin-bottom: 30rpx;
-  border-bottom: 200rpx;
-  border: solid 2rpx #ddd;
-  border-radius: 10rpx;
-  width: 90%;
-}
-.checkTime{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  font-size: 35rpx;
-  
-  width: 100%;
-  margin: 20rpx 0;
-}
-.checkTimeInfo{
-  width:45%;
+/* pages/checkWorkshop/checkWorkshop.wxss */
+.workshopName{
+  background-color:white;
+  width:100%;
   text-align:center;
-  height:60rpx;
-  line-height:25rpx;
+  font-size:35rpx;
+  padding:12rpx;
+  color: #696969;
 }
-.checkTimeInfodel{
-  width:10%;
+
+.listContainer{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  font-size:25rpx;
+  background-color:white;
+  margin-top:25rpx;
+  padding:20rpx 10rpx;
+  border-radius:23rpx;
+}
+
+.list{
+  margin-top:8rpx;
+  border-top:solid 1rpx #ddd;
+  padding:13rpx;
   text-align:center;
-  height:59rpx;
-  line-height:18rpx;
-  border:solid 2rpx #ddd;
-  border-radius:50rpx;
-  margin-right:10rpx;
 }
-.addCheckTime{
+
+.title{
+  color: #696969; 
+}
+.title2{
+  margin-top:19rpx;
+  font-size:23rpx;
+}
+.startCheck{
+  width:100%;
+  background-color:green;
+  text-align:center;
+  color:#fff;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+  margin-top:60rpx;
+}
+
+.dangerInfo{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  justify-content:space-around;
 }
-.add{
-  width: 100rpx;
-  height: 100rpx;
-  margin: 20rpx 0rpx;
+
+.date{
+  background-color:white;
+  width:100%;
+  margin-top:25px;
+  text-align:center;
+  padding:17rpx 10rpx;
+  font-size:35rpx;
+  color:#696969;
+  border-radius:23rpx;
 }
