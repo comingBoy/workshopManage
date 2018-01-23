@@ -48,14 +48,13 @@
   justify-content:space-around;
 }
 
-.dangerDate{
-
-}
-
-.dangerCheckpointName{
-
-}
-
-dangerError{
-  
+.canNotStartCheck{
+  width:100%;
+  background-color:white;
+  text-align:center;
+  color:#c0c0c0;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+  margin-top:60rpx;
 }

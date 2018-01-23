@@ -280,8 +280,26 @@ Page({
       inspectArray: inspectArray
     }
     inspect.inspect(data, function(res) {
-      console.log(res)
-      checkData = null
+      
+      if(res.status == 1){
+        checkData = null
+        wx.showModal({
+          title: '提示',
+          content: '检查报告提交成功！',
+          showCancel: false,
+          success: function (res) {
+            getApp().globalData.workshopInfo.inspectTimes ++
+            wx.navigateBack({
+              delta: 1,
+            })
+          }
+        })   
+      }else if(res.status == 0){
+        util.showModel("提示","数据库错误，请联系管理员")
+      }else{
+        util.showModel("提示","上传失败，请检查网络")
+      }
+      
     })
   },
   /**

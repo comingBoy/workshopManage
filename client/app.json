@@ -19,7 +19,8 @@
     "pages/staffList/staffList",
     "pages/register/register",
     "pages/checkWorkshop/checkWorkshop",
-    "pages/startCheck/startCheck"
+    "pages/startCheck/startCheck",
+    "pages/checkRecord/checkRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,121 @@
+/* pages/checkRecord/checkRecprd.wxss */
+
+.checkpointContainer{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+}
+
+.tip{
+  font-size:28rpx;
+  color:#696969;
+  background-color:white;
+  margin:10rpx;
+  padding:12rpx;
+}
+
+.checkpointList{
+  display:flex;
+  width:100%;
+  justify-content:space-around;
+  flex-wrap: wrap;
+}
+
+.checkpointInfo{
+  flex-direction:column;
+  align-items:center;
+  background-color:white;
+  padding:25rpx;
+  border-radius:26rpx;
+  margin-top:28rpx;
+  width:30%;
+}
+
+.checkpointName{
+  font-size:30rpx;
+  margin-bottom:30rpx;
+  text-align:center;
+}
+
+.checkpointStatus{
+  font-size:28rpx;
+  margin-bottom:32rpx;
+  text-align:center;
+}
+
+.ifSubmit{
+  width: 111%;
+}
+
+.noSubmit{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background-color:#fff;
+  text-align:center;
+  color:#c0c0c0;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+}
+
+.submit{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background-color:green;
+  text-align:center;
+  color:#fff;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+}
+
+.toCheck{
+  font-size:28rpx;
+}
+
+.fillCheckInfo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  font-size:30rpx;
+  color:#708090;
+  border:solid white;
+  margin-top:49rpx;
+  padding:20rpx 0rpx;
+  border-radius:30rpx;
+}
+
+.error{
+  font-size: 25rpx;
+}
+
+.checkBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 25rpx;
+  width: 60%;
+  padding-top:20rpx;
+}
+
+.cameraImage{
+  width:66%;
+  height:272rpx;
+  margin-top:16rpx;
+}
+
+.textArea{
+  width: 77%;
+  height:204rpx;
+  background-color: #fff;
+  margin-bottom:16px;
+  border: solid 2rpx #ddd;
+}
+
+.finish{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}

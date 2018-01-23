@@ -39,7 +39,8 @@
         暂无隐患记录
       </view>
     </view>
-    <view class='startCheck' bindtap='startCheck'>开始检查</view>
+    <view wx:if='{{canStartCheck}}' class='startCheck' bindtap='startCheck'>开始检查</view>
+    <view wx:else class='canNotStartCheck' bindtap='canNotStartCheck'>开始检查</view>
   </view>
   <view></view>
 </view>

@@ -6,7 +6,7 @@
       {{workshopInfo.workshopName}}
     </view>
     <view class='date'>
-      <picker mode="date" value="{{date}}" start="2015-09" end="2017-09" fields='month' bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" start="2017-09" end="2100-09" fields='month' bindchange="bindDateChange">
         <view class="picker">
           {{date}}
         </view>
@@ -14,7 +14,7 @@
     </view>
     <view class='listContainer'>
       <text class='title'>检查记录({{workshopInfo.inspectTimes}}/{{workshopInfo.totalTimes}})</text>
-      <view class='list' wx:for='{{checkRecord}}'>检查日期{{item.date}}</view>
+      <view class='list' wx:for='{{checkRecord}}' id='{{index}}' bindtap='toCheckRecord'>检查日期{{item.date}}</view>
       <view wx:if='{{checkRecord.length==0}}' class='list'>暂无检查记录</view>
     </view>
     <view class='listContainer'>
@@ -42,7 +42,7 @@
           <view class='dangerError'>{{errorList[item.error]}}</view>
         </view>
       </view>
-      <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
+      <view wx:if='{{dangerListByAdmin.length==0}}' class='list'>
         暂无隐患记录
       </view>
     </view>

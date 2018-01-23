@@ -1,4 +1,5 @@
 // pages/checkWorkshop/checkWorkshop.js
+var util = require('../../utils/util.js')
 function mGetDate() {
   var date = new Date();
   var year = date.getFullYear();
@@ -7,10 +8,11 @@ function mGetDate() {
   var date0 = '^' + year.toString() + '-' + month.toString()
   return date0;
 }
-
 var workshop = require('../../utils/workshop.js')
 var utils = require('../../utils/util.js')
 var checkWorkshop = require('../../utils/checkWorkshop.js')
+
+var todayDate = util.getDate()
 Page({
 
   /**
@@ -22,43 +24,15 @@ Page({
     checkRecord:null,
     dangerListByAdmin: null,
     dangerListByMyself: null,
-    errorList:["无","存在故障","故障已修复"]
+    errorList:["无","存在故障","故障已修复"],
+    canStartCheck: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(getApp().globalData.workshopInfo)
-    this.setData({
-      workshopInfo: getApp().globalData.workshopInfo
-    })
-    var that = this
-    var workshopId = getApp().globalData.workshopInfo.workshopId
-    var date = that.data.date
-    var data = {
-      workshopId: workshopId,
-      date: date
-    }
-    workshop.getTimes(data, function(res) {
-      if (res.status == -1) {
-        utils.showModel('提示','检查记录获取失败！')
-      } else {
-        that.setData({
-          checkRecord: res.times
-        })
-      }
-    })
-    checkWorkshop.getError(data, function(res) {
-      if (res.status == -1) {
-        utils.showModel('提示', '隐患记录获取失败！')
-      } else {
-        that.setData({
-          dangerListByAdmin: res.adminError,
-          dangerListByMyself: res.staffError
-        })
-      }
-    })
+    
   },
 
   /**
@@ -72,7 +46,62 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    //初始化是否能开始检查
+    var canStartCheck = null
+    if (getApp().globalData.workshopInfo.inspectTimes >= getApp().globalData.workshopInfo.totalTimes) canStartCheck = false
+    else canStartCheck = true
+    var that = this
+    var workshopId = getApp().globalData.workshopInfo.workshopId
+    var date = that.data.date
+    var data = {
+      workshopId: workshopId,
+      date: date
+    }
+    workshop.getTimes(data, function (res) {
+      if (res.status == -1) {
+        utils.showModel('提示', '检查记录获取失败！')
+      } else {
+        that.setData({
+          checkRecord: res.times
+        })
+        console.log(todayDate)
+        for(var i=0; i<res.times.length; i++){
+          if(res.times[i].date == todayDate){
+            canStartCheck = false
+            break
+          }
+        }
+      }
+    })
+    checkWorkshop.getError(data, function (res) {
+      if (res.status == -1) {
+        utils.showModel('提示', '隐患记录获取失败！')
+      } else {
+        if(canStartCheck == true){
+          for(var i=0; i<res.staffError.length; i++){
+            if(res.staffError[i].error == 1){
+              canStartCheck = false
+              break
+            }
+          }
+          if(canStartCheck == true){
+            for(var i=0; i<res.adminError.length; i++){
+              if(res.adminError[i].error == 1){
+                canStartCheck = false
+                break
+              }
+            }
+          }
+        }
+        that.setData({
+          dangerListByAdmin: res.adminError,
+          dangerListByMyself: res.staffError,
+          canStartCheck: canStartCheck,
+          workshopInfo: getApp().globalData.workshopInfo,
+        })
+    
+      }
+    })
   },
 
   /**
@@ -112,12 +141,18 @@ Page({
   /**
    * 开始检查
    */
-  startCheck: function(){
+  startCheck: function() {
     wx.navigateTo({
       url: '../startCheck/startCheck',
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
     })
+  },
+  /**
+   * 不能开始检查提示
+   */
+  canNotStartCheck: function() {
+    util.showModel("提示","已完成检查任务或存在故障未解决")
   }
 })

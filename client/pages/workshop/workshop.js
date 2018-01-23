@@ -120,26 +120,15 @@ Page({
       index: e.detail.value
     })
   },
-  addCheckTime: function(){
-    this.setData({
-      hiddenFlag : false
-    })
-  },
-  confirmAdd: function(){
-    this.setData({
-      hiddenFlag: true
-    })
-  },
-  toCheckPoint: function(e){
-    getApp().globalData.checkDate = this.data.date + '-' + this.data.checkTime[e.currentTarget.id].date
+  toCheckRecord: function(e){
+    console.log(getApp().globalData)
+    console.log(e)
+    getApp().globalData.currentCheckRecord = this.data.checkRecord[e.currentTarget.id]
     wx.navigateTo({
-      url: '../checkPoint/checkPoint',
+      url: '../checkRecord/checkRecord',
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
     })
-  },
-  delCheckTime: function(){
-    console.log("删除了")
-  }
+  } 
 })

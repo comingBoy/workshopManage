@@ -142,23 +142,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
-      if (res.data.result.status == 1) {
-        wx.showModal({
-          title: '提示',
-          content: '检查报告提交成功！',
-          showCancel: false,
-          success: function (res) {
-          }
-        })
-      } else if (res.data.result.status == 0) {
-        util.showModel('提示', '数据库异常！')
-      }
-      else if (res.data.result.status == -1) {
-        util.showModel('提示', '获取失败，请重试！')
-      } else {
-        util.showModel('提示', '请求出错！')
-      }
       callback(res.data.result)
     })
   },
