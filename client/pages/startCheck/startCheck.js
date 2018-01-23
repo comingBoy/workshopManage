@@ -280,7 +280,7 @@ Page({
       inspectArray: inspectArray
     }
     inspect.inspect(data, function(res) {
-      
+      console.log(res)
       if(res.status == 1){
         checkData = null
         wx.showModal({

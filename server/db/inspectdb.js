@@ -46,5 +46,13 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  //删除检查
+  async delInspect(args) {
+    let sql = 'DELETE FROM inspectdb WHERE checkpointId = ? AND date = ?'
+    let params = [args.checkpointId, args.date]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  }
 }
 

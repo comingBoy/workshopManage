@@ -50,7 +50,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    var that = this
+    var data = {
+      date: getCurrentDate(),
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    workshop.getGroupWorkshop(data, function (res) {
+      console.log(res)
+      that.setData({
+        workshopList: res
+      })
+    })
+    that.setData({
+      groupInfo: getApp().globalData.currentGroup
+    })
   },
 
   /**

@@ -30,7 +30,7 @@
       </view>
       <view class='checkBox'> 隐患图片</view>
       <view wx:if='{{inspectInfo.photo == ""}}'>无隐患图片</view>
-      <image wx:else src="{{photo}}" class='cameraImage' mode='aspectFill'></image>
+      <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFill'></image>
       <view class='checkBox'> 故障描述</view>
        <view wx:if='{{inspectInfo.description == ""}}'>无故障描述</view>
       <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>

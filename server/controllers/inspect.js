@@ -69,7 +69,9 @@ module.exports = {
   getInspectHis: async ctx => {
     var req, res, t, status, result0
     req = ctx.request.body
+    console.log(req)
     res = await inspectdb.getInspectHis(req)
+    console.log(res)
     t = typeof (res)
     t == 'object' ? status = 1 : status = -1
     result0 = {
@@ -118,20 +120,21 @@ module.exports = {
 
   inspect: async ctx => {
     var req, req0, res, res0, t, t0, result0, status, i, j
-    req = ctx.request.body  
+    req = ctx.request.body
     res = await timesdb.newTimes(req.inspectArray[0])
     t = typeof (res)
     if (t == 'object') {
-      res = await timesdb.getTimes(req.inspectArray[0])
-      t = typeof (res)
-      if (t == 'object' && res.length > 0) {
+      res0 = await timesdb.getTimes0(req.inspectArray[0])
+      t0 = typeof (res0)
+      if (t0 == 'object' && res0.length > 0) {
         status = 1
         for (i = 0; i < req.inspectArray.length; i++) {
           req0 = req.inspectArray[i]
-          req0.timesId = res.timesId
-          res = await inspectdb.inspect(req.inspectArray[i])
+          req0.timesId = res0[res0.length-1].timesId
+          res = await inspectdb.inspect(req0)
           t = typeof (res)
-          if (t != 'object') {
+          if (t == 'object') {
+          } else {
             status = -1
             res = await timesdb.delTimes(req.inspectArray[0])
             t = typeof (res)
