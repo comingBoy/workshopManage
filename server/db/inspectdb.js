@@ -26,8 +26,8 @@ module.exports = {
   },
   //查看检查历史
   async getInspectHis(args) {
-    let sql = 'SELECT * FROM inspectdb where workshopStatusId = ? and workshopId = ?'
-    let params = [args.workshopStatusId, args.workshopId]
+    let sql = 'SELECT * FROM inspectdb where timesId = ?'
+    let params = [args.timesId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
@@ -41,8 +41,8 @@ module.exports = {
 
   //检查
   async inspect(args) {
-    let sql = 'INSERT INTO inspectdb(date, workshopId, checkpointId, checkpointName, error, admin, description, photo, openId) VALUE(?,?,?,?,?,?,?,?,?)'
-    let params = [args.date, args.workshopId, args.checkpointId, args.checkpointName, args.error, args.admin, args.description, args.photo, args.openId]
+    let sql = 'INSERT INTO inspectdb(date, workshopId, checkpointId, timesId, checkpointName, error, admin, description, photo, openId) VALUE(?,?,?,?,?,?,?,?,?,?)'
+    let params = [args.date, args.workshopId, args.checkpointId, args.timesId, args.checkpointName, args.error, args.admin, args.description, args.photo, args.openId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },

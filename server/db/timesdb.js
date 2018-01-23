@@ -9,6 +9,13 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+  //查看车间检查状态
+  async getTimes0(args) {
+    let sql = 'SELECT * FROM timesdb where workshopId = ? and date = ?'
+    let params = [args.workshopId, args.date]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
   //增加检查轮数
   async newTimes(args) {
     let sql = 'INSERT INTO timesdb(workshopId, date) VALUE(?,?)'
