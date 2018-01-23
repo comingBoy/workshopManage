@@ -77,4 +77,6 @@ router.post('/inspect', controllers.inspect.inspect)
 router.post('/getFix', controllers.workshop.getFix)
 
 router.post('/getTimes', controllers.times.getTimes)
+
+router.post('/getInspectById', controllers.inspect.getInspectById)
 module.exports = router

@@ -19,8 +19,8 @@ module.exports = {
   
   //更新检查点是否检查状态
   async refreshStatus(args) {
-    let sql = 'UPDATE checkpointdb SET status = ? where inspectId = ?'
-    let params = [args.status, args.inspectId]
+    let sql = 'UPDATE inspectdb SET error = ? where inspectId = ?'
+    let params = [args.error, args.inspectId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
@@ -53,6 +53,14 @@ module.exports = {
     let params = [args.checkpointId, args.date]
     let result = await mysqlHelper.query(sql, params)
     return result
-  }
+  },
+
+  //获取隐患详细信息
+  async getInspectById(args) {
+    let sql = 'SELECT * FROM inspectdb where inspectId = ?'
+    let params = [args.inspectId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }
 

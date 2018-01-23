@@ -1,5 +1,4 @@
 // pages/checkWorkshop/checkWorkshop.js
-var util = require('../../utils/util.js')
 var net = require('../../utils/net.js')
 function mGetDate() {
   var date = new Date();
@@ -12,8 +11,9 @@ function mGetDate() {
 var workshop = require('../../utils/workshop.js')
 var utils = require('../../utils/util.js')
 var checkWorkshop = require('../../utils/checkWorkshop.js')
+var inspect = require('../../utils/inspect.js')
 
-var todayDate = util.getDate()
+var todayDate = utils.getDate()
 Page({
 
   /**
@@ -158,56 +158,76 @@ Page({
    */
   canNotStartCheck: function() {
     console.log(this.data.dangerListByAdmin.length)
-    util.showModel("提示","已完成检查任务或存在故障未解决")
+    utils.showModel("提示","已完成检查任务或存在故障未解决")
   },
   /**
    * 显示修复故障
    */
   showErrorByMyself: function(e){
-    var inspectId = this.data.dangerListByMyself[e.currentTarget.id].inspectId
-    //此处用接口获取errorInfo
-    // var errorInfo = API(inspectId)
-    this.setData({
-      ifShowError: !this.data.ifShowError,
-      errorInfo: {  //errorInfo
-        date: "2018-1-23",
-        checkpointName: "检查点0",
-        error: 1,
-        description: "车间要爆炸",
-        photo: "http://qcloudtest-1255747074.cn-south.myqcloud.com/1516614231523-r1lwME7rG.jpg",
-      },
-      //初始化fixInfo
-      fixInfo: {
-        inspectId: inspectId,
-        date: util.getDate(),
-        description: "",
-        photo: "../../images/camera.png",
+    var that = this
+    if (that.data.dangerListByMyself[e.currentTarget.id].error == 1) {
+      var inspectId = that.data.dangerListByMyself[e.currentTarget.id].inspectId
+      var data = {
+        inspectId: inspectId
       }
-    })
-  },
-  showErrorByAdmin: function(e){
-    if (this.data.dangerListByAdmin[e.currentTarget.id].error == 1){
-      var inspectId = this.data.dangerListByAdmin[e.currentTarget.id].inspectId
-      //此处用接口获取errorInfo
-      // var errorInfo = API(inspectId)
-      
-      this.setData({
-        ifShowError: !this.data.ifShowError,
-        errorInfo: {  //errorInfo
-          date: "2018-1-23",
-          checkpointName: "检查点0",
-          error: 1,
-          description: "车间要爆炸",
-          photo: "http://qcloudtest-1255747074.cn-south.myqcloud.com/1516614231523-r1lwME7rG.jpg",
-        },
-        //初始化fixInfo
-        fixInfo:{
-          inspectId: inspectId,
-          date: util.getDate(),
-          description: "",
-          photo: "../../images/camera.png",
+      inspect.getInspectById(data, function (res) {
+        if (res.status == 1) {
+          that.setData({
+            ifShowError: !that.data.ifShowError,
+            errorInfo: {
+              date: res.res[0].date,
+              checkpointName: res.res[0].checkpointName,
+              error: res.res[0].error,
+              description: res.res[0].description,
+              photo: res.res[0].photo,
+            },
+            fixInfo: {
+              inspectId: inspectId,
+              date: utils.getDate(),
+              description: "",
+              photo: "../../images/camera.png",
+            }
+          })
+        } else if (res.status == 0) {
+          utils.showModel("提示", "数据库异常！")
+        } else {
+          utils.showModel("提示", "请求错误！")
         }
       })
+    }
+  },
+  showErrorByAdmin: function(e){
+    var that = this
+    if (that.data.dangerListByAdmin[e.currentTarget.id].error == 1){
+      var inspectId = that.data.dangerListByAdmin[e.currentTarget.id].inspectId
+      var data = {
+        inspectId: inspectId
+      }
+      inspect.getInspectById(data, function(res) {
+        console.log(res)
+        if (res.status == 1) {
+          that.setData({
+            ifShowError: !that.data.ifShowError,
+            errorInfo: {
+              date: res.res[0].date,
+              checkpointName: res.res[0].checkpointName,
+              error: res.res[0].error,
+              description: res.res[0].description,
+              photo: res.res[0].photo,
+            },
+            fixInfo: {
+              inspectId: inspectId,
+              date: utils.getDate(),
+              description: "",
+              photo: "../../images/camera.png",
+            }
+          })
+        } else if (res.status == 0) {
+          utils.showModel("提示", "数据库异常！")
+        } else {
+          utils.showModel("提示","请求错误！")
+        }
+      })    
     }
   },
   /**
@@ -239,9 +259,19 @@ Page({
     var fixInfo = this.data.fixInfo
     if (fixInfo.photo != "../../images/camera.png" && fixInfo.decription != ""){
       //API(fixInfo)提交
+      var data = {
+        inspectId: fixInfo.inspectId,
+        date: fixInfo.date,
+        description: fixInfo.description,
+        photo: fixInfo.photo
+      }
+      var urls = {
+        checkWorkshop: './checkWorkshop'
+      }
+      inspect.fixError(data, urls)
       console.log(fixInfo)
     }else{
-      util.showModel("提示","请完善报告")
+      utils.showModel("提示","请完善报告")
     }
   }
 })

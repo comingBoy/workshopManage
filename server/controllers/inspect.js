@@ -27,6 +27,25 @@ module.exports = {
     }
   },
 
+  getInspectById: async ctx => {
+    let req = ctx.request.body
+    var res, t, result0, status
+    res = await inspectdb.getInspectById(req)
+    t = typeof (res)
+    if (t == 'object') {
+      res.length > 0 ? status = 1 : status = 0
+    } else {
+      status = -1
+    }
+    result0 = {
+      status: status,
+      res: res
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
   newProgress: async ctx => {
     let req = ctx.request.body
     var res, res0, t, t0, req0, status, result0, allInspected
@@ -88,9 +107,9 @@ module.exports = {
     req = ctx.request.body
     res = await fixdb.fixError(req)
     t = typeof (res)
-    if (res == 'object') {
+    if (t == 'object') {
       req0 = {
-        status : 2,
+        error : 2,
         inspectId : req.inspectId
       }
       res0 = await inspectdb.refreshStatus(req0)

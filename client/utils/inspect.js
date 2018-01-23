@@ -26,6 +26,22 @@ module.exports = {
       callback(res.data.result)
     })
   },
+
+  getInspectById: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getInspectByIdUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
   //新建进度
   /*
   data = {
@@ -111,7 +127,7 @@ module.exports = {
         util.showModel('提示', '数据库异常！')
       }
       else if (res.data.result.status == -1) {
-        util.showModel('提示', '获取失败，请重试！')
+        util.showModel('提示', '上传失败，请重试！')
       } else {
         util.showModel('提示', '请求出错！')
       }
