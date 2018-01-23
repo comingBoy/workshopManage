@@ -1,5 +1,6 @@
 // pages/checkWorkshop/checkWorkshop.js
 var util = require('../../utils/util.js')
+var net = require('../../utils/net.js')
 function mGetDate() {
   var date = new Date();
   var year = date.getFullYear();
@@ -24,8 +25,11 @@ Page({
     checkRecord:null,
     dangerListByAdmin: null,
     dangerListByMyself: null,
-    errorList:["无","存在故障","故障已修复"],
+    errorInfo: null,
+    fixInfo:null,
+    errorList:["无故障","存在故障","故障已修复"],
     canStartCheck: true,
+    ifShowError: true,
   },
 
   /**
@@ -153,6 +157,91 @@ Page({
    * 不能开始检查提示
    */
   canNotStartCheck: function() {
+    console.log(this.data.dangerListByAdmin.length)
     util.showModel("提示","已完成检查任务或存在故障未解决")
+  },
+  /**
+   * 显示修复故障
+   */
+  showErrorByMyself: function(e){
+    var inspectId = this.data.dangerListByMyself[e.currentTarget.id].inspectId
+    //此处用接口获取errorInfo
+    // var errorInfo = API(inspectId)
+    this.setData({
+      ifShowError: !this.data.ifShowError,
+      errorInfo: {  //errorInfo
+        date: "2018-1-23",
+        checkpointName: "检查点0",
+        error: 1,
+        description: "车间要爆炸",
+        photo: "http://qcloudtest-1255747074.cn-south.myqcloud.com/1516614231523-r1lwME7rG.jpg",
+      },
+      //初始化fixInfo
+      fixInfo: {
+        inspectId: inspectId,
+        date: util.getDate(),
+        description: "",
+        photo: "../../images/camera.png",
+      }
+    })
+  },
+  showErrorByAdmin: function(e){
+    if (this.data.dangerListByAdmin[e.currentTarget.id].error == 1){
+      var inspectId = this.data.dangerListByAdmin[e.currentTarget.id].inspectId
+      //此处用接口获取errorInfo
+      // var errorInfo = API(inspectId)
+      
+      this.setData({
+        ifShowError: !this.data.ifShowError,
+        errorInfo: {  //errorInfo
+          date: "2018-1-23",
+          checkpointName: "检查点0",
+          error: 1,
+          description: "车间要爆炸",
+          photo: "http://qcloudtest-1255747074.cn-south.myqcloud.com/1516614231523-r1lwME7rG.jpg",
+        },
+        //初始化fixInfo
+        fixInfo:{
+          inspectId: inspectId,
+          date: util.getDate(),
+          description: "",
+          photo: "../../images/camera.png",
+        }
+      })
+    }
+  },
+  /**
+   * 上传修复照片
+   */
+  choosePhoto: function () {
+    var that = this
+    net.uploadImg(function (res) {
+      that.data.fixInfo.photo = res
+      that.setData({
+        fixInfo: that.data.fixInfo
+      })
+    })
+  },
+  /**
+  * 获取修复描述
+  */
+  textInput: function (e) {
+    var fixInfo = this.data.fixInfo
+    fixInfo.description = e.detail.value
+    this.setData({
+      fixInfo: fixInfo
+    })
+  },
+  /**
+   * 提交修复报告
+   */
+  fixInfoSubmit: function(e){
+    var fixInfo = this.data.fixInfo
+    if (fixInfo.photo != "../../images/camera.png" && fixInfo.decription != ""){
+      //API(fixInfo)提交
+      console.log(fixInfo)
+    }else{
+      util.showModel("提示","请完善报告")
+    }
   }
 })

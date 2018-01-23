@@ -15,7 +15,7 @@
       <view class='title2'>
         自检隐患
       </view>
-      <view class='list' wx:for='{{dangerListByMyself}}'>
+      <view class='list' wx:for='{{dangerListByMyself}}' id='{{index}}' bindtap='showErrorByMyself'>
         <view class='dangerInfo'>
           <view class='dangerDate'>发现日期{{item.date}}  </view>
           <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
@@ -28,17 +28,38 @@
       <view class='title2'>
         管理员发现隐患
       </view>
-      <view class='list' wx:for='{{dangerListByAdmin}}'>
+      <view class='list' wx:for='{{dangerListByAdmin}}' id='{{index}}' bindtap='showErrorByAdmin'>
         <view class='dangerInfo'>
           <view class='dangerDate'>发现日期{{item.date}}  </view>
           <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
           <view class='dangerError'>{{errorList[item.error]}}</view>
         </view>
       </view>
-      <view wx:if='{{dangerListByAmdin.length==0}}' class='list'>
+      <view wx:if='{{dangerListByAdmin==0}}' class='list'>
         暂无隐患记录
       </view>
     </view>
+    <!--显示隐患详情-->
+    <view class='fillErrorInfo' hidden='{{ifShowError}}'>
+      <view class='checkpointName'>
+        {{errorInfo.checkpointName}}
+      </view>
+      <view class='error'>
+        <view>
+        {{errorList[errorInfo.error]}}
+        </view>
+      </view>
+      <view class='checkBox'> 隐患图片</view>
+      <image  src="{{errorInfo.photo}}" class='cameraImage' mode='aspectFill'></image>
+      <view class='checkBox'> 故障描述</view>
+      <textarea class="textArea"  value="{{errorInfo.description}}" disabled='true'/>
+      <view class='checkBox'> 上传修复图片</view>
+      <image src="{{fixInfo.photo}}" class='cameraImage' mode='aspectFill' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 填写修复描述</view>
+      <textarea class="textArea"  placeholder="请填入修复描述" value="{{fixInfo.description}}" bindinput='textInput'/>
+      <button class='finish' bindtap='fixInfoSubmit'>确认修复</button>
+    </view>
+    <!--开始检查按钮-->
     <view wx:if='{{canStartCheck}}' class='startCheck' bindtap='startCheck'>开始检查</view>
     <view wx:else class='canNotStartCheck' bindtap='canNotStartCheck'>开始检查</view>
   </view>

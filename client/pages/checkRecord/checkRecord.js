@@ -1,6 +1,4 @@
 // pages/checkRecord/checkRecprd.js
-var inspect = require('../../utils/inspect.js')
-var util = require('../../utils/util.js')
 Page({
 
   /**
@@ -12,8 +10,50 @@ Page({
     workshopInfo: null,
     inspectInfo: null,
     inspectInfoByAdmin: null,
-    inspectListByMyself: [],
-    inspectListByAdmin: [],
+    inspectListByMyself: [
+      {
+        date: "2018-01-22",
+        checkpointId: 16,
+        checkpointName: "检查点0",
+        error: 0,
+        description: "",
+        photo: "",
+      },
+      {
+        date: "2018-01-22",
+        checkpointId: 17,
+        checkpointName: "检查点1",
+        error: 0,
+        description: "",
+        photo: "",
+      },
+      {
+        date: "2018-01-22",
+        checkpointId: 18,
+        checkpointName: "检查点2",
+        error: 0,
+        description: "",
+        photo: "",
+      },
+      {
+        date: "2018-01-22",
+        checkpointId: 19,
+        checkpointName: "检查点3",
+        error: 0,
+        description: "",
+        photo: "",
+      }
+    ],
+    inspectListByAdmin: [
+      {
+        date: "2018-01-22",
+        checkpointName: "检查点0",
+        checkpointId: 16,
+        error: 0,
+        description:"",
+        photo: "",
+      }
+    ],
     checkRecord: null,
   },
 
@@ -21,33 +61,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    var timesId = getApp().globalData.currentCheckRecord.timesId
-    var data = {
-      timesId: timesId
-    }
-    inspect.getInspectHis(data, function(res) {
-      console.log(res.res)
-      var inspectListByMyself = []
-      var inspectListByAdmin = []
-      if (res.status == 1) {
-        for (var i = 0; i < res.res.length; i++) {
-          if (res.res[i].admin == 0) {
-            inspectListByMyself.push(res.res[i])
-          } else {
-            inspectListByAdmin.push(res.res[i])
-          }
-        }
-        that.setData({
-          inspectListByMyself: inspectListByMyself,
-          inspectListByAdmin: inspectListByAdmin
-        })
-      } else if (res.status == -1) {
-        util.showModel('提示', '获取失败，请重试！')
-      } else {
-        util.showModel('提示', '请求出错！')
-      }
-    })
+  
   },
 
   /**
@@ -102,6 +116,7 @@ Page({
    * 查看详情
    */
   toCheck: function(e){
+    console.log(e)
     var inspectInfo = this.data.inspectListByMyself[e.currentTarget.id]
     var inspectInfoByAdmin = null
     for(var i=0; i<this.data.inspectListByAdmin.length; i++){
