@@ -74,6 +74,7 @@ Page({
         })
       }
     })
+    //增加获取检查点checkpointList信息
   },
 
   /**
@@ -161,8 +162,8 @@ Page({
         error: 1,
         admin: 1,
         description: "",
-        photo: "../../images/camera.png"
-        //openId: 
+        photo: "../../images/camera.png",
+        openId: this.data.workshopInfo.openId
       }
     })
   },
@@ -171,11 +172,61 @@ Page({
   */
   chooseCheckpoint: function (e) {
     var dangerInfo = this.data.dangerInfo
-    dangerInfo.checkpointId = this.data.checkpointList[this.data.checkpointIndex].checkpointId,
-      dangerInfo.checkpointName = this.data.checkpointList[this.data.checkpointIndex].name,
+    dangerInfo.checkpointId = this.data.checkpointList[e.detail.value].checkpointId,
+      dangerInfo.checkpointName = this.data.checkpointList[e.detail.value].name,
     this.setData({
       checkpointIndex: e.detail.value,
       dangerInfo: dangerInfo
     })
   },
+  /**
+  * 上传隐患照片
+  */
+  choosePhoto: function () {
+    var that = this
+    var dangerInfo = this.data.dangerInfo
+    net.uploadImg(function (res) {
+      dangerInfo.photo = res
+      that.setData({
+        dangerInfo: dangerInfo
+      })
+    })
+  },
+  /**
+   * 获取故障描述
+   */
+  textInput: function (e) {
+    var dangerInfo = this.data.dangerInfo
+    dangerInfo.description = e.detail.value
+    this.setData({
+      dangerInfo: dangerInfo
+    })
+  },
+
+  /**
+   * 上传发现隐患信息
+   */
+  dangerSubmit: function(){
+    var that = this
+    var dangerInfo = this.data.dangerInfo
+    console.log(dangerInfo)
+    if (dangerInfo.photo != "../../images/camera.png" && dangerInfo.description != ""){
+      //上传API(dangerInfo)
+      this.setData({
+        ifFindDanger: !this.data.ifFindDanger
+      })
+      checkWorkshop.getError(data, function (res) {
+        if (res.status == -1) {
+          utils.showModel('提示', '隐患记录获取失败！')
+        } else {
+          that.setData({
+            dangerListByAdmin: res.adminError,
+            dangerListByMyself: res.staffError
+          })
+        }
+      })
+    }else{
+      util.showModel("提示","请完善故障信息")
+    }
+  }
 })

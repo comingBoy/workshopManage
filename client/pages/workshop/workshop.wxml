@@ -52,7 +52,7 @@
     <!--发现隐患界面-->
     <view class='fillDangerInfo' hidden='{{ifFindDanger}}'>
       <view class='checkpointName'>
-        <picker value="{{checkpointIndex}}" range='{{checkpointList}}' bindchange='chooseCheckpoint'>
+        <picker value="{{checkpointIndex}}" range='{{checkpointList}}' range-key='name' bindchange='chooseCheckpoint'>
         {{checkpointList[checkpointIndex].name}}  
         </picker>
       </view>
@@ -60,9 +60,9 @@
         发现故障
       </view>
       <view class='checkBox'> 上传故障图片</view>
-      <image src="{{photo}}" class='cameraImage' mode='aspectFill' bindtap='choosePhoto'></image>
+      <image src="{{dangerInfo.photo}}" class='cameraImage' mode='aspectFill' bindtap='choosePhoto'></image>
       <view class='checkBox'> 故障描述</view>
-      <textarea class="textArea" placeholder="{{initText}}" value="{{initTextValue}}" bindinput='textInput' />
+      <textarea class="textArea" placeholder="{{initText}}" value="{{dangerInfo.description}}" bindinput='textInput' />
       <button class='finish' bindtap='dangerSubmit'>确认提交</button>
     </view>
   </view>
