@@ -1,6 +1,7 @@
 // pages/checkRecord/checkRecprd.js
 var inspect = require('../../utils/inspect.js')
 var util = require('../../utils/util.js')
+var checkWorkshop = require('../../utils/checkWorkshop.js')
 Page({
 
   /**
@@ -12,6 +13,8 @@ Page({
     workshopInfo: null,
     inspectInfo: null,
     inspectInfoByAdmin: null,
+    fixInfo: null,
+    fixInfoByAdmin: null,
     inspectListByMyself: [],
     inspectListByAdmin: [],
     checkRecord: null,
@@ -102,7 +105,32 @@ Page({
    * 查看详情
    */
   toCheck: function (e) {
+    console.log(e.currentTarget.id)
+    var that = this
     var inspectInfo = this.data.inspectListByMyself[e.currentTarget.id]
+    console.log(inspectInfo)
+    var inspectId = inspectInfo.inspectId
+    var data = {
+      inspectId: inspectId
+    }
+    checkWorkshop.getFix(data, function(res) {
+      console.log(res)
+      var fix = res.fix[0]
+      if (res.fix.length == 0) {
+        fix = {
+          photo: "",
+          description: ""
+        }
+      }
+      that.setData({
+        fixInfo: fix,
+        inspectInfo: res.error[0],
+        ifShow: false
+      })
+    })
+    
+
+    /*
     var inspectInfoByAdmin = null
     for (var i = 0; i < this.data.inspectListByAdmin.length; i++) {
       if (this.data.inspectListByAdmin[i].checkpointId == inspectInfo.checkpointId) {
@@ -112,8 +140,9 @@ Page({
       else inspectInfoByAdmin = ""
     }
     this.setData({
+      inspectInfoByAdmin: inspectInfoByAdmin,
       inspectInfo: inspectInfo,
       ifShow: false
-    })
+    })*/
   }
 })

@@ -32,8 +32,11 @@
       <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
         暂无隐患记录
       </view>
+      <view class='dangerTitleBox'>
       <view class='title2'>
         管理员发现隐患
+      </view>
+      <button class='findDanger' bindtap='findDanger'>添加</button>
       </view>
       <view class='list' wx:for='{{dangerListByAdmin}}'>
         <view class='dangerInfo'>
@@ -45,6 +48,22 @@
       <view wx:if='{{dangerListByAdmin.length==0}}' class='list'>
         暂无隐患记录
       </view>
+    </view>
+    <!--发现隐患界面-->
+    <view class='fillDangerInfo' hidden='{{ifFindDanger}}'>
+      <view class='checkpointName'>
+        <picker value="{{checkpointIndex}}" range='{{checkpointList}}' bindchange='chooseCheckpoint'>
+        {{checkpointList[checkpointIndex].name}}  
+        </picker>
+      </view>
+      <view class='danger'>
+        发现故障
+      </view>
+      <view class='checkBox'> 上传故障图片</view>
+      <image src="{{photo}}" class='cameraImage' mode='aspectFill' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 故障描述</view>
+      <textarea class="textArea" placeholder="{{initText}}" value="{{initTextValue}}" bindinput='textInput' />
+      <button class='finish' bindtap='dangerSubmit'>确认提交</button>
     </view>
   </view>
   <view></view>

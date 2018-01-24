@@ -310,7 +310,7 @@ module.exports = {
     req = ctx.request.body
     res = await inspectdb.getInspect0(req)
     t = typeof (res)
-    if (t == 'objetc') {
+    if (t == 'object') {
       res0 = await fixdb.getFix(req)
       t0 = typeof (res0)
       t0 == 'object' ? status = 1 : status = -1
