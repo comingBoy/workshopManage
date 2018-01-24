@@ -16,6 +16,7 @@ module.exports = {
       workshopId: '',
       workshopName: '',
       name: '',
+      openId: '',
       totalCheckpoints: '',
       error: '',
       inspectTimes: '',
@@ -33,6 +34,7 @@ module.exports = {
           if (res[i].openId == -1) {
             info.name = '暂无'
           } else {
+            info.openId = res[i].openId
             res0 = await staffdb.getStaffByOpenId(res[i])
             t0 = typeof(res0)
             if (t0 == 'object') {
@@ -85,6 +87,7 @@ module.exports = {
             workshopId: '',
             workshopName: '',
             name: '',
+            openId: '',
             totalCheckpoints: '',
             error: '',
             inspectTimes: '',
