@@ -21,6 +21,7 @@
 
 .list{
   margin-top:8rpx;
+  margin-bottom:20rpx;
   border-top:solid 1rpx #ddd;
   padding:13rpx;
   text-align:center;
@@ -58,4 +59,65 @@
   font-size:35rpx;
   color:#696969;
   border-radius:23rpx;
+}
+
+.dangerTitleBox{
+  display:flex;
+  justify-content:space-between;
+}
+
+.findDanger{
+  font-size:18rpx;
+  margin:0rpx 50rpx;
+}
+
+.fillDangerInfo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  font-size:30rpx;
+  color:#708090;
+  border:solid white;
+  margin-top:49rpx;
+  padding:20rpx 0rpx;
+  border-radius:30rpx;
+}
+
+.checkpointName{
+  font-size:30rpx;
+  margin-bottom:30rpx;
+  text-align:center;
+}
+
+.danger{
+  font-size: 25rpx;
+}
+
+.checkBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 25rpx;
+  width: 60%;
+  padding-top:20rpx;
+}
+
+.cameraImage{
+  width:66%;
+  height:272rpx;
+  margin-top:16rpx;
+}
+
+.textArea{
+  width: 77%;
+  height:204rpx;
+  background-color: #fff;
+  margin-bottom:16px;
+  border: solid 2rpx #ddd;
+}
+
+.finish{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
 }

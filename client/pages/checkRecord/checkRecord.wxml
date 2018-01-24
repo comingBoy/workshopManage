@@ -34,6 +34,13 @@
       <view class='checkBox'> 故障描述</view>
        <view wx:if='{{inspectInfo.description == ""}}'>无故障描述</view>
       <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
+
+      <view class='checkBox'> 修复图片</view>
+      <view wx:if='{{fixInfo.photo == ""}}'>无修复图片</view>
+      <image wx:else src="{{fixInfo.photo}}" class='cameraImage' mode='aspectFill'></image>
+      <view class='checkBox'> 修复描述</view>
+       <view wx:if='{{fixInfo.description == ""}}'>无修复描述</view>
+      <textarea wx:else class="textArea"  value="{{fixInfo.description}}" disabled='true'/>
     </view>
 
     <!--提交检查-->

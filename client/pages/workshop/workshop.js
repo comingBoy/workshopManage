@@ -1,4 +1,5 @@
 // pages/workshop/workshop.js
+var util = require('../../utils/util.js')
 var workshop = require('../../utils/workshop.js')
 var checkWorkshop = require('../../utils/checkWorkshop.js')
 function mGetDate() {
@@ -17,9 +18,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ifFindDanger: true,
+    errorList: ["无故障", "存在故障", "故障已修复"],
     index: 0,
     hiddenFlag: true,
     workshopInfo:null,
+    dangerInfo: null,
+    checkpointList: [{
+      checkpointId: 17,
+      name: "检查点0"
+    },
+    {
+      checkpointId: 16,
+      name: "检查点2"
+    }
+    ],
+    checkpointIndex: 0,
     checkRecord:[],
     dangerListByMyself:[],
     dangerListByAdmin:[],
@@ -130,5 +144,38 @@ Page({
       fail: function(res) {},
       complete: function(res) {},
     })
-  } 
+  },
+  /**
+   * 发现隐患
+   */
+  findDanger: function(){
+    this.setData({
+      ifFindDanger: !this.data.ifFindDanger,
+      //初始化隐患信息
+      dangerInfo: {
+        timesId: -1,
+        date: util.getDate(),
+        workshopId: this.data.workshopInfo.workshopId,
+        checkpointId: this.data.checkpointList[this.data.checkpointIndex].checkpointId,
+        checkpointName: this.data.checkpointList[this.data.checkpointIndex].name,
+        error: 1,
+        admin: 1,
+        description: "",
+        photo: "../../images/camera.png"
+        //openId: 
+      }
+    })
+  },
+  /**
+  * 选择发现隐患的检查点
+  */
+  chooseCheckpoint: function (e) {
+    var dangerInfo = this.data.dangerInfo
+    dangerInfo.checkpointId = this.data.checkpointList[this.data.checkpointIndex].checkpointId,
+      dangerInfo.checkpointName = this.data.checkpointList[this.data.checkpointIndex].name,
+    this.setData({
+      checkpointIndex: e.detail.value,
+      dangerInfo: dangerInfo
+    })
+  },
 })
