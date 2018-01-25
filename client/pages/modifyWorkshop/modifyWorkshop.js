@@ -14,6 +14,8 @@ Page({
     checkpointId: '',
     changeFlag0: true,
     changeFlag: true,
+    newFlag: false,
+    newFlag0: true,
     workshopName: '',
     checkpointName: '',
     changeWhat: [
@@ -43,22 +45,20 @@ Page({
           workshopInfo: res.res
         })
       } else if (res.status == -1) {
-        util.showModel("提示","请求失败，请重试！")
-      } 
-      else {
+        util.showModel("提示","获取车间信息失败，请重试！")
+      } else {
         util.showModel("提示","请求出错！")
       }
     })
     checkpoint.getCheckpoint(data, function(res) {
       console.log(res)
-      if (res.status == 1) {
+      if (res.status == 1 || res.status == 0) {
         that.setData({
           checkpointInfo: res.res
         })
       } else if (res.status == -1) {
-        util.showModel("提示", "请求失败，请重试！")
-      }
-      else {
+        util.showModel("提示", "获取检查点信息失败，请重试！")
+      } else {
         util.showModel("提示", "请求出错！")
       }
     })
@@ -67,6 +67,46 @@ Page({
   goBack: function() {
     wx.navigateBack({
       delta: 1,
+    })
+  },
+
+  newCheckpoint: function() {
+    this.setData({
+      newFlag: true,
+      newFlag0: false
+    })
+  },
+
+  newCheckpoint0: function () {
+    var workshopId = this.data.workshopId
+    var checkpointName = this.data.checkpointName
+    var checkpointNum = this.data.checkpointInfo.length+1
+    var that = this
+    var data = {
+      workshopId: workshopId,
+      name: checkpointName,
+      checkpointNum: checkpointNum
+    }
+    checkpoint.newCheckpoint(data, function(res) {
+      if (res.status == 1) {
+        checkpoint.getCheckpoint(data, function (res) {
+          if (res.status == 1 || res.status == 0) {
+            that.setData({
+              checkpointInfo: res.res,
+              newFlag0: true,
+              newFlag: false
+            })
+          } else if (res.status == -1) {
+            util.showModel("提示", "获取检查点信息失败，请重试！")
+          } else {
+            util.showModel("提示", "请求出错！")
+          }
+        })
+      } else if (res.status = 0) {
+        util.showModel("提示", "数据库异常！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
     })
   },
 

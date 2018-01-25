@@ -48,6 +48,21 @@ module.exports = {
       console.log(res)
       callback(res.data.result)
     })
+  },
+
+  newCheckpoint: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.newCheckpointUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
   }
 }
 //查看检查点

@@ -24,4 +24,14 @@
   </view>
 </view>
 
+<view hidden='{{newFlag0}}' class='changeInfo'>
+  <text class='changeTitle'>新建检查点</text>
+  <view class='changeCtx'>
+    <input class='changeInput' bindinput="input" value='{{changeCtx}}'></input>
+    <button class='changeSave' bindtap='newCheckpoint0'>确认</button>
+  </view>
+</view>
+
+
+<button hidden='{{newFlag}}' bindtap='newCheckpoint'>新建检查点</button>
 <button bindtap='goBack'>返回</button>

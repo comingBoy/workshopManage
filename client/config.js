@@ -81,7 +81,9 @@ var config = {
 
         delWorkshopUrl: `${host}/weapp/delWorkshop`, 
 
-        delCheckpointUrl: `${host}/weapp/delCheckpoint`, 
+        delCheckpointUrl: `${host}/weapp/delCheckpoint`,
+
+        newCheckpointUrl: `${host}/weapp/newCheckpoint`,
     }
 };
 

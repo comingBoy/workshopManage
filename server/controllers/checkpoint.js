@@ -56,4 +56,31 @@ module.exports = {
     }
   },
 
+  newCheckpoint: async ctx => {
+    var req, res, res0, t, t0, status, result0
+    req = ctx.request.body
+    res = await workshopdb.changeCheckpointNum(req)
+    t = typeof (res)
+    if (t == 'object') {
+      res = await checkpointdb.newCheckpoint(req)
+      t = typeof (res)
+      if (t == 'object') {
+        status = 1
+      } else {
+        req.checkpointNum--
+        res = await workshopdb.changeCheckpointNum(req)
+        t = typeof (res)
+        t == 'object' ? status = -1 : status = 0
+      }
+    } else {
+      status = -1
+    }
+    result0 = {
+      status: status,
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
 }

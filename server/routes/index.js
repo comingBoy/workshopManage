@@ -91,4 +91,6 @@ router.post('/changeCheckpointInfo', controllers.checkpoint.changeCheckpointInfo
 router.post('/delWorkshop', controllers.workshop.delWorkshop)
 
 router.post('/delCheckpoint', controllers.checkpoint.delCheckpoint)
+
+router.post('/newCheckpoint', controllers.checkpoint.newCheckpoint)
 module.exports = router
