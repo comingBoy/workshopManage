@@ -65,11 +65,23 @@ var config = {
 
         inspectUrl: `${host}/weapp/inspect`,
 
+        inspect0Url: `${host}/weapp/inspect0`,
+
         getFixUrl: `${host}/weapp/getFix`,
 
         getTimesUrl: `${host}/weapp/getTimes`,
 
         getInspectByIdUrl: `${host}/weapp/getInspectById`,
+
+        getWorkshopInfoUrl: `${host}/weapp/getWorkshopInfo`,
+
+        changeWorkshopInfoUrl: `${host}/weapp/changeWorkshopInfo`,
+
+        changeCheckpointInfoUrl: `${host}/weapp/changeCheckpointInfo`,
+
+        delWorkshopUrl: `${host}/weapp/delWorkshop`, 
+
+        delCheckpointUrl: `${host}/weapp/delCheckpoint`, 
     }
 };
 

@@ -19,6 +19,13 @@ Page({
     groupInfo: null
   },
 
+  modifyWorkshop: function(e) {
+    console.log(e)
+    var workshopId = this.data.workshopList[e.currentTarget.id].workshopId
+    wx.navigateTo({
+      url: '../modifyWorkshop/modifyWorkshop?workshopId=' + workshopId,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

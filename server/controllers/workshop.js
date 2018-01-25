@@ -264,6 +264,36 @@ module.exports = {
     }
   },
 
+  getWorkshopInfo: async ctx => {
+    let req = ctx.request.body
+    var res = await workshopdb.getWorkshopInfo(req)
+    var t = typeof (res)
+    var status, result0
+    t == 'object' ? status = 1 : status = -1
+    
+    result0 = {
+      status: status,
+      res: res
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+  changeWorkshopInfo: async ctx => {
+    let req = ctx.request.body
+    var res = await workshopdb.changeWorkshopInfo(req)
+    var t = typeof (res)
+    var status, result0
+    t == 'object' ? status = 1 : status = -1
+    result0 = {
+      status: status
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
   getError: async ctx => {
     let req = ctx.request.body
     var res = await inspectdb.getInspect(req)
@@ -322,6 +352,29 @@ module.exports = {
       status: status,
       error: res,
       fix: res0
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+  delWorkshop: async ctx => {
+    var req, res, res0, t, t0, status, result0
+    req = ctx.request.body
+    res = await workshopdb.delWorkshopInfo(req)
+    res0 = await checkpointdb.delAllCheckpoint(req)
+    t = typeof (res)
+    t0 = typeof (res0)
+    if (t == 'object' && t0 == 'object') {
+      status = 1
+    } else if (t != 'object' && t0 != 'object') {
+      status = -1
+    } else {
+      status = 0
+    }
+
+    result0 = {
+      status: status,
     }
     ctx.body = {
       result: result0

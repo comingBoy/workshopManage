@@ -31,5 +31,22 @@ module.exports = {
     let params = [args.workshopId]
     let result = await mysqlHelper.query(sql, params)
     return result
-  }
+  },
+
+  async delCheckpoint(args) {
+    let sql = 'DELETE FROM checkpointdb where checkpointId = ?'
+    let params = [args.checkpointId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
+
+    async changeCheckpointInfo(args) {
+    let sql = 'UPDATE checkpointdb SET name = ? where checkpointId = ?'
+    let params = [args.checkpointName, args.checkpointId]
+    let result = mysqlHelper.query(sql, params)
+    console.log(result)
+    return result
+  },
 }
+
+

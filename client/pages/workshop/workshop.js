@@ -2,6 +2,9 @@
 var util = require('../../utils/util.js')
 var workshop = require('../../utils/workshop.js')
 var checkWorkshop = require('../../utils/checkWorkshop.js')
+var checkpoint = require('../../utils/checkpoint.js')
+var inspect = require('../../utils/inspect.js')
+var net = require('../../utils/net.js')
 function mGetDate() {
   var date = new Date();
   var year = date.getFullYear();
@@ -24,15 +27,7 @@ Page({
     hiddenFlag: true,
     workshopInfo:null,
     dangerInfo: null,
-    checkpointList: [{
-      checkpointId: 17,
-      name: "检查点0"
-    },
-    {
-      checkpointId: 16,
-      name: "检查点2"
-    }
-    ],
+    checkpointList: [],
     checkpointIndex: 0,
     checkRecord:[],
     dangerListByMyself:[],
@@ -75,6 +70,19 @@ Page({
       }
     })
     //增加获取检查点checkpointList信息
+    checkpoint.getCheckpoint(data, function(res) {
+      if (res.status == 1) {
+        that.setData({
+          checkpointList: res.res
+        })
+      } else if (res.status == 0) {
+        util.showModel("提示","无检查点信息！")
+      } else if (res.status == -1) {
+        util.showModel("提示", "获取检查点信息失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
   },
 
   /**
@@ -208,21 +216,45 @@ Page({
    */
   dangerSubmit: function(){
     var that = this
-    var dangerInfo = this.data.dangerInfo
-    console.log(dangerInfo)
+    var dangerInfo = that.data.dangerInfo
     if (dangerInfo.photo != "../../images/camera.png" && dangerInfo.description != ""){
-      //上传API(dangerInfo)
-      this.setData({
-        ifFindDanger: !this.data.ifFindDanger
-      })
-      checkWorkshop.getError(data, function (res) {
-        if (res.status == -1) {
-          utils.showModel('提示', '隐患记录获取失败！')
-        } else {
-          that.setData({
-            dangerListByAdmin: res.adminError,
-            dangerListByMyself: res.staffError
+      var data = {
+        inspectArray: dangerInfo
+      }
+      console.log(data)
+      inspect.inspect0(data, function(res) {
+        console.log(res)
+        if (res.status == 1) {
+          wx.showModal({
+            title: '提示',
+            content: '上传成功！',
+            showCancel: false,
+            success: function (res) {
+              that.setData({
+                ifFindDanger: !that.data.ifFindDanger
+              })
+              var date = '^' + that.data.date
+              var workshopId = dangerInfo.workshopId
+              var data0 = {
+                date: date,
+                workshopId: workshopId
+              }
+              checkWorkshop.getError(data0, function (res) {
+                if (res.status == -1) {
+                  utils.showModel('提示', '隐患记录获取失败！')
+                } else {
+                  that.setData({
+                    dangerListByAdmin: res.adminError,
+                    dangerListByMyself: res.staffError
+                  })
+                }
+              })
+            }
           })
+        } else if (res.status == 0) {
+          util.showModel("提示", "数据库错误，请联系管理员")
+        } else {
+          util.showModel("提示", "上传失败，请检查网络")
         }
       })
     }else{

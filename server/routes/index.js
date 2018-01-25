@@ -74,9 +74,21 @@ router.post('/fixError', controllers.inspect.fixError)
 
 router.post('/inspect', controllers.inspect.inspect)
 
+router.post('/inspect0', controllers.inspect.inspect0)
+
 router.post('/getFix', controllers.workshop.getFix)
 
 router.post('/getTimes', controllers.times.getTimes)
 
 router.post('/getInspectById', controllers.inspect.getInspectById)
+
+router.post('/getWorkshopInfo', controllers.workshop.getWorkshopInfo)
+
+router.post('/changeWorkshopInfo', controllers.workshop.changeWorkshopInfo)
+
+router.post('/changeCheckpointInfo', controllers.checkpoint.changeCheckpointInfo)
+
+router.post('/delWorkshop', controllers.workshop.delWorkshop)
+
+router.post('/delCheckpoint', controllers.checkpoint.delCheckpoint)
 module.exports = router

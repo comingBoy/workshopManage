@@ -1,0 +1,27 @@
+<!--pages/modifyWorkshop/modifyWorkshop.wxml-->
+<view class='container'>
+  <view class='workshop' bindtap='changeWorkshop'>{{workshopInfo[0].workshopName}}    </view>
+  <view class='checkpoint'>
+    <view wx:for="{{checkpointInfo}}" id='{{index}}' bindtap='changeCheckpoint'>{{item.name}}</view>
+  </view>
+</view>
+
+<view hidden='{{changeFlag0}}' class='changeInfo'>
+  <text class='changeTitle'>{{changeWhat[index0]}}</text>
+  <view class='changeCtx'>
+    <input class='changeInput' bindinput="input0" value='{{changeCtx}}'></input>
+    <button class='changeSave' bindtap='changeSave0'>修改</button>
+    <button bindtap='delWorkshop'>删除</button>
+  </view>
+</view>
+
+<view hidden='{{changeFlag}}' class='changeInfo'>
+  <text class='changeTitle'>{{changeWhat[index0]}}</text>
+  <view class='changeCtx'>
+    <input class='changeInput' bindinput="input" value='{{changeCtx}}'></input>
+    <button class='changeSave' bindtap='changeSave'>修改</button>
+    <button bindtap='delCheckpoint'>删除</button>
+  </view>
+</view>
+
+<button bindtap='goBack'>返回</button>

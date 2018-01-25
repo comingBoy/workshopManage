@@ -15,7 +15,10 @@
     <!--车间列表-->
     <view class='workshopList'>
       <view class='workshop' wx:for='{{workshopList}}' id='{{index}}' bindtap='toWorkshop'>
-        <text >{{item.workshopName}}</text>
+        <view class='workshopName'>
+          <text >{{item.workshopName}}</text>
+        <image class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
+        </view>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
         <text class='textBox'>待修复个数：{{item.error}}</text> 

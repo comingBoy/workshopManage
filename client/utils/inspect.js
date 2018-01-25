@@ -150,6 +150,22 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
+  inspect0: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.inspect0Url,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
       callback(res.data.result)
     })
   },

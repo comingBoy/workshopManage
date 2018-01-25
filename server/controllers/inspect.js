@@ -187,4 +187,20 @@ module.exports = {
       result: result0
     }
   },
+
+  inspect0: async ctx => {
+    var req, res, t, result0, status
+    req = ctx.request.body
+    console.log(req)
+    res = await inspectdb.inspect(req.inspectArray)
+    console.log(res)
+    t = typeof (res)
+    t == 'object' ? status = 1 : status = -1
+    result0 = {
+      status: status
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
 }

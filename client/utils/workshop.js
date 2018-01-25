@@ -132,6 +132,21 @@ module.exports = {
     })
   },
 
+  delWorkshop: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.delWorkshopUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
   //获取已完成次数记录
   /*
     data = {
@@ -144,6 +159,38 @@ module.exports = {
     console.log(data)
     var configure = {
       url: config.service.getTimesUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
+  getWorkshopInfo: function (data, callback) {
+    var data = data
+    console.log(data)
+    var configure = {
+      url: config.service.getWorkshopInfoUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
+  changeWorkshopInfo: function (data, callback) {
+    var data = data
+    console.log(data)
+    var configure = {
+      url: config.service.changeWorkshopInfoUrl,
       method: 'POST',
       header: {
         'content-type': 'application/json'
