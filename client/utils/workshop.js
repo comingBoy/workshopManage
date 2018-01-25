@@ -147,6 +147,21 @@ module.exports = {
     })
   },
 
+  changeOpenId: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.changeOpenIdUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
   //获取已完成次数记录
   /*
     data = {

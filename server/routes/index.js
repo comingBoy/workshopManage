@@ -95,4 +95,6 @@ router.post('/delCheckpoint', controllers.checkpoint.delCheckpoint)
 router.post('/newCheckpoint', controllers.checkpoint.newCheckpoint)
 
 router.post('/delGroup', controllers.group.delGroup)
+
+router.post('/changeOpenId', controllers.workshop.changeOpenId)
 module.exports = router

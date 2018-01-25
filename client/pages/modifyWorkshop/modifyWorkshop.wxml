@@ -1,6 +1,12 @@
 <!--pages/modifyWorkshop/modifyWorkshop.wxml-->
 <view class='container'>
   <view class='workshop' bindtap='changeWorkshop'>{{workshopInfo[0].workshopName}}    </view>
+  <view class='newWorkshopInfo'>
+    <text class='label'>负责人:</text>
+      <picker class='picker' bindchange="chooseopenId" value="{{index}}" range-key="name" range="{{staffList}}">
+        <view class="picker">{{staffList[staffIndex].name}}</view>
+      </picker>
+  </view> 
   <view class='checkpoint'>
     <view wx:for="{{checkpointInfo}}" id='{{index}}' bindtap='changeCheckpoint'>{{item.name}}</view>
   </view>

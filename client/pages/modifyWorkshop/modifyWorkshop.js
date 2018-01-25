@@ -2,12 +2,16 @@
 var workshop = require('../../utils/workshop.js')
 var util = require('../../utils/util.js')
 var checkpoint = require('../../utils/checkpoint.js')
+var group = require('../../utils/group.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    staffList: [],
+    staffIndex: '',
+    openId: '',
     workshopId: '',
     workshopInfo: null,
     checkpointInfo: [],
@@ -30,7 +34,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var openId = getApp().globalData.staffOpenId
     var that = this
+    var data = {
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.getStaff(data, function (res) {
+      var staffList = res
+      staffList.unshift({
+        name: "暂无",
+        openId: '-1'
+      })
+      that.setData({
+        staffList: res,
+      })
+      for (var i = 0; i < that.data.staffList.length; i++) {
+        if (openId == that.data.staffList[i].openId) {
+          that.setData({
+            staffIndex: i
+          })
+          break
+        }
+      }
+    })
     var workshopId = options.workshopId
     this.setData({
       workshopId: workshopId
@@ -67,6 +93,40 @@ Page({
   goBack: function() {
     wx.navigateBack({
       delta: 1,
+    })
+  },
+
+  chooseopenId: function (e) {
+    var that = this
+    var openId = that.data.staffList[e.detail.value].openId
+    var staffIndex = that.data.staffIndex
+    that.setData({
+      staffIndex: e.detail.value,
+    })
+    wx.showModal({
+      title: '提示',
+      content: '确定修改？',
+      success: function (res) {
+        if (res.confirm) {
+          var data = {
+            workshopId: that.data.workshopId,
+            openId: openId
+          }
+          workshop.changeOpenId(data, function(res) {
+            if (res.status == 1) {
+              util.showModel("提示", "修改成功！")
+            } else if (res.status == -1) {
+              util.showModel("提示", "修改失败，请重试！")
+            } else {
+              util.showModel("提示", "请求出错！")
+            }
+          })
+        } else {
+          that.setData({
+            staffIndex: staffIndex
+          })
+        }
+      }
     })
   },
 

@@ -24,6 +24,7 @@ Page({
   modifyWorkshop: function(e) {
     console.log(e)
     var workshopId = this.data.workshopList[e.currentTarget.id].workshopId
+    getApp().globalData.staffOpenId = this.data.workshopList[e.currentTarget.id].openId
     wx.navigateTo({
       url: '../modifyWorkshop/modifyWorkshop?workshopId=' + workshopId,
     })

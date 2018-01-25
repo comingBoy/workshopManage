@@ -42,6 +42,13 @@ module.exports = {
     console.log(result)
     return result
   },
+  async changeOpenId(args) {
+    let sql = 'UPDATE workshopdb SET openId = ? where workshopId = ?'
+    let params = [args.openId, args.workshopId]
+    let result = mysqlHelper.query(sql, params)
+    console.log(result)
+    return result
+  },
   async changeCheckpointNum(args) {
     let sql = 'UPDATE workshopdb SET checkpointNum= ? where workshopId = ?'
     let params = [args.checkpointNum, args.workshopId]
