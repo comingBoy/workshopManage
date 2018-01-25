@@ -84,6 +84,8 @@ var config = {
         delCheckpointUrl: `${host}/weapp/delCheckpoint`,
 
         newCheckpointUrl: `${host}/weapp/newCheckpoint`,
+
+        delGroupUrl: `${host}/weapp/delGroup`,
     }
 };
 

@@ -31,4 +31,5 @@
       </view>
     </view>
   </view>
+  <button bindtap='delGroup'>删除部门</button>
 </view>

@@ -123,10 +123,23 @@ module.exports = {
   
   delStaff: async ctx => {
     let req = ctx.request.body
-    console.log(req)
     let res = await memberdb.delStaff(req)
     ctx.body = {
       result: res
+    }
+  },
+
+  delGroup: async ctx => {
+    let req = ctx.request.body
+    let res = await groupdb.delGroup(req)
+    let t = typeof (res)
+    var status, result0
+    t == 'object' ? status = 1 : status = -1
+    result0 = {
+      status: status
+    }
+    ctx.body = {
+      result: result0
     }
   }
 }

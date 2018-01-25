@@ -38,4 +38,11 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async delGroup(args) {
+    let sql = 'DELETE FROM groupdb WHERE groupId = ?'
+    let params = [args.groupId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }
