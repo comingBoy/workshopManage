@@ -15,6 +15,7 @@
     </view>
 
   </view>
-  <view bindtap='delGroup' class='build0'>删除部门</view>
-  <view bindtap='finishBuild' class='build'>确认修改</view> 
 </view>
+
+<button bindtap='delGroup' >删除部门</button>
+<button bindtap='finishBuild' >确认修改</button> 

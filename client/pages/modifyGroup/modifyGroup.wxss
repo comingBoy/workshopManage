@@ -58,27 +58,3 @@ color: #fff;
 margin-bottom: 25rpx;
 font-size: 40rpx;
 }
-
-.build{
-position: fixed;
-bottom: 0;
-width: 100%;
-background-color: green;
-text-align: center;
-color:#fff; 
-padding-top: 35rpx;
-padding-bottom:35rpx;
-font-size: 35rpx; 
-}
-
-.build0{
-position:fixed;
-width:100%;
-background-color:red;
-text-align:center;
-color:#fff;
-padding-top:35rpx;
-padding-bottom:35rpx;
-font-size:35rpx;
-bottom:110rpx;
-}

@@ -22,6 +22,7 @@ App({
         register: "../register/register"
       }  
       staff.verifyUserInfo(that.globalData.userInfo.openId, urls, function (res){
+        console.log(res)
         if(res.length != 0){
           that.globalData.myInfo = res[0]
         }

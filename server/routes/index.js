@@ -62,8 +62,6 @@ router.post('/getMyWorkshop', controllers.workshop.getMyWorkshop)
 
 router.post('/newProgress', controllers.inspect.newProgress)
 
-router.post('/newWorkshopStatus', controllers.workshopstatus.newWorkshopStatus)
-
 router.post('/getInspectHis', controllers.inspect.getInspectHis)
 
 router.post('/getCheckpoint', controllers.checkpoint.getCheckpoint)
