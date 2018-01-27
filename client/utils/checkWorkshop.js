@@ -16,7 +16,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -37,7 +36,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },

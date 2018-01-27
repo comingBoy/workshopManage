@@ -116,7 +116,6 @@ Page({
       functions: '../index0/index0'
     }
     staff.register(info, urls, function (res) {
-      console.log(res)
       if(res.result.status == 1){
         app.globalData.myInfo = info
       }

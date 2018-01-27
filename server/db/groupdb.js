@@ -45,4 +45,11 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async modifyGroup(args) {
+    let sql = 'UPDATE groupdb SET groupName = ?, groupCover = ?, groupCode = ? where groupId = ?'
+    let params = [args.groupName, args.groupCover, args.groupCode, args.groupId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }

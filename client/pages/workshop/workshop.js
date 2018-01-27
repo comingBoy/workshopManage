@@ -144,8 +144,6 @@ Page({
     })
   },
   toCheckRecord: function(e){
-    console.log(getApp().globalData)
-    console.log(e)
     getApp().globalData.currentCheckRecord = this.data.checkRecord[e.currentTarget.id]
     wx.navigateTo({
       url: '../checkRecord/checkRecord',
@@ -221,9 +219,7 @@ Page({
       var data = {
         inspectArray: dangerInfo
       }
-      console.log(data)
       inspect.inspect0(data, function(res) {
-        console.log(res)
         if (res.status == 1) {
           wx.showModal({
             title: '提示',

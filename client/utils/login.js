@@ -35,7 +35,6 @@ module.exports = {
 
       fail(error) {
         util.showModel('登录失败', error)
-        console.log('登录失败', error)
         callback(res)
       }
     })

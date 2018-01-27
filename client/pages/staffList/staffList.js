@@ -13,7 +13,6 @@ Page({
 
 
   deleteMember:function(e){
-    console.log(e)
     if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId){
       var that = this
       var data = {
@@ -21,7 +20,6 @@ Page({
         groupId: getApp().globalData.currentGroup.groupId
       }
       group.delStaff(data, function (res) {
-        console.log(res)
         var staffList = that.data.staffList
         staffList.splice(e.currentTarget.id, 1)
         that.setData({
@@ -37,7 +35,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    console.log(getApp().globalData.currentGroup)
     var data = {
       groupId: getApp().globalData.currentGroup.groupId
     }

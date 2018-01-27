@@ -1,7 +1,6 @@
 
 Page({
   statechange(e) {
-    console.log('live-pusher code:', e.errCode)
   },
   start:function(){
     var ctx = wx.createLivePusherContext();

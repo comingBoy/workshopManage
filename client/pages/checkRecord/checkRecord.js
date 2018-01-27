@@ -30,7 +30,6 @@ Page({
       timesId: timesId
     }
     inspect.getInspectHis(data, function (res) {
-      console.log(res.res)
       var inspectListByMyself = []
       var inspectListByAdmin = []
       if (res.status == 1) {
@@ -105,16 +104,13 @@ Page({
    * 查看详情
    */
   toCheck: function (e) {
-    console.log(e.currentTarget.id)
     var that = this
     var inspectInfo = this.data.inspectListByMyself[e.currentTarget.id]
-    console.log(inspectInfo)
     var inspectId = inspectInfo.inspectId
     var data = {
       inspectId: inspectId
     }
     checkWorkshop.getFix(data, function(res) {
-      console.log(res)
       var fix = res.fix[0]
       if (res.fix.length == 0) {
         fix = {

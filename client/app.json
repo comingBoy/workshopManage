@@ -21,7 +21,8 @@
     "pages/checkWorkshop/checkWorkshop",
     "pages/startCheck/startCheck",
     "pages/checkRecord/checkRecord",
-    "pages/modifyWorkshop/modifyWorkshop"
+    "pages/modifyWorkshop/modifyWorkshop",
+    "pages/modifyGroup/modifyGroup"
   ],
   "window": {
     "backgroundTextStyle": "light",

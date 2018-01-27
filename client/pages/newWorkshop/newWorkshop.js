@@ -102,7 +102,6 @@ Page({
   },
   getCheckpointNum: function (e) {
     workshopInfo.checkpointNum = e.detail.value
-    console.log(workshopInfo.checkpointNum)
     if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
       this.setData({
         flag: true
@@ -123,7 +122,6 @@ Page({
   },
   getTimes: function (e) {
     workshopInfo.times = e.detail.value
-    console.log(workshopInfo)
     if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
       this.setData({
         flag: true
@@ -136,7 +134,6 @@ Page({
   newWorkshop: function (e) {
     if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
       if(workshopInfo.openId == null) workshopInfo.openId = '-1'
-      console.log(workshopInfo)
       workshop.newWorkshop(workshopInfo,urls)
     } else {
       util.showModel("失败", "请完善信息")

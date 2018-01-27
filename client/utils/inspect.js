@@ -13,7 +13,6 @@ module.exports = {
   */
   getInspect: function (data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getInspectUrl,
       method: 'POST',
@@ -22,7 +21,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -37,7 +35,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -111,7 +108,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       if (res.data.result.status == 1) {
         wx.showModal({
           title: '提示',
@@ -150,7 +146,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -165,7 +160,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },

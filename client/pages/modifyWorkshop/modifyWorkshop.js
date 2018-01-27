@@ -65,7 +65,6 @@ Page({
       workshopId: workshopId
     }
     workshop.getWorkshopInfo(data, function(res) {
-      console.log(res)
       if (res.status == 1) {
         that.setData({
           workshopInfo: res.res
@@ -77,7 +76,6 @@ Page({
       }
     })
     checkpoint.getCheckpoint(data, function(res) {
-      console.log(res)
       if (res.status == 1 || res.status == 0) {
         that.setData({
           checkpointInfo: res.res
@@ -181,7 +179,6 @@ Page({
       success: function (res) {
         if (res.confirm) {
           workshop.delWorkshop(data, function (res) {
-            console.log(res)
             if (res.status == 1) {
               wx.showModal({
                 title: '提示',
@@ -216,14 +213,12 @@ Page({
       workshopId: workshopId,
       checkpointNum: checkpointNum
     }
-    console.log(data)
     wx.showModal({
       title: '提示',
       content: '确定删除？',
       success: function (res) {
         if (res.confirm) {
           checkpoint.delCheckpoint(data, function (res) {
-            console.log(res)
             if (res.status == 1) {
               wx.showModal({
                 title: '提示',
@@ -261,7 +256,6 @@ Page({
   },
 
   changeCheckpoint: function(e) {
-    console.log(e)
     var checkpointId = this.data.checkpointInfo[e.currentTarget.id].checkpointId
     this.setData({
       changeFlag0: true,

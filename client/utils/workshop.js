@@ -8,7 +8,6 @@ module.exports = {
   //查看部门负责车间
   getGroupWorkshop: function(data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getGroupWorkshopUrl,
       method: 'POST',
@@ -17,7 +16,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       if (res.data.result.status == 1) {
       } else if (res.data.result.status == 0) {
         wx.showModal({
@@ -50,7 +48,6 @@ module.exports = {
   */
   newWorkshop: function(data, urls){
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.newWorkshopUrl,
       method: 'POST',
@@ -63,7 +60,6 @@ module.exports = {
         if (data.checkpointNum) {
           if (data.times) {
             net.request(data, configure, function (res) {
-              console.log(res)
               if (res.data.result.status == 1) {
                 wx.showModal({
                   title: '提示',
@@ -103,7 +99,6 @@ module.exports = {
 
   getMyWorkshop: function(data, callback){
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getMyWorkshopUrl,
       method: 'POST',
@@ -112,7 +107,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       if (res.data.result.status == 1) {
       } else if (res.data.result.status == 0) {
         wx.showModal({
@@ -142,7 +136,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -157,7 +150,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -171,7 +163,6 @@ module.exports = {
   */
   getTimes: function (data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getTimesUrl,
       method: 'POST',
@@ -180,14 +171,12 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
 
   getWorkshopInfo: function (data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getWorkshopInfoUrl,
       method: 'POST',
@@ -196,14 +185,12 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
 
   changeWorkshopInfo: function (data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.changeWorkshopInfoUrl,
       method: 'POST',
@@ -212,7 +199,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },

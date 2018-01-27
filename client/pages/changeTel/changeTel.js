@@ -16,7 +16,6 @@ Page({
   finishBuild: function () {
     if (staffMes.staffTell != null) { console.log(staffMes.staffTell) }
     else {
-      console.log("wrong")
     }
 
   },
@@ -25,7 +24,6 @@ Page({
 
   getTell: function (e) {
     staffMes.staffTell = e.detail.value;
-    console.log(staffMes.staffTell);
   },
 
 

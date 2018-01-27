@@ -113,10 +113,8 @@ Page({
         })
       }
     }
-    console.log(myInfo)
   },
   changeAvatar:function(){
-    console.log("更换头像")
     var that = this
     net.uploadImg(function(res){
       myInfo.avatar = res

@@ -1,0 +1,20 @@
+<!--pages/modifyGroup/modifyGroup.wxml-->
+<view class='container' >
+  <view class='bigCameraBox'>
+    <view class='cameraBox'>
+      <image src="{{groupCover}}" class='cameraImage' mode='aspectFill' bindtap='chooseCover'></image>
+      <text class='wordSize'>点击更换图片</text>
+    </view>
+
+    <view class='putinBox'>
+      <input bindinput="getGroupName" type="text" placeholder="{{groupName}}" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+
+    <view class='putinBox'>
+      <input bindinput="getGroupCode" type="number" placeholder="{{groupCode}}" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    </view>
+
+  </view>
+  <view bindtap='delGroup' class='build0'>删除部门</view>
+  <view bindtap='finishBuild' class='build'>确认修改</view> 
+</view>

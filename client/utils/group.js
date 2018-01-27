@@ -14,7 +14,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       if (res.data.result.status == 1) {
       } else if (res.data.result.status == 0) {
         util.showModel('提示', '当前无部门！')
@@ -32,7 +31,6 @@ module.exports = {
       if (data.adminId) {
         if (data.groupCode){
           var data = data
-          console.log(data)
           var configure = {
             url: config.service.newGroupUrl,
             method: 'POST',
@@ -41,7 +39,6 @@ module.exports = {
             }
           }
           net.request(data, configure, function (res) {
-            console.log(res)
             if (res.data.result.status == 1) {
               wx.showModal({
                 title: '提示',
@@ -123,7 +120,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       if (res.data.result.status == 1) {
         wx.showModal({
           title: '提示',
@@ -136,8 +132,7 @@ module.exports = {
               })
             }
           }
-        })
-        
+        })     
       } else if (res.data.result.status == -1) { 
         wx.reLaunch({
           url: urls.groupIndex,
@@ -149,7 +144,6 @@ module.exports = {
   },
   //查看部门成员
   getStaff: function (data, callback) {
-    console.log(data)
     var data = data
     var configure = {
       url: config.service.getStaffUrl,
@@ -202,9 +196,22 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
-  },               
+  },      
+
+  modifyGroup: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.modifyGroupUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },           
 
 }

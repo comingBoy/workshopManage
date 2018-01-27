@@ -22,7 +22,6 @@ Page({
   },
 
   modifyWorkshop: function(e) {
-    console.log(e)
     var workshopId = this.data.workshopList[e.currentTarget.id].workshopId
     getApp().globalData.staffOpenId = this.data.workshopList[e.currentTarget.id].openId
     wx.navigateTo({
@@ -30,41 +29,13 @@ Page({
     })
   },
 
-  delGroup: function() {
+  modifyGroup: function() {
+
     var that = this
     var openId = getApp().globalData.myInfo.openId
-    console.log(openId)
     if (openId == that.data.groupInfo.adminId) {
-      wx.showModal({
-        title: '提示',
-        content: '确定删除？',
-        success: function (res) {
-          if (res.confirm) {
-            var data = {
-              groupId: that.data.groupInfo.groupId
-            }
-            group.delGroup(data, function(res) {
-              console.log(res)
-              if (res.status == 1) {
-                wx.showModal({
-                  title: '提示',
-                  content: '删除成功！',
-                  success: function (res) {
-                    if (res.confirm) {
-                      wx.redirectTo({
-                        url: '../index0/index0',
-                      })
-                    }
-                  }
-                })
-              } else if (res.status == -1) {
-                util.showModel("提示", "删除失败，请重试！")
-              } else {
-                util.showModel("提示", "请求出错！")
-              }
-            })
-          }
-        }
+      wx.navigateTo({
+        url: '../modifyGroup/modifyGroup',
       })
     } else {
       util.showModel("提示","没有管理员权限！")
@@ -80,7 +51,6 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId      
     }
     workshop.getGroupWorkshop(data,function(res){
-      console.log(res)
       that.setData({
         workshopList: res
       })
@@ -107,7 +77,6 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId
     }
     workshop.getGroupWorkshop(data, function (res) {
-      console.log(res)
       that.setData({
         workshopList: res
       })
@@ -121,21 +90,18 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log(123)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log(123)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log(123)
   },
 
   /**

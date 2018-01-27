@@ -38,7 +38,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow")
     var that = this
     group.getAllGroup(function (res) {
       that.setData({
@@ -101,7 +100,6 @@ Page({
     })
   },
   enterBiuldGroup: function () {
-    console.log(123)
     wx.navigateTo({
       url: '../buildgroup/buildgroup',
       success: function (res) { },

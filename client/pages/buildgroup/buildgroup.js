@@ -63,7 +63,6 @@ Page({
         finishFlag: false
       })
     }
-    console.log(groupMes.groupCode);
   },
 
   getPassword: function(e){
@@ -81,9 +80,7 @@ Page({
   },
   finishBuild: function(){
     if (groupMes.groupName != null && groupMes.groupCode != null && groupMes.groupCover != null && groupMes.groupName != "" && groupMes.groupCode != "" && groupMes.groupCode.length == 6 && password == key){
-      console.log(groupMes)
       group.newGroup(groupMes,"../index0/index0",function(res){
-        console.log(res)
       })
     }
     else{

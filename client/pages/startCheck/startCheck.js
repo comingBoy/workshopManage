@@ -41,7 +41,6 @@ Page({
       workshopId: workshopId
     }
     checkpoint.getCheckpoint(data, function(res) {
-      console.log(res)
       that.setData({
         checkpointInfo: res.res
       })
@@ -92,8 +91,6 @@ Page({
           checkData: checkData,
           ifCompleteFill: false
         })
-        console.log(checkData)
-        console.log("无缓存数据")
       },
     })
     
@@ -169,7 +166,6 @@ Page({
       initTextValue: "",
       photo:"../../images/camera.png",
     })
-    console.log(this.data.checkInfo)
     if (this.data.checkData[checkpointIndex].status == "已完成检查"){
       util.showModel("提示","该检查点已经完成检查")
       that.setData({
@@ -187,7 +183,6 @@ Page({
         photo: "",
         description: "",
       }
-      console.log(checkpointData) 
       that.setData({
         ifSubmit: false
       })
@@ -201,7 +196,6 @@ Page({
       errorIndex: e.detail.value
     })
     checkpointData.error = e.detail.value
-    console.log(checkpointData.error)
   },
   /**
    * 上传隐患照片
@@ -210,7 +204,6 @@ Page({
     var that = this
     net.uploadImg(function(res){
       checkpointData.photo = res
-      console.log(checkpointData)
       that.setData({
         photo: res
       })
@@ -221,7 +214,6 @@ Page({
    */
   textInput: function(e) {
     checkpointData.description = e.detail.value
-    console.log(checkpointData)
   },
   /**
    * 提交检查点信息
@@ -280,7 +272,6 @@ Page({
       inspectArray: inspectArray
     }
     inspect.inspect(data, function(res) {
-      console.log(res)
       if(res.status == 1){
         checkData = null
         wx.showModal({

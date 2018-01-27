@@ -88,6 +88,8 @@ var config = {
         delGroupUrl: `${host}/weapp/delGroup`,
 
         changeOpenIdUrl: `${host}/weapp/changeOpenId`,
+
+        modifyGroupUrl: `${host}/weapp/modifyGroup`,
     }
 };
 

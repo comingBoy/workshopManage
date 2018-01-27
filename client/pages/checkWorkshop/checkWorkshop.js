@@ -68,7 +68,6 @@ Page({
         that.setData({
           checkRecord: res.times
         })
-        console.log(todayDate)
         for(var i=0; i<res.times.length; i++){
           if(res.times[i].date == todayDate){
             canStartCheck = false
@@ -157,7 +156,6 @@ Page({
    * 不能开始检查提示
    */
   canNotStartCheck: function() {
-    console.log(this.data.dangerListByAdmin.length)
     utils.showModel("提示","已完成检查任务或存在故障未解决")
   },
   /**
@@ -204,7 +202,6 @@ Page({
         inspectId: inspectId
       }
       inspect.getInspectById(data, function(res) {
-        console.log(res)
         if (res.status == 1) {
           that.setData({
             ifShowError: !that.data.ifShowError,
@@ -269,7 +266,6 @@ Page({
         checkWorkshop: './checkWorkshop'
       }
       inspect.fixError(data, urls)
-      console.log(fixInfo)
     }else{
       utils.showModel("提示","请完善报告")
     }

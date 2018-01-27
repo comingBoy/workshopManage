@@ -7,8 +7,9 @@
         <view class='returnBox'>
           <image src="../../images/return.png" class='returnImage' bindtap='chooseCover' bindtap='back'></image>
         </view>
-        <view class='groupBanner'>
-          {{groupInfo.groupName}}
+        <view class='groupBanner'>       
+          <text >{{groupInfo.groupName}}</text>
+          <image class='modify0' src='../../images/modify.png' mode='aspectFill'  bindtap='modifyGroup'></image>
         </view>
       </view>
 
@@ -17,7 +18,7 @@
       <view class='workshop' wx:for='{{workshopList}}' id='{{index}}' bindtap='toWorkshop'>
         <view class='workshopName'>
           <text >{{item.workshopName}}</text>
-        <image class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
+          <image class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
         </view>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>

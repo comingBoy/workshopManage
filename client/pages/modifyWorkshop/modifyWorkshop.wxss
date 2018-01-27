@@ -8,10 +8,26 @@
   margin-top:50rpx;
   background-color:#fff;
 }
-.workshop{
 
+.MesBox{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  border-bottom:solid 0.5rpx #ddd;
+  padding:22rpx 0rpx;
 }
 
-.checkpoint{
-  
+.MesBox0{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  border-bottom:solid 0.5rpx #ddd;
+  padding:22rpx 0rpx;
+}
+
+.changeInput{
+  border-bottom: solid green 2rpx;
+  height:60rpx;
 }

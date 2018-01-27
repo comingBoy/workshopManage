@@ -16,14 +16,12 @@ Page({
   finishBuild: function () {
     if (staffMes.staffName != null ) { console.log(staffMes.staffName) }
     else {
-      console.log("wrong")
     }
 
   },
 
   getName: function (e) {
     staffMes.staffName = e.detail.value;
-    console.log(staffMes.staffName);
   },
 
 

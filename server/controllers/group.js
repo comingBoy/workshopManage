@@ -141,5 +141,19 @@ module.exports = {
     ctx.body = {
       result: result0
     }
+  },
+
+  modifyGroup: async ctx => {
+    let req = ctx.request.body
+    let res = await groupdb.modifyGroup(req)
+    let t = typeof (res)
+    var status, result0
+    t == 'object' ? status = 1 : status = -1
+    result0 = {
+      status: status
+    }
+    ctx.body = {
+      result: result0
+    }
   }
 }
