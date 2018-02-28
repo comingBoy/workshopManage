@@ -1,0 +1,69 @@
+/* pages/newCheckpoint/newCheckpoint.wxss */
+.newWorkshopInfo{
+  margin-top:40rpx; 
+  margin-bottom: 0rpx;
+  margin-left: 100rpx;
+  margin-right: 100rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.frame{
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border:solid 1rpx #ddd;
+  padding-bottom: 20rpx;
+  background-color:white;
+}
+
+.picker{
+  margin-top:10rpx;
+  border-bottom: solid 1rpx #ddd;
+  text-align: center;
+  width:341rpx;
+  margin-right:50rpx;
+}
+
+.label{
+  display: flex;
+  margin-top: 19rpx;
+  padding:11rpx;
+  font-size: 30rpx; 
+  margin-left:50rpx;
+}
+
+.inputBox{
+  display: flex;
+  border-bottom: solid 1rpx #ddd;
+  margin-top: 13rpx;
+  text-align: center;
+  font-size: 30rpx;
+  margin-right:50rpx;
+}
+
+.build{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: green;
+  text-align: center;
+  color:#fff; 
+  padding-top: 35rpx;
+  padding-bottom:35rpx;
+  font-size: 35rpx; 
+}
+
+.build0{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color:#fff;
+  text-align: center;
+  color:#c0c0c0; 
+  padding-top: 35rpx;
+  padding-bottom:35rpx;
+  font-size: 35rpx; 
+}

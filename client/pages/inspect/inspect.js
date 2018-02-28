@@ -96,10 +96,7 @@ Page({
   toCheckWorkshop: function(e){
     getApp().globalData.workshopInfo = this.data.myWorkshop[e.currentTarget.id]
     wx.navigateTo({
-      url: '../checkWorkshop/checkWorkshop',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+      url: '../checkpointList/checkpointList'
     })
   }
 })

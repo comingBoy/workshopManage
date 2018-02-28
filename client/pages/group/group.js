@@ -128,7 +128,7 @@ Page({
   toWorkshop: function(e){
     getApp().globalData.showWorkshop = this.data.workshopList[e.currentTarget.id]
     wx.navigateTo({
-      url: '../workshop/workshop',
+      url: '../checkPoint/checkPoint',
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

@@ -3,8 +3,8 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-//var host = 'https://vpqxc4sg.qcloud.la';
-var host = 'https://934560484.qcloudmanagestaff.club';
+var host = 'https://vpqxc4sg.qcloud.la';
+//var host = 'https://934560484.qcloudmanagestaff.club';
 var config = {
 
     // 下面的地址配合云端 Demo 工作
@@ -56,6 +56,8 @@ var config = {
         newWorkshopStatusUrl: `${host}/weapp/newWorkshopStatus`,
 
         getCheckpointUrl: `${host}/weapp/getCheckpoint`,
+        
+        getCheckpoint0Url: `${host}/weapp/getCheckpoint0`,
 
         getInspectHisUrl: `${host}/weapp/getInspectHis`,
 
@@ -90,6 +92,15 @@ var config = {
         changeOpenIdUrl: `${host}/weapp/changeOpenId`,
 
         modifyGroupUrl: `${host}/weapp/modifyGroup`,
+
+        getCheckDetailUrl: `${host}/weapp/getCheckDetail`,
+
+        setLevelUrl: `${host}/weapp/setLevel`,
+
+        getInspectTimesUrl: `${host}/weapp/getInspectTimes`,
+
+        getLastInspectUrl: `${host}/weapp/getLastInspect`,
+
     }
 };
 

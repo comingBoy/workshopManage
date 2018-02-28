@@ -1,4 +1,4 @@
-/* pages/checkPoint/checkPoint.wxss */
+/* pages/checkpointList/checkpointList.wxss */
 .groupBanner{
   width:100%;
   height:100rpx;
@@ -132,4 +132,3 @@ margin-top: 55rpx;
   color:#696969;
   border-radius:23rpx;
 }
-

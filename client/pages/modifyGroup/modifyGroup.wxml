@@ -6,12 +6,18 @@
       <text class='wordSize'>点击更换图片</text>
     </view>
 
-    <view class='putinBox'>
-      <input bindinput="getGroupName" type="text" placeholder="{{groupName}}" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    <view class='putin'>
+      <view class='putin0'>
+        <view class='text'>部门名</view>
+        <input bindinput="getGroupName" type="text" placeholder="{{groupName}}" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+      </view>
     </view>
 
-    <view class='putinBox'>
-      <input bindinput="getGroupCode" type="number" placeholder="{{groupCode}}" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+    <view class='putin'>
+      <view class='putin0'>
+        <view class='text'>部门码</view>
+        <input bindinput="getGroupCode" type="number" placeholder="{{groupCode}}" maxlength="6" class="inputid" placeholder-style="font-family:'微软雅黑'"/>
+      </view>
     </view>
 
   </view>

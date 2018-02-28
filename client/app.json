@@ -22,7 +22,9 @@
     "pages/startCheck/startCheck",
     "pages/checkRecord/checkRecord",
     "pages/modifyWorkshop/modifyWorkshop",
-    "pages/modifyGroup/modifyGroup"
+    "pages/modifyGroup/modifyGroup",
+    "pages/newCheckpoint/newCheckpoint",
+    "pages/checkpointList/checkpointList"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -66,6 +66,8 @@ router.post('/getInspectHis', controllers.inspect.getInspectHis)
 
 router.post('/getCheckpoint', controllers.checkpoint.getCheckpoint)
 
+router.post('/getCheckpoint0', controllers.checkpoint.getCheckpoint0)
+
 router.post('/getError', controllers.workshop.getError)
 
 router.post('/fixError', controllers.inspect.fixError)
@@ -97,4 +99,12 @@ router.post('/delGroup', controllers.group.delGroup)
 router.post('/modifyGroup', controllers.group.modifyGroup)
 
 router.post('/changeOpenId', controllers.workshop.changeOpenId)
+
+router.post('/getCheckDetail', controllers.checkpoint.getCheckDetail)
+
+router.post('/setLevel', controllers.group.setLevel)
+
+router.post('/getInspectTimes', controllers.inspect.getInspectTimes)
+
+router.post('/getLastInspect', controllers.inspect.getLastInspect)
 module.exports = router

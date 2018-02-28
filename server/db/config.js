@@ -47,6 +47,6 @@ const product = {
 
 }
 
-const config = product
+const config = development
 
 module.exports = config

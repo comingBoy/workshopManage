@@ -45,10 +45,11 @@ font-family: "宋体"；
 
 .DeleteBox{
 display: flex;
-justify-content:space-around;
-width: 16%;
+flex-direction: column;
+justify-content:center;
+align-items: center;
+width: 25%;
 border-left:solid 2rpx #ddd;
-padding-top:30rpx;
 color: #808080;
 font-family: "楷书";
 font-size: 29rpx;
@@ -77,5 +78,26 @@ color: #808080;
 font-family: "宋体";
 margin:8rpx;
 font-size: 25rpx;
+}
 
+.null{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  border:solid 2rpx #ddd;
+  background-color: white;
+  height: 50px;
+}
+
+.setLevel{
+  display: flex;
+  flex-direction: column;
+  width: 32%;
+  justify-content: center;
+  align-items: center;
+  color: #808080;
+  font-family: "楷书";
+  font-size: 29rpx;
 }

@@ -66,5 +66,4 @@
       <button class='finish' bindtap='dangerSubmit'>确认提交</button>
     </view>
   </view>
-  <view></view>
 </view>

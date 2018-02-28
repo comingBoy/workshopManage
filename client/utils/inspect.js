@@ -25,6 +25,20 @@ module.exports = {
     })
   },
 
+  getInspectTimes: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getInspectTimesUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
   getInspectById: function (data, callback) {
     var data = data
     var configure = {
@@ -85,21 +99,9 @@ module.exports = {
     })
   },
   //修复隐患
-  /*
-  data = {
-    inspectId : inspectId,
-    date : date,
-    describtion : describtion,
-    photo
-  }
 
-  urls = {
-    checkWorkshop : checkWorkshop
-  }
-  */
-  fixError: function (data, urls) {
+  fixError: function (data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.fixErrorUrl,
       method: 'POST',
@@ -108,25 +110,8 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      if (res.data.result.status == 1) {
-        wx.showModal({
-          title: '提示',
-          content: '修复报告提交成功！',
-          showCancel: false,
-          success: function (res) {
-            wx.redirectTo({
-              url: urls.checkWorkshop,
-            })
-          }
-        })
-      } else if (res.data.result.status == 0) {
-        util.showModel('提示', '数据库异常！')
-      }
-      else if (res.data.result.status == -1) {
-        util.showModel('提示', '上传失败，请重试！')
-      } else {
-        util.showModel('提示', '请求出错！')
-      }
+      console.log(res)
+      callback(res.data.result)
     })
   },
 
@@ -154,6 +139,20 @@ module.exports = {
     var data = data
     var configure = {
       url: config.service.inspect0Url,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  getLastInspect: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getLastInspectUrl,
       method: 'POST',
       header: {
         'content-type': 'application/json'

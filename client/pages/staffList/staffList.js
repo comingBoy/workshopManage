@@ -7,53 +7,121 @@ Page({
    * 页面的初始数据
    */
   data: {
-    staffList: null,
-    admin: null
+    staffList: [],
+    superiorList: [],
+    adminList: null,
+    isAdmin: false
   },
 
-
-  deleteMember:function(e){
-    if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId){
-      var that = this
-      var data = {
-        openId: that.data.staffList[e.currentTarget.id].openId,
-        groupId: getApp().globalData.currentGroup.groupId
-      }
-      group.delStaff(data, function (res) {
-        var staffList = that.data.staffList
-        staffList.splice(e.currentTarget.id, 1)
-        that.setData({
-          staffList: staffList
-        })
-      })
-    }else{
-      util.showModel('提示', '您不是管理员！')
+  refresh: function () {
+    var that = this
+    var isAdmin = false
+    if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId) {
+      isAdmin = true
     }
+    var data = {
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.getStaff(data, function (res) {
+      if (res.status == 1) {
+        that.setData({
+          staffList: res.staff,
+          adminList: res.admin,
+          superiorList: res.superior,
+          isAdmin: isAdmin
+        })
+      } else if (res.status == -1) {
+        util.showModel("提示", "获取失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+      wx.hideLoading()
+    })
+  },
+
+  deleteStaff:function(e){
+    var that = this
+    var data = {
+      openId: that.data.staffList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.delStaff(data, function (res) {
+      if (res.status == 1) {
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "删除失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  deleteSuperior: function (e) {
+    var that = this
+    var data = {
+      openId: that.data.superiorList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.delStaff(data, function (res) {
+      if (res.status == 1) {
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "删除失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  setStaff: function (e) {
+    var that = this
+    var data = {
+      openId: that.data.superiorList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId,
+      label: 1
+    }
+    group.setLevel(data, function (res) {
+      if (res.status == 1) {
+        wx.showLoading({
+          title: '读取中',
+        })
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "设置失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  setSuperior: function (e) {
+    var that = this
+    var data = {
+      openId: that.data.staffList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId,
+      label: 2
+    }
+    group.setLevel(data, function (res) {
+      if (res.status == 1) {
+        wx.showLoading({
+          title: '读取中',
+        })
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "设置失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    var data = {
-      groupId: getApp().globalData.currentGroup.groupId
-    }
-    group.getStaff(data,function(res){
-      var staffList = res
-      var admin = null
-      for(var i = 0; i < staffList.length; i++){
-        if(staffList[i].openId == getApp().globalData.currentGroup.adminId){
-          admin = staffList[i]
-          staffList.splice(i,1)
-          break
-        }
-      }
-      that.setData({
-        staffList: staffList,
-        admin: admin
-      })
+    wx.showLoading({
+      title: '读取中',
     })
-    
+    this.refresh()
   },
 
   /**

@@ -12,22 +12,7 @@ App({
     myInfo: null
   },
   onLaunch: function () {
-    var that = this
-    qcloud.setLoginUrl(config.service.loginUrl)
-    login.login(that.globalData.logged,function(res){
-      that.globalData.logged = res.logged
-      that.globalData.userInfo = res.userInfo
-      var urls = {
-        index: "../index0/index0",
-        register: "../register/register"
-      }  
-      staff.verifyUserInfo(that.globalData.userInfo.openId, urls, function (res){
-        console.log(res)
-        if(res.length != 0){
-          that.globalData.myInfo = res[0]
-        }
-      })
-    })
+
   },
     
 })

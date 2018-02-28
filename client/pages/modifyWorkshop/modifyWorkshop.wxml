@@ -1,6 +1,6 @@
 <!--pages/modifyWorkshop/modifyWorkshop.wxml-->
 <view class='container'>
-  <view class='MesBox' bindtap='changeWorkshop'>{{workshopInfo[0].workshopName}}    </view>
+  <view class='MesBox' bindtap='changeWorkshop'>{{workshopInfo.workshopName}}    </view>
   <view class='MesBox'>
     <text class='label'>负责人:</text>
       <picker class='picker' bindchange="chooseopenId" value="{{index}}" range-key="name" range="{{staffList}}">
@@ -12,22 +12,22 @@
   </view>
 </view>
 
-<view hidden='{{changeFlag0}}' class='changeInfo'>
+<view wx:if='{{changeFlag0 == false}}' class='changeInfo'>
   <text class='changeTitle'>{{changeWhat[index0]}}</text>
   <view class='changeCtx'>
-    <input class='changeInput' bindinput="input0" value='{{changeCtx}}'></input>
+    <input class='changeInput' bindinput="input0" value='{{changeCtx}}' placeholder='{{workshopInfo.workshopName}}'></input>
     <button bindtap='changeSave0'>修改</button>
     <button bindtap='delWorkshop'>删除</button>
   </view>
 </view>
 
-<view hidden='{{changeFlag}}' class='changeInfo'>
+<view wx:if='{{changeFlag == false}}' class='changeInfo'>
   <text class='changeTitle'>{{changeWhat[index0]}}</text>
-  <view class='changeCtx'>
-    <input class='changeInput' bindinput="input" value='{{changeCtx}}'></input>
-    <button bindtap='changeSave'>修改</button>
-    <button bindtap='delCheckpoint'>删除</button>
-  </view>
+  <input class='changeInput' bindinput="input" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].name}}'></input>
+  <text class='changeTitle'>更改每月检查次数</text>
+  <input class='changeInput' bindinput="input1" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].times}}'></input>
+  <button bindtap='changeSave'>修改</button>
+  <button bindtap='delCheckpoint'>删除</button>
 </view>
 
 <view hidden='{{newFlag0}}' class='changeInfo'>

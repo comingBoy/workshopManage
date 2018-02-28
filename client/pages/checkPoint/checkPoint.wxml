@@ -1,19 +1,34 @@
 <!--pages/checkPoint/checkPoint.wxml-->
 <view class='container'>
+  <!--框架-->
   <view class='frame'>
-    <!--检查日期-->
-    <view class='checkDateBanner'>
-      日期: {{checkDate}} 
-    </view>
+    <!--部门名称banner-->
+      <view class='bannerBox'>
+        <view class='groupBanner'>      
+          <text >{{workshopInfo.workshopName}}</text>
+        </view>
+        <view class='date'>
+          <picker mode="date" value="{{date}}" start="2017-09" end="2100-09" fields='month' bindchange="bindDateChange">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+      </view>
+
     <!--检查点列表-->
-    <view wx:for="{{checkPoint}}" class='checkPointList' id="{{index}}" bindtap='toCheckDetail'>
-      <view class='checkPoint'>
-        <text class='checkPointName'>
-          {{item.name}}
-        </text>
-        <text class='checkPointState'>
-          {{item.state}}
-        </text>
+    <view class='workshopList'>
+      <view class='workshop' wx:for='{{checkpointList}}' id='{{index}}' bindtap='toCheckpoint'>
+        <view class='workshopName'>
+          <text >{{item.checkpointName}}</text>
+        </view>
+        <text class='textBox'>状态：{{statusList[item.error]}}</text> 
+        <text class='textBox'>本月任务：{{item.inspectTimes}}/{{item.totalTimes}}</text> 
+      </view>
+      <!--新建车间-->
+      <view class='workshop' bindtap='toNewCheckpoint'>
+        <image src='../../images/add.png' class='add' mode='aspectFill'></image>
+        <text class='textBox0'>新建检查点</text>
       </view>
     </view>
   </view>

@@ -1,7 +1,6 @@
 /* pages/group/group.wxss */
 .groupBanner{
   margin:17rpx;
-  font-size:30rpx;
 }
 .workshopList{
   width: 100%;
@@ -50,6 +49,8 @@
   justify-content: center;
   border-bottom: solid 2rpx #ddd;
   background-color:white;
+  height:100rpx;
+  align-items:center;
 }
 
 .groupAdmin{

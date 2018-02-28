@@ -23,7 +23,7 @@ module.exports = {
   },
   //获取员工openId
   async getStaff(args) {
-    let sql = 'SELECT openId FROM memberdb where groupId = ?'
+    let sql = 'SELECT * FROM memberdb where groupId = ?'
     let params = [args.groupId]
     let result = await mysqlHelper.query(sql, params)
     return result
@@ -33,5 +33,12 @@ module.exports = {
     let params = [args.openId,args.groupId]
     let result = await mysqlHelper.query(sql, params)
     return result
-  }
+  },
+
+  async setLevel(args) {
+    let sql = 'UPDATE memberdb SET label = ? where groupId = ? and openId = ?'
+    let params = [args.label, args.groupId, args.openId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }

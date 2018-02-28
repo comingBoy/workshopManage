@@ -3,65 +3,49 @@
   <view class='frame'>
     <!--workshop-->
     <view class='workshopName'>
-      {{workshopInfo.workshopName}}
+      {{checkpointInfo.checkpointName}}
     </view>
     <view class='listContainer'>
-      <text class='title'>检查记录({{workshopInfo.inspectTimes}}/{{workshopInfo.totalTimes}})</text>
+      <text class='title'>检查记录({{checkRecord.length}}/{{checkpointInfo.totalTimes}})</text>
       <view class='list' wx:for='{{checkRecord}}'>检查日期{{item.date}}</view>
       <view wx:if='{{checkRecord.length==0}}' class='list'>暂无检查记录</view>
     </view>
-    <view class='listContainer'>
-      <text class='title'>隐患记录</text>
-      <view class='title2'>
-        自检隐患
+    
+    <!--检查详情-->
+    <view class='fillErrorInfo' wx:if='{{ifShowError == false && canStartCheck == true}}'>
+      <view class='checkpointName'>
+        {{date0}}
       </view>
-      <view class='list' wx:for='{{dangerListByMyself}}' id='{{index}}' bindtap='showErrorByMyself'>
-        <view class='dangerInfo'>
-          <view class='dangerDate'>发现日期{{item.date}}  </view>
-          <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
-          <view class='dangerError'>{{errorList[item.error]}}</view>
-        </view>
+      <view class='error'>
+        <picker value="{{errorIndex}}"  range="{{errorList}}" bindchange="bindErrorChange">
+        {{errorList[errorIndex]}}
+        </picker>
       </view>
-      <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
-        暂无隐患记录
-      </view>
-      <view class='title2'>
-        管理员发现隐患
-      </view>
-      <view class='list' wx:for='{{dangerListByAdmin}}' id='{{index}}' bindtap='showErrorByAdmin'>
-        <view class='dangerInfo'>
-          <view class='dangerDate'>发现日期{{item.date}}  </view>
-          <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
-          <view class='dangerError'>{{errorList[item.error]}}</view>
-        </view>
-      </view>
-      <view wx:if='{{dangerListByAdmin==0}}' class='list'>
-        暂无隐患记录
-      </view>
+      <view class='checkBox'> 上传图片</view>
+      <image src="{{photo}}" class='cameraImage' mode='aspectFit' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 故障描述</view>
+      <textarea class="textArea" placeholder="{{initText}}" value="{{initTextValue}}" bindinput='textInput' />
+      <button class='finish' bindtap='inspectSubmit'>确认提交</button>
     </view>
     <!--显示隐患详情-->
-    <view class='fillErrorInfo' hidden='{{ifShowError}}'>
+    <view class='fillErrorInfo' wx:if='{{ifShowError == true}}'>
       <view class='checkpointName'>
-        {{errorInfo.checkpointName}}
+        {{dangerList.date}}
       </view>
       <view class='error'>
         <view>
-        {{errorList[errorInfo.error]}}
+        {{ifAdmin[dangerList.admin]}}
         </view>
       </view>
       <view class='checkBox'> 隐患图片</view>
-      <image  src="{{errorInfo.photo}}" class='cameraImage' mode='aspectFill'></image>
+      <image  src="{{dangerList.photo}}" class='cameraImage' mode='aspectFit'></image>
       <view class='checkBox'> 故障描述</view>
-      <textarea class="textArea"  value="{{errorInfo.description}}" disabled='true'/>
+      <textarea class="textArea"  value="{{dangerList.description}}" disabled='true'/>
       <view class='checkBox'> 上传修复图片</view>
-      <image src="{{fixInfo.photo}}" class='cameraImage' mode='aspectFill' bindtap='choosePhoto'></image>
+      <image src="{{photo}}" class='cameraImage' mode='aspectFit' bindtap='choosePhoto'></image>
       <view class='checkBox'> 填写修复描述</view>
-      <textarea class="textArea"  placeholder="请填入修复描述" value="{{fixInfo.description}}" bindinput='textInput'/>
+      <textarea class="textArea"  placeholder="请填入修复描述" value="{{description}}" bindinput='textInput'/>
       <button class='finish' bindtap='fixInfoSubmit'>确认修复</button>
     </view>
-    <!--开始检查按钮-->
-    <view wx:if='{{canStartCheck}}' class='startCheck' bindtap='startCheck'>开始检查</view>
-    <view wx:else class='canNotStartCheck' bindtap='canNotStartCheck'>开始检查</view>
   </view>
-  <view></view>
 </view>

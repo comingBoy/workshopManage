@@ -22,6 +22,7 @@ Page({
     newFlag0: true,
     workshopName: '',
     checkpointName: '',
+    times: '',
     changeWhat: [
       "更改车间名",
       "更改检查点名"
@@ -40,13 +41,13 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data, function (res) {
-      var staffList = res
+      var staffList = res.staff
       staffList.unshift({
         name: "暂无",
         openId: '-1'
       })
       that.setData({
-        staffList: res,
+        staffList: staffList,
       })
       for (var i = 0; i < that.data.staffList.length; i++) {
         if (openId == that.data.staffList[i].openId) {
@@ -55,6 +56,9 @@ Page({
           })
           break
         }
+        that.setData({
+          staffIndex: 0
+        })
       }
     })
     var workshopId = options.workshopId
@@ -67,7 +71,7 @@ Page({
     workshop.getWorkshopInfo(data, function(res) {
       if (res.status == 1) {
         that.setData({
-          workshopInfo: res.res
+          workshopInfo: res.res[0]
         })
       } else if (res.status == -1) {
         util.showModel("提示","获取车间信息失败，请重试！")
@@ -272,6 +276,8 @@ Page({
     var workshopId = that.data.workshopId
     if (workshopName == '' || workshopName == null) {
       util.showModel("提示","车间名不能为空！")
+    } else if (workshopName == that.data.workshopInfo.workshopName) {
+      util.showModel("提示", "与原信息相同，无需修改！")
     } else {
       var data = {
         workshopId: workshopId,
@@ -280,9 +286,11 @@ Page({
       workshop.changeWorkshopInfo(data, function(res) {
         if (res.status == 1) {
           var workshopInfo = that.data.workshopInfo
-          workshopInfo[0].workshopName = workshopName
+          workshopInfo.workshopName = workshopName
           that.setData({
-            workshopInfo: workshopInfo
+            workshopInfo: workshopInfo,
+            workshopName: '',
+            changeFlag0: true
           })
           util.showModel("提示", "修改成功！")
         } else if (res.status == -1) {
@@ -296,24 +304,40 @@ Page({
 
   changeSave: function (e) {
     var that = this
+    var modify = true
     var checkpointName = that.data.checkpointName
     var checkpointId = that.data.checkpointId
-    if (checkpointName == '' || checkpointName == null) {
-      util.showModel("提示", "检查点名不能为空！")
-    } else {
+    var times = that.data.times
+    if ((checkpointName == '' || checkpointName == null) && (times == '' || times == null)) {
+      modify = false
+      util.showModel("提示", "检查点名和检查次数不能为空！")
+    }
+    if (checkpointName == that.data.checkpointInfo[that.data.index].name && times == that.data.checkpointInfo[that.data.index].times) {
+      modify = false
+      util.showModel("提示", "与原信息相同，无需修改！")
+    }
+    if (modify) {
+      if (checkpointName == '' || checkpointName == null) checkpointName = that.data.checkpointInfo[that.data.index].name
+      if (times == '' || times == null) times = that.data.checkpointInfo[that.data.index].times
       var data = {
         checkpointId: checkpointId,
-        checkpointName: checkpointName
+        checkpointName: checkpointName,
+        times: times
       }
       checkpoint.changeCheckpointInfo(data, function(res) {
         if (res.status == 1) {
           var checkpointInfo = that.data.checkpointInfo
           checkpointInfo[that.data.index].name = checkpointName
           that.setData({
-            checkpointInfo: checkpointInfo
+            checkpointInfo: checkpointInfo,
+            checkpointName: '',
+            times: '',
+            changeFlag: true,
+            index0: '',
+            checkpointId: '',
+            index: ''
           })
           util.showModel("提示","修改成功！")
-
         } else if (res.status == -1) {
           util.showModel("提示", "修改失败，请重试！")
         } else {
@@ -334,6 +358,13 @@ Page({
     var checkpointName = e.detail.value
     this.setData({
       checkpointName: checkpointName,
+    })
+  },
+
+  input1: function (e) {
+    var times = e.detail.value
+    this.setData({
+      times: times,
     })
   },
   /**

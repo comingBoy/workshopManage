@@ -50,4 +50,13 @@ var getDate = function() {
   return date0;
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, getDate }
+var mGetDate = function() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  month = month < 10 ? '0' + month : month
+  var date0 = year.toString() + '-' + month.toString()
+  return date0;
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, getDate, mGetDate }

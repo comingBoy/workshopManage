@@ -99,21 +99,28 @@ module.exports = {
     let req = ctx.request.body
     let res = await memberdb.getStaff(req)
     var staff = []
-    var status
+    var admin = []
+    var superior = []
+    var status = 1, tmp
     for (let i = 0; i < res.length; i++) {
-      let tmp = await staffdb.getStaffByOpenId(res[i])
-      staff.push(tmp[0])
-    }
-    staff.length > 0 ? status = 1 : status = -1
-    if (staff.length > 0) {
-      status = 1
-    } else if (staff.length == 0) {
-      status = 0
-    } else {
-      status = -1
+      tmp = await staffdb.getStaffByOpenId(res[i])
+      if (typeof(tmp) == 'object') {
+        if (res[i].label == 0) {
+          admin.push(tmp[0])
+        } else if (res[i].label == 1) {
+          staff.push(tmp[0])
+        } else {
+          superior.push(tmp[0])
+        }
+      } else {
+        status = -1
+        break
+      }
     }
     let result0 = {
-      res: staff,
+      staff: staff,
+      admin: admin,
+      superior: superior,
       status: status
     }
     ctx.body = {
@@ -124,8 +131,13 @@ module.exports = {
   delStaff: async ctx => {
     let req = ctx.request.body
     let res = await memberdb.delStaff(req)
+    let t = typeof(res)
+    let status = t == 'object' ? 1 : -1
+    let result0 = {
+      status: status
+    }
     ctx.body = {
-      result: res
+      result: result0
     }
   },
 
@@ -146,6 +158,20 @@ module.exports = {
   modifyGroup: async ctx => {
     let req = ctx.request.body
     let res = await groupdb.modifyGroup(req)
+    let t = typeof (res)
+    var status, result0
+    t == 'object' ? status = 1 : status = -1
+    result0 = {
+      status: status
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
+    setLevel: async ctx => {
+    let req = ctx.request.body
+    let res = await memberdb.setLevel(req)
     let t = typeof (res)
     var status, result0
     t == 'object' ? status = 1 : status = -1

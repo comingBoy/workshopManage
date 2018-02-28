@@ -20,8 +20,8 @@ module.exports = {
   },
   //新建检查点
   async newCheckpoint(args) {
-    let sql = 'INSERT INTO checkpointdb(name, workshopId) VALUE (?,?)'
-    let params = [args.name,args.workshopId]
+    let sql = 'INSERT INTO checkpointdb(name, workshopId, times) VALUE (?,?,?)'
+    let params = [args.checkpointName, args.workshopId, args.times]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
@@ -41,8 +41,8 @@ module.exports = {
   },
 
     async changeCheckpointInfo(args) {
-    let sql = 'UPDATE checkpointdb SET name = ? where checkpointId = ?'
-    let params = [args.checkpointName, args.checkpointId]
+    let sql = 'UPDATE checkpointdb SET name = ?, times = ? where checkpointId = ?'
+    let params = [args.checkpointName, args.times, args.checkpointId]
     let result = mysqlHelper.query(sql, params)
     console.log(result)
     return result

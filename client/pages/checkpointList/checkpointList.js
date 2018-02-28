@@ -1,5 +1,4 @@
-// pages/checkPoint/checkPoint.js
-
+// pages/checkpointList/checkpointList.js
 var checkpoint = require('../../utils/checkpoint.js')
 var util = require('../../utils/util.js')
 Page({
@@ -8,35 +7,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-    workshopInfo: null,
+    workshopInfo: '',
+    checkpointList: '',
     date: util.mGetDate(),
-    checkpointList: [],
-    statusList: ["正常","故障"]
+    statusList: ["正常", "故障"]
   },
 
-  bindDateChange: function (e) {
-    this.setData({
-      date: e.detail.value
-    })
-    this.fresh()
-  },
-
-  toCheckpoint: function (e) {
+  toCheck: function (e) {
     getApp().globalData.showCheckpoint = this.data.checkpointList[e.currentTarget.id]
     wx.navigateTo({
-      url: '../checkDetail/checkDetail'
+      url: '../checkWorkshop/checkWorkshop'
     })
   },
 
-  fresh: function () {
+  refresh: function () {
     var that = this
-    that.setData({
-      workshopInfo: getApp().globalData.showWorkshop
-    })
-    var workshopId = getApp().globalData.showWorkshop.workshopId
     var date = '^' + that.data.date
     var data = {
-      workshopId: workshopId,
+      workshopId: that.data.workshopInfo.workshopId,
       date: date
     }
     checkpoint.getCheckpoint0(data, function (res) {
@@ -54,19 +42,12 @@ Page({
     })
   },
 
-  toNewCheckpoint: function () {
-    wx.navigateTo({
-      url: '../newCheckpoint/newCheckpoint',
-    })
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.fresh()
-  },
 
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -79,7 +60,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.fresh()
+    var workshopInfo = getApp().globalData.workshopInfo
+    this.setData({
+      workshopInfo: workshopInfo
+    })
+    this.refresh()
   },
 
   /**
@@ -115,5 +100,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
+  }
 })

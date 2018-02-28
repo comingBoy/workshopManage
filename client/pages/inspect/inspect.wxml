@@ -15,7 +15,6 @@
         <text >{{item.workshopName}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
         <text class='textBox'>待修复个数：{{item.error}}</text> 
-        <text class='textBox'>本月任务：{{item.inspectTimes}}/{{item.totalTimes}}</text> 
       </view>
     </view>
   </view>

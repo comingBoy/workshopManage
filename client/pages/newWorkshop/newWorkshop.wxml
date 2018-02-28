@@ -1,30 +1,30 @@
 <!--pages/newWorkshop/newWorkshop.wxml-->
 <view class='container'>
-<view class='frame'>
+  <view class='frame'>
 <!--车间信息表-->
-<view class='newWorkshopInfo'>
-<text class='label'>车间名:</text>
-<input class="inputBox" placeholder='输入车间名' type='text' bindinput='getWorkshopName' confirm-type='next'></input>
-</view> 
-<view class='newWorkshopInfo'>
-<text class='label'>检查点个数:</text>
-<input class="inputBox" placeholder='输入检查点个数' type='number' maxlength='2' bindinput='getCheckpointNum' confirm-type='next'></input>
-</view> 
-<view class='newWorkshopInfo'>
-<text class='label'>每月检查次数:</text>
-<input class="inputBox" placeholder='输入检查次数' type='number' maxlength='2' bindinput='getTimes' confirm-type='next'></input>
-</view> 
+    <view class='newWorkshopInfo'>
+      <text class='label'>车间名:</text>
+      <input class="inputBox" placeholder='输入车间名' type='text' bindinput='getWorkshopName' confirm-type='next'></input>
+    </view> 
+    <view class='newWorkshopInfo'>
+      <text class='label'>检查点个数:</text>
+      <input class="inputBox" placeholder='输入检查点个数' type='number' maxlength='2' bindinput='getCheckpointNum' confirm-type='next'></input>
+    </view> 
+    <view class='newWorkshopInfo'>
+      <text class='label'>每月检查次数:</text>
+      <input class="inputBox" placeholder='输入检查次数' type='number' maxlength='2' bindinput='getTimes' confirm-type='next'></input>
+    </view> 
 
-<view class='newWorkshopInfo'>
-<text class='label'>负责人:</text>
-<picker class='picker' bindchange="chooseopenId" value="{{index}}" range-key="name" range="{{staffList}}">
-<view class="picker">
-{{staffList[index].name}}
-</view>
-</picker>
-</view> 
-</view>
+    <view class='newWorkshopInfo'>
+      <text class='label'>负责人:</text>
+      <picker class='picker' bindchange="chooseopenId" value="{{index}}" range-key="name" range="{{staffList}}">
+        <view class="picker">
+          {{staffList[index].name}}
+        </view>
+      </picker>
+    </view> 
+  </view>
 <!--提交按钮-->
-<view wx:if="{{flag}}" bindtap='newWorkshop' class='build'>确认创立</view> 
-<view wx:else class='build0'>确认创立</view>
+  <view wx:if="{{flag}}" bindtap='newWorkshop' class='build'>确认创立</view> 
+  <view wx:else class='build0'>确认创立</view>
 </view>
