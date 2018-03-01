@@ -151,5 +151,19 @@ module.exports = {
       callback(res.data.result.res)
     })
   },
+
+  getMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
   
 }

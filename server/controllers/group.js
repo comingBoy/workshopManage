@@ -95,6 +95,31 @@ module.exports = {
     }
   },
 
+  getSuperior: async ctx => {
+    let req = ctx.request.body
+    let res = await memberdb.getSuperior(req)
+    var t = typeof(res)
+    var result0
+    if (t == 'object' && res.length > 0) {
+      result0 = {
+        res: res,
+        status: 1
+      }
+    } else if (t == 'object' && res.length == 0) {
+      result0 = {
+        status: 0
+      }
+    } else {
+      result0 = {
+        status: -1
+      }
+    }
+
+    ctx.body = {
+      result: result0
+    }
+  },
+
   getStaff: async ctx => {
     let req = ctx.request.body
     let res = await memberdb.getStaff(req)

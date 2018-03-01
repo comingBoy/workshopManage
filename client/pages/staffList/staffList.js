@@ -10,25 +10,46 @@ Page({
     staffList: [],
     superiorList: [],
     adminList: null,
-    isAdmin: false
+    isAdmin: false,
+    isSuperior: false
   },
 
   refresh: function () {
     var that = this
-    var isAdmin = false
+    var isSuperior = false
     if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId) {
-      isAdmin = true
+      that.setData({
+        isAdmin: true
+      })
     }
     var data = {
       groupId: getApp().globalData.currentGroup.groupId
     }
+    group.getSuperior(data, function (res) {
+      if (res.status == 1) {
+        for (var i = 0; i < res.res; i++) {
+          if (getApp().globalData.myInfo.openId == res.res[i]) {
+            isSuperior = true
+            break
+          }
+        }
+        that.setData({
+          isSuperior: isSuperior
+        })
+      } else if (res.status == 0) {
+
+      } else if (res.status == -1) {
+        util.showModel("提示", "请求失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
     group.getStaff(data, function (res) {
       if (res.status == 1) {
         that.setData({
           staffList: res.staff,
           adminList: res.admin,
           superiorList: res.superior,
-          isAdmin: isAdmin
         })
       } else if (res.status == -1) {
         util.showModel("提示", "获取失败，请重试！")

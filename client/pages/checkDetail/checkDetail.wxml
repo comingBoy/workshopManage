@@ -25,10 +25,10 @@
         暂无隐患记录
       </view>
       <view class='dangerTitleBox'>
-      <view class='title2'>
-        管理员发现隐患
-      </view>
-      <button class='findDanger' bindtap='findDanger'>添加</button>
+        <view class='title2'>
+          管理员发现隐患
+        </view>
+        <button wx:if='{{ifShowFind}}' class='findDanger' bindtap='findDanger'>添加</button>
       </view>
       <view class='list' wx:for='{{adminError}}'>
         <view class='dangerInfo' bindtap='getAdminError' id='{{index}}'>

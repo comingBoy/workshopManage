@@ -24,7 +24,8 @@
     "pages/modifyWorkshop/modifyWorkshop",
     "pages/modifyGroup/modifyGroup",
     "pages/newCheckpoint/newCheckpoint",
-    "pages/checkpointList/checkpointList"
+    "pages/checkpointList/checkpointList",
+    "pages/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",

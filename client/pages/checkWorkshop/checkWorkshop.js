@@ -37,6 +37,7 @@ Page({
     initText: "请输入文本",
     initTextValue: "",
     ifCompleteFill: null,
+    checkOver: false
   },
 
   refresh: function () {
@@ -50,7 +51,8 @@ Page({
       if (res.status == 1) {
         if (res.res.length >= getApp().globalData.showCheckpoint.totalTimes) {
           that.setData({
-            canStartCheck: false
+            canStartCheck: false,
+            checkOver: true
           })
         }
         that.setData({

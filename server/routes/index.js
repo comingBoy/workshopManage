@@ -107,4 +107,8 @@ router.post('/setLevel', controllers.group.setLevel)
 router.post('/getInspectTimes', controllers.inspect.getInspectTimes)
 
 router.post('/getLastInspect', controllers.inspect.getLastInspect)
+
+router.post('/getSuperior', controllers.group.getSuperior)
+
+router.post('/getMessage', controllers.staff.getMessage)
 module.exports = router

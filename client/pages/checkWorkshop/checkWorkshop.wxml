@@ -48,4 +48,7 @@
       <button class='finish' bindtap='fixInfoSubmit'>确认修复</button>
     </view>
   </view>
+  <view wx:if='{{checkOver == true}}' class='checkOver'>
+    <view class='text'>本月任务完成</view>
+  </view>
 </view>

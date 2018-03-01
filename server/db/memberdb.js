@@ -41,4 +41,11 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async getSuperior(args) {
+    let sql = 'SELECT * FROM memberdb where groupId = ? and label = 2'
+    let params = [args.groupId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }

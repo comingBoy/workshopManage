@@ -101,6 +101,10 @@ var config = {
 
         getLastInspectUrl: `${host}/weapp/getLastInspect`,
 
+        getSuperiorUrl: `${host}/weapp/getSuperior`,
+
+        getMessageUrl: `${host}/weapp/getMessage`,
+
     }
 };
 

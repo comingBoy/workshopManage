@@ -4,6 +4,7 @@ var checkpoint = require('../../utils/checkpoint.js')
 var net = require('../../utils/net.js')
 var inspect = require('../../utils/inspect.js')
 var checkWorkshop = require('../../utils/checkWorkshop.js')
+var group = require('../../utils/group.js')
 Page({
 
   /**
@@ -22,7 +23,9 @@ Page({
     ifShow: true,
     ifShow0: true,
     inspectInfo: null,
-    fixInfo: null
+    fixInfo: null,
+    ifShowFind: false,
+    inspectId: ''
   },
 
   findDanger: function () {
@@ -123,12 +126,23 @@ Page({
             description: ''
           }
         }
-        that.setData({
-          inspectInfo: inspectInfo,
-          fixInfo: fixInfo,
-          ifShow: !ifShow,
-          ifShow0: true
-        })
+        if(e == that.data.inspectId) {
+          that.setData({
+            inspectInfo: inspectInfo,
+            fixInfo: fixInfo,
+            ifShow: !ifShow,
+            ifShow0: true,
+            inspectId: e
+          })
+        } else {
+          that.setData({
+            inspectInfo: inspectInfo,
+            fixInfo: fixInfo,
+            ifShow: false,
+            ifShow0: true,
+            inspectId: e
+          })
+        }
       } else if (res.status == -1) {
         util.showModel("提示", "获取报告失败，请重试！")
       } else {
@@ -152,8 +166,36 @@ Page({
     var checkpointId = getApp().globalData.showCheckpoint.checkpointId
     var data = {
       date: date,
-      checkpointId: checkpointId
+      checkpointId: checkpointId,
+      groupId: getApp().globalData.currentGroup.groupId
     }
+    group.getSuperior(data, function (res) {
+      if (res.status == 1) {
+        var canFindId = res.res
+        var ifShowFind = false
+        canFindId.push(getApp().globalData.currentGroup.adminId)
+        for (var i = 0; i < canFindId.length; i++) {
+          if (getApp().globalData.myInfo.openId == canFindId[i]) {
+            ifShowFind = true
+            break
+          }
+        }
+        that.setData({
+          ifShowFind: ifShowFind
+        })
+      } else if (res.status == 0) {
+        if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId) {
+          that.setData({
+            ifShowFind: true
+          })
+        }
+      } else if (res.status == -1) {
+        util.showModel("提示", "请求失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+
     checkpoint.getCheckDetail(data, function (res) {
       if (res.status == 1) {
         var i, j, k
@@ -197,7 +239,7 @@ Page({
         that.setData({
           ifShow: true,
           ifShow0: false,
-          inspectInfo: res.res[0]
+          inspectInfo: res.res[0],
         })
       } else if (res.status == -1) {
         util.showModel("提示", "获取报告失败，请重试！")

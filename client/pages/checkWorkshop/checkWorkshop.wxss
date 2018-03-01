@@ -109,3 +109,24 @@
   font-size: 30rpx;
   margin-bottom: 20rpx;
 }
+
+.checkOver{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  background-color:white;
+  border-radius:23rpx;
+  margin-top: 25rpx;
+  height: 70rpx;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  margin-top: 10rpx;
+}

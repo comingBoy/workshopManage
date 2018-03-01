@@ -25,6 +25,20 @@ module.exports = {
       callback(res.data.result.res)
     })
   },
+
+  getSuperior: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getSuperiorUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
   //新建部门
   newGroup: function(data, urls, callback) {
     if (data.groupName) {
