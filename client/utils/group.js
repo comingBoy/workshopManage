@@ -98,6 +98,7 @@ module.exports = {
     }
     if (data.groupCode) {
       net.request(data, configure, function (res) {
+        console.log(res)
         if (res.data.result.status == 1) {
           wx.showModal({
             title: '提示',
