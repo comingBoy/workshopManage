@@ -28,7 +28,8 @@ Page({
       "更改检查点名"
     ],
     index: null,
-    index0: ''
+    index0: '',
+    isAdmin: false
   },
 
   /**
@@ -41,24 +42,33 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data, function (res) {
-      var staffList = res.staff
-      staffList.unshift({
-        name: "暂无",
-        openId: '-1'
-      })
-      that.setData({
-        staffList: staffList,
-      })
-      for (var i = 0; i < that.data.staffList.length; i++) {
-        if (openId == that.data.staffList[i].openId) {
-          that.setData({
-            staffIndex: i
-          })
-          break
-        }
-        that.setData({
-          staffIndex: 0
+      if (res.status == 1) {
+        var staffList = new Array()
+        staffList.push.apply(staffList, res.admin)
+        staffList.push.apply(staffList, res.superior)
+        staffList.push.apply(staffList, res.staff)
+        staffList.unshift({
+          name: "暂无",
+          openId: '-1'
         })
+        that.setData({
+          staffList: staffList,
+        })
+        for (var i = 0; i < that.data.staffList.length; i++) {
+          if (openId == that.data.staffList[i].openId) {
+            that.setData({
+              staffIndex: i
+            })
+            break
+          }
+          that.setData({
+            staffIndex: 0
+          })
+        }
+      } else if (res.status == -1) {
+        util.showModel("提示","获取失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
       }
     })
     var workshopId = options.workshopId
@@ -135,41 +145,48 @@ Page({
   newCheckpoint: function() {
     this.setData({
       newFlag: true,
-      newFlag0: false
+      newFlag0: false,
+      changeFlag: true,
+      changeFlag0: true
     })
   },
 
   newCheckpoint0: function () {
-    var workshopId = this.data.workshopId
-    var checkpointName = this.data.checkpointName
-    var checkpointNum = this.data.checkpointInfo.length+1
     var that = this
     var data = {
-      workshopId: workshopId,
-      name: checkpointName,
-      checkpointNum: checkpointNum
+      workshopId: this.data.workshopId,
+      checkpointName: this.data.checkpointName,
+      checkpointNum: this.data.checkpointInfo.length + 1,
+      times: this.data.times
     }
-    checkpoint.newCheckpoint(data, function(res) {
-      if (res.status == 1) {
-        checkpoint.getCheckpoint(data, function (res) {
-          if (res.status == 1 || res.status == 0) {
-            that.setData({
-              checkpointInfo: res.res,
-              newFlag0: true,
-              newFlag: false
-            })
-          } else if (res.status == -1) {
-            util.showModel("提示", "获取检查点信息失败，请重试！")
-          } else {
-            util.showModel("提示", "请求出错！")
-          }
-        })
-      } else if (res.status = 0) {
-        util.showModel("提示", "数据库异常！")
-      } else {
-        util.showModel("提示", "请求出错！")
-      }
-    })
+    if (data.checkpointName == '' || data.checkpointName == null) {
+      util.showModel("提示", "检查点名不能为空！")
+    } else if (data.times == '' || data.times == null) {
+      util.showModel("提示", "每月检查次数不能为空！")
+    } else {
+      checkpoint.newCheckpoint(data, function (res) {
+        if (res.status == 1) {
+          checkpoint.getCheckpoint(data, function (res) {
+            if (res.status == 1 || res.status == 0) {
+              util.showModel("提示", "创建成功！")
+              that.setData({
+                checkpointInfo: res.res,
+                newFlag0: true,
+                newFlag: false
+              })
+            } else if (res.status == -1) {
+              util.showModel("提示", "获取检查点信息失败，请重试！")
+            } else {
+              util.showModel("提示", "请求出错！")
+            }
+          })
+        } else if (res.status = 0) {
+          util.showModel("提示", "数据库异常！")
+        } else {
+          util.showModel("提示", "请求出错！")
+        }
+      })
+    }
   },
 
   delWorkshop: function() {
@@ -252,22 +269,46 @@ Page({
   },
 
   changeWorkshop: function(){
-    this.setData({
-      changeFlag0: false,
-      changeFlag: true,
-      index0: 0
-    })
+    if (this.data.index0 == 0) {
+      this.setData({
+        changeFlag0: !this.data.changeFlag0,
+        changeFlag: true,
+        newFlag0: true,
+        newFlag: false,
+        index0: 0
+      })
+    } else {
+      this.setData({
+        changeFlag0: false,
+        changeFlag: true,
+        newFlag0: true,
+        newFlag: false,
+        index0: 0
+      })
+    }
   },
 
   changeCheckpoint: function(e) {
     var checkpointId = this.data.checkpointInfo[e.currentTarget.id].checkpointId
-    this.setData({
-      changeFlag0: true,
-      changeFlag: false,
-      index0: 1,
-      checkpointId: checkpointId,
-      index: e.currentTarget.id
-    })
+    if (e.currentTarget.id == this.data.index) {
+      this.setData({
+        changeFlag0: true,
+        changeFlag: !this.data.changeFlag,
+        newFlag0: true,
+        newFlag: false,
+        index0: 1,
+        checkpointId: checkpointId,
+        index: e.currentTarget.id
+      })
+    } else {
+      this.setData({
+        changeFlag0: true,
+        changeFlag: false,
+        index0: 1,
+        checkpointId: checkpointId,
+        index: e.currentTarget.id
+      })
+    }
   },
   
   changeSave0: function(e){
@@ -328,6 +369,7 @@ Page({
         if (res.status == 1) {
           var checkpointInfo = that.data.checkpointInfo
           checkpointInfo[that.data.index].name = checkpointName
+          checkpointInfo[that.data.index].times = times
           that.setData({
             checkpointInfo: checkpointInfo,
             checkpointName: '',
@@ -367,6 +409,7 @@ Page({
       times: times,
     })
   },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -19,38 +19,22 @@ Page({
 
   refresh: function () {
     var that = this
-    var isSuperior = false
-    if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId) {
-      that.setData({
-        isAdmin: true
-      })
-    }
+
     var data = {
       groupId: getApp().globalData.currentGroup.groupId
     }
-    group.getSuperior(data, function (res) {
-      if (res.status == 1) {
-        for (var i = 0; i < res.res; i++) {
-          if (getApp().globalData.myInfo.openId == res.res[i]) {
-            isSuperior = true
-            break
-          }
-        }
-        that.setData({
-          isSuperior: isSuperior
-        })
-      } else if (res.status == 0) {
-        that.setData({
-          isSuperior: isSuperior
-        })
-      } else if (res.status == -1) {
-        util.showModel("提示", "请求失败，请重试！")
-      } else {
-        util.showModel("提示", "请求出错！")
-      }
-    })
     group.getStaff(data, function (res) {
       if (res.status == 1) {
+        if (res.adminList.indexOf(getApp().globalData.myInfo.openId) != -1) {
+          that.setData({
+            isAdmin: true
+          })
+        }
+        if (res.superiorList.indexOf(getApp().globalData.myInfo.openId) != -1) {
+          that.setData({
+            isSuperior: true
+          })
+        }
         that.setData({
           staffList: res.staff,
           adminList: res.admin,

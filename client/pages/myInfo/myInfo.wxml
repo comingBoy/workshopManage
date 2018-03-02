@@ -26,7 +26,7 @@
     </view>
   </view>
   <view class='message'>
-  <view wx:if='{{(readMessage.length == 0) && (notReadMessage.length == 0)}}' class='message0' bindtap='checkMessage'>暂无留言</view>
+  <view wx:if='{{(readMessage.length == 0) && (notReadMessage.length == 0)}}' class='message0' bindtap='checkMessage0'>暂无留言</view>
   <view wx:elif='{{notReadMessage.length > 0}}' class='message0' bindtap='checkMessage'>您有{{notReadMessage.length}}条新留言</view>
   <view wx:else class='message0' bindtap='checkMessage'>查看留言</view>
 </view>

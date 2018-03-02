@@ -111,6 +111,8 @@ var config = {
 
         readMessageUrl: `${host}/weapp/readMessage`,
 
+        getAdminUrl: `${host}/weapp/getAdmin`,
+
     }
 };
 

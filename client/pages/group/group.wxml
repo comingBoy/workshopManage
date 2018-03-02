@@ -9,7 +9,7 @@
         </view>
         <view class='groupBanner'>       
           <text >{{groupInfo.groupName}}</text>
-          <image class='modify0' src='../../images/modify.png' mode='aspectFill'  bindtap='modifyGroup'></image>
+          <image wx:if='{{isAdmin}}' class='modify0' src='../../images/modify.png' mode='aspectFill'  bindtap='modifyGroup'></image>
         </view>
       </view>
 
@@ -18,11 +18,12 @@
       <view class='workshop' wx:for='{{workshopList}}' id='{{index}}' bindtap='toWorkshop'>
         <view class='workshopName'>
           <text >{{item.workshopName}}</text>
-          <image class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
+          <image wx:if='{{isAdmin}}' class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
         </view>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
-        <text class='textBox'>待修复个数：{{item.error}}</text> 
+        <text class='textBox'>待修复个数：{{item.error}}</text>
+        <text class='textBox'>{{statusList[item.error > 0 ? 1 : 0]}}</text>
       </view>
       <!--新建车间-->
       <view class='workshop' bindtap='toNewWorkshop'>
@@ -31,5 +32,5 @@
       </view>
     </view>
   </view>
-  <button bindtap='delGroup'>删除部门</button>
+  <button wx:if='{{isAdmin}}' bindtap='delGroup'>删除部门</button>
 </view>

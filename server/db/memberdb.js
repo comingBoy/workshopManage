@@ -43,4 +43,11 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async getAdmin(args) {
+    let sql = 'SELECT * FROM memberdb where groupId = ? and label = 0'
+    let params = [args.groupId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }

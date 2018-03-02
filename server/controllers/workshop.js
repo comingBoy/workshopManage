@@ -19,8 +19,6 @@ module.exports = {
       openId: '',
       totalCheckpoints: '',
       error: '',
-      inspectTimes: '',
-      totalTimes: ''
     }
     var infoQueue = []
     res = await workshopdb.getGroupWorkshop(req)
@@ -28,11 +26,12 @@ module.exports = {
     if (t == 'object') {
       if (res.length > 0) {
         for (i = 0; i < res.length; i++) {
+          info = new Object()
           info.totalCheckpoints = res[i].checkpointNum
           info.workshopName = res[i].workshopName
-          info.totalTimes = res[i].times
           if (res[i].openId == -1) {
             info.name = '暂无'
+            info.openId = -1
           } else {
             info.openId = res[i].openId
             res0 = await staffdb.getStaffByOpenId(res[i])
@@ -69,30 +68,8 @@ module.exports = {
             status = -1
             break
           }
-          var req0 = {
-            date: req.date,
-            workshopId: res[i].workshopId
-          }
-          res2 = await timesdb.getTimes(req0)
-          t2 = typeof(res2)
-          if (t2 == 'object') {
-            info.inspectTimes = res2.length
-          } else {
-            status = -1
-            break
-          }
           info.workshopId = res[i].workshopId
           infoQueue.push(info)
-          info = {
-            workshopId: '',
-            workshopName: '',
-            name: '',
-            openId: '',
-            totalCheckpoints: '',
-            error: '',
-            inspectTimes: '',
-            totalTimes: ''
-          }
         }
         status = 1
       } else {
@@ -106,7 +83,6 @@ module.exports = {
       status: status,
       res: infoQueue
     }
-    console.log(result0)
 
     ctx.body = {
       result: result0
@@ -118,11 +94,9 @@ module.exports = {
     var res, res0, res1, res2, res3, t, t0, t1, t2, t3, status, result0
     res = await workshopdb.newWorkshop(req)
     var req0 = {
-      groupId: req.groupId,
       workshopId: '',
-      status: 0,
-      error: 0,
-      name: ''
+      times: 0,
+      checkpointName: ''
     }
     var req1 = {
       workshopId: ''
@@ -135,7 +109,7 @@ module.exports = {
         req0.workshopId = res2[res2.length - 1].workshopId
         req1.workshopId = req0.workshopId
         for (let i = 0; i < req.checkpointNum; i++) {
-          req0.name = "检查点" + i.toString()
+          req0.checkpointName = "检查点" + i.toString()
           res0 = await checkpointdb.newCheckpoint(req0)
           t0 = typeof (res0)
           if (t0 != 'object') {
@@ -183,8 +157,6 @@ module.exports = {
       workshopName: '',
       totalCheckpoints: '',
       error: '',
-      inspectTimes: '',
-      totalTimes: ''
     }
     var infoQueue = []
     res = await workshopdb.getMyWorkshop(req)
@@ -192,9 +164,9 @@ module.exports = {
     if (t == 'object') {
       if (res.length > 0) {
         for (i = 0; i < res.length; i++) {
+          info = new Object()
           info.totalCheckpoints = res[i].checkpointNum
           info.workshopName = res[i].workshopName
-          info.totalTimes = res[i].times
           req1 = {
             workshopId: res[i].workshopId,
             date: req.date
@@ -220,30 +192,9 @@ module.exports = {
             status = -1
             break
           }
-          var req0 = {
-            date: req.date,
-            workshopId: res[i].workshopId
-          }
-          console.log(req0)
-          res2 = await timesdb.getTimes(req0)
-          console.log(res2)
-          t2 = typeof (res2)
-          if (t2 == 'object') {
-            info.inspectTimes = res2.length
-          } else {
-            status = -1
-            break
-          }
+
           info.workshopId = res[i].workshopId
           infoQueue.push(info)
-          info = {
-            workshopId: '',
-            workshopName: '',
-            totalCheckpoints: '',
-            error: '',
-            inspectTimes: '',
-            totalTimes: ''
-          }
         }
         status = 1
       } else {
@@ -257,7 +208,6 @@ module.exports = {
       status: status,
       res: infoQueue
     }
-    console.log(result0)
 
     ctx.body = {
       result: result0

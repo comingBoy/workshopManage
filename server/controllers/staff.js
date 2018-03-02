@@ -128,7 +128,7 @@ module.exports = {
             }
             myMessage.push(message)
           } else {
-            status: -1
+            status = -1
             break
           }
 
@@ -143,9 +143,9 @@ module.exports = {
         }
       }
     } else if (t == 'object' && res.length == 0) {
-      status: 0
+      status = 0
     } else {
-      status: -1
+      status = -1
     }
 
     result0 = {

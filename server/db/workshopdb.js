@@ -10,8 +10,8 @@ module.exports = {
   },
   //新建车间
   async newWorkshop(args) {
-    let sql = 'INSERT INTO workshopdb(workshopName,groupId,checkpointNum,times,openId) VALUE(?,?,?,?,?)'
-    let params = [args.workshopName, args.groupId, args.checkpointNum, args.times, args.openId]
+    let sql = 'INSERT INTO workshopdb(workshopName,groupId,checkpointNum,openId) VALUE(?,?,?,?)'
+    let params = [args.workshopName, args.groupId, args.checkpointNum, args.openId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },

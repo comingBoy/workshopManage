@@ -45,13 +45,6 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
-  //查看检查历史
-  async getInspectHis(args) {
-    let sql = 'SELECT * FROM inspectdb where timesId = ?'
-    let params = [args.timesId]
-    let result = await mysqlHelper.query(sql, params)
-    return result
-  },
 
   //查看检查次数
   async getInspectHis(args) {
