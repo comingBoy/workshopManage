@@ -39,7 +39,8 @@ module.exports = {
     let groupId = res0[len - 1].groupId
     let req0 = {
       openId: req.adminId,
-      groupId: groupId
+      groupId: groupId,
+      label: 0,
     }
     await memberdb.joinGroup(req0)
     var status
@@ -56,12 +57,16 @@ module.exports = {
 
   joinGroup: async ctx => {
     let req = ctx.request.body
+    //初始化等级为1 员工
+    req.label = 1
     console.log(req)
     var result0
     var status
     let res = await groupdb.getGroupCode(req)
     if (res[0].groupCode == req.groupCode) {
+      console.log(req)
       let res0 = await memberdb.joinGroup(req)
+      console.log(res0)
       let t = typeof (res0)
       t = 'object' ? status = 1 : status = -1
       result0 = {
