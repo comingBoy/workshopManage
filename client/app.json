@@ -20,12 +20,7 @@
     "pages/register/register",
     "pages/checkWorkshop/checkWorkshop",
     "pages/startCheck/startCheck",
-    "pages/checkRecord/checkRecord",
-    "pages/modifyWorkshop/modifyWorkshop",
-    "pages/modifyGroup/modifyGroup",
-    "pages/newCheckpoint/newCheckpoint",
-    "pages/checkpointList/checkpointList",
-    "pages/message/message"
+    "pages/checkRecord/checkRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",
