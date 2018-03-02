@@ -165,5 +165,48 @@ module.exports = {
       callback(res.data.result)
     })
   },
+
+  leaveMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.leaveMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  getMyMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getMyMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  readMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.readMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
   
 }

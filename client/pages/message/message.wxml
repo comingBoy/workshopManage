@@ -1,2 +1,38 @@
 <!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view wx:for='{{notReadMessage}}' id='{{index}}' bindtap='toNotRead'>
+  <view style='display: flex; flex-direction: column;'>
+    <view class='ListBox'>
+      <view class='headBox'>
+        <image src='{{item.superiorInfo.avatar}}' class='imageSize' mode='aspectFill'></image>
+      </view>
+      <view class='data'>
+        <view class='memberBox'>
+          <view class='nameBox'>{{item.superiorInfo.name}}</view>
+          <view class='time'>{{item.message[0].date}}</view>
+        </view>
+        <view class='timeNew'>
+          <view class='messageBox'>{{item.message[0].message}}</view>
+          <view class='{{item.num > 9 ? "new1" : "new2"}}'>{{item.num}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:for='{{readMessage}}' id='{{index}}' bindtap='toRead'>
+  <view style='display: flex; flex-direction: column;'>
+    <view class='ListBox'>
+      <view class='headBox'>
+        <image src='{{item.superiorInfo.avatar}}' class='imageSize' mode='aspectFill'></image>
+      </view>
+      <view class='data'>
+        <view class='memberBox'>
+          <view class='nameBox'>{{item.superiorInfo.name}}</view>
+          <view class='time'>{{item.message[0].date}}</view>
+        </view>
+        <view class='timeNew'>
+          <view class='messageBox'>{{item.message[0].message}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

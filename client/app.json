@@ -25,7 +25,8 @@
     "pages/modifyGroup/modifyGroup",
     "pages/newCheckpoint/newCheckpoint",
     "pages/checkpointList/checkpointList",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/messageDetail/messageDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

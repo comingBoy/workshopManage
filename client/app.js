@@ -9,7 +9,8 @@ App({
   globalData: {
     logged: false,
     userInfo: null,
-    myInfo: null
+    myInfo: null,
+    showMessage: ''
   },
   onLaunch: function () {
 

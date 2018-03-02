@@ -179,11 +179,15 @@ Page({
   onShow: function () {
     var that = this
     var data = {
-      openId: getApp().globalData.myInfo.openId,
+      staffId: getApp().globalData.myInfo.openId,
       groupId: getApp().globalData.currentGroup.groupId
     }
     staff.getMessage(data, function (res) {
       if (res.status == 1) {
+        getApp().globalData.myMessage = {
+          readMessage: res.readMessage,
+          notReadMessage: res.notReadMessage
+        }
         that.setData({
           readMessage: res.readMessage,
           notReadMessage: res.notReadMessage

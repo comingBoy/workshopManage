@@ -83,8 +83,6 @@ module.exports = {
     let req = ctx.request.body
     let res = await memberdb.verifyStaff(req)
     var status
-    console.log(req)
-    console.log(res)
     res.length > 0 ? status = -1 : status = 1
     let result0 = {
       res: res,

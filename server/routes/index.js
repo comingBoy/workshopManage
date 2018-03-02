@@ -111,4 +111,10 @@ router.post('/getLastInspect', controllers.inspect.getLastInspect)
 router.post('/getSuperior', controllers.group.getSuperior)
 
 router.post('/getMessage', controllers.staff.getMessage)
+
+router.post('/leaveMessage', controllers.staff.leaveMessage)
+
+router.post('/getMyMessage', controllers.staff.getMyMessage)
+
+router.post('/readMessage', controllers.staff.readMessage)
 module.exports = router

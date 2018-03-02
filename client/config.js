@@ -105,6 +105,12 @@ var config = {
 
         getMessageUrl: `${host}/weapp/getMessage`,
 
+        leaveMessageUrl: `${host}/weapp/leaveMessage`,
+
+        getMyMessageUrl: `${host}/weapp/getMyMessage`,
+
+        readMessageUrl: `${host}/weapp/readMessage`,
+
     }
 };
 

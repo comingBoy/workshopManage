@@ -1,15 +1,15 @@
 <!--部门成员信息-->
 <view class='container'>
   <view class='label'>管理员</view>
-    <view class='ListBox' wx:for='{{adminList}}'>
-      <view class='headBox'>
-        <image src='{{item.avatar}}' class='imageSize' mode='aspectFill'></image>
-      </view>
-      <view class='memberBox'>
+  <view class='ListBox' wx:for='{{adminList}}'>
+    <view class='headBox'>
+      <image src='{{item.avatar}}' class='imageSize' mode='aspectFill'></image>
+    </view>
+    <view class='memberBox'>
       <view class='nameBox'>{{item.name}}</view>
       <view class='tellBox'>{{item.telNum}}</view>
     </view>
-    <view wx:if='{{isSuperior}}' class='DeleteBox' bindtap="deleteStaff" id='{{index}}'>留言</view>
+    <view wx:if='{{isSuperior}}' class='DeleteBox' bindtap="leaveMessage" id='{{index}}'>留言</view>
   </view>
 </view>
 <view style='display: flex; flex-direction: column;'>
@@ -43,7 +43,7 @@
     </view>
     <view wx:if='{{isAdmin}}' class='setLevel' bindtap='setSuperior' id='{{index}}'>设为上级</view>
     <view wx:if='{{isAdmin}}' class='DeleteBox' bindtap="deleteStaff" id='{{index}}'>删除</view>
-    <view wx:if='{{isSuperior}}' class='DeleteBox' bindtap="deleteStaff" id='{{index}}'>留言</view>
+    <view wx:if='{{isSuperior}}' class='DeleteBox' bindtap="leaveMessage0" id='{{index}}'>留言</view>
   </view>
   <view wx:if='{{staffList.length == 0}}'>
     <view class='null'>
@@ -51,3 +51,6 @@
     </view>
   </view>
 </view>
+<modal hidden="{{hideMessage}}" title="留言" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <input type='text'placeholder="请输入内容" bindinput='getMessage' auto-focus/>  
+</modal> 

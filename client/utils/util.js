@@ -50,6 +50,23 @@ var getDate = function() {
   return date0;
 }
 
+var sGetDate = function () {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  month = month < 10 ? '0' + month : month
+  day = day < 10 ? '0' + day : day
+  hour = hour < 10 ? '0' + hour : hour
+  min = min < 10 ? '0' + min : min
+  sec = sec < 10 ? '0' + sec : sec
+  var date0 = year.toString() + '-' + month.toString() + '-' + day.toString() + ' ' + hour.toString() + ':' + min.toString() + ':' + sec.toString()
+  return date0;
+}
+
 var mGetDate = function() {
   var date = new Date();
   var year = date.getFullYear();
@@ -59,4 +76,4 @@ var mGetDate = function() {
   return date0;
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, getDate, mGetDate }
+module.exports = { formatTime, showBusy, showSuccess, showModel, getDate, sGetDate, mGetDate }

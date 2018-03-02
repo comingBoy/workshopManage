@@ -1,1 +1,93 @@
 /* pages/message/message.wxss */
+.ListBox{
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  width: 100%;
+  border: solid 2rpx #ddd;
+  background-color: #fff;
+  padding-left:10rpx;
+}
+
+.data{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 40rpx;
+  width: 77%;
+}
+
+.memberBox{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+}
+
+.nameBox{
+  font-size: 35rpx;
+  color: #000;
+  font-family: "宋体";
+  padding-top: 10rpx;
+  font-weight:bold;
+}
+
+.messageBox{
+  width: 80%;
+  font-size: 30rpx;
+  color: #808080;
+  font-family: "宋体";
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+
+.imageSize{
+  width: 85rpx;
+  height: 85rpx;
+}
+
+.timeNew{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.time{
+  white-space: nowrap;
+  font-size: 30rpx;
+  color: #808080;
+}
+
+.newBox{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.new1{
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  justify-content:center;
+  color:white;
+  background-color:red;
+  width:40rpx;
+  height:40rpx;
+  font-size:30rpx;
+  border-radius:50%;
+}
+
+.new2{
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  justify-content:center;
+  color:white;
+  background-color:red;
+  width:40rpx;
+  height:40rpx;
+  font-size:25rpx;
+  border-radius:50%;
+}

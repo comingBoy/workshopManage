@@ -12,7 +12,6 @@ module.exports = {
     let sql = 'UPDATE staffdb SET name= ?, staffId= ?, sex= ?, telNum= ?, avatar= ? where openId = ?'
     let params = [args.name, args.staffId, args.sex, args.telNum, args.avatar, args.openId]
     let result = mysqlHelper.query(sql, params)
-    console.log(result)
     return result
   },
   async getStaffByOpenId(args) {
