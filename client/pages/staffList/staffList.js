@@ -22,8 +22,7 @@ Page({
     var isSuperior = false
     if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId) {
       that.setData({
-        //isAdmin: true
-        isAdmin: false
+        isAdmin: true
       })
     }
     var data = {
@@ -38,13 +37,11 @@ Page({
           }
         }
         that.setData({
-          //isSuperior: isSuperior
-          isSuperior: true
+          isSuperior: isSuperior
         })
       } else if (res.status == 0) {
         that.setData({
-          //isSuperior: isSuperior
-          isSuperior: true
+          isSuperior: isSuperior
         })
       } else if (res.status == -1) {
         util.showModel("提示", "请求失败，请重试！")
