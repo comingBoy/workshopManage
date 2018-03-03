@@ -6,7 +6,6 @@
   justify-content:flex-start;
   flex-wrap: wrap;
   width: 90%;
-  border-top: solid #fff 5rpx;
 }
 .groupInfo{
   width: 45%;
