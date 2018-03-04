@@ -7,18 +7,18 @@
         <view class='returnBox'>
           <image src="../../images/return.png" class='returnImage' bindtap='chooseCover' bindtap='back'></image>
         </view>
-        <view class='groupBanner'>       
+        <view class='groupBanner' bindtap='modifyGroup'>       
           <text >{{groupInfo.groupName}}</text>
-          <image class='modify0' src='../../images/modify.png' mode='aspectFill'  bindtap='modifyGroup'></image>
+          <image class='modify0' src='../../images/modify.png' mode='aspectFill'></image>
         </view>
       </view>
 
     <!--车间列表-->
     <view class='workshopList'>
       <view class='workshop' wx:for='{{workshopList}}' id='{{index}}' bindtap='toWorkshop'>
-        <view class='workshopName'>
+        <view class='workshopName' catchtap='modifyWorkshop' id='{{index}}'>
           <text >{{item.workshopName}}</text>
-          <image class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
+          <image class='modify' src='../../images/modify.png' mode='aspectFill'></image>
         </view>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
@@ -31,5 +31,5 @@
       </view>
     </view>
   </view>
-  <button bindtap='delGroup'>删除部门</button>
+  <button bindtap='delGroup' class='delGroup'>删除部门</button>
 </view>

@@ -44,20 +44,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var that = this
-    var data = {
-      date: getCurrentDate(),
-      groupId: getApp().globalData.currentGroup.groupId      
-    }
-    workshop.getGroupWorkshop(data,function(res){
-      that.setData({
-        workshopList: res
-      })
-    })
-    that.setData({
-      groupInfo: getApp().globalData.currentGroup
-    })
+  onLoad: function () {
+
   },
 
   /**
@@ -71,19 +59,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx:wx.showLoading({
+      title: '加载中',
+      mask: true,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
     var that = this
     var data = {
       date: getCurrentDate(),
       groupId: getApp().globalData.currentGroup.groupId
     }
+    that.setData({
+      groupInfo: getApp().globalData.currentGroup
+    })
     workshop.getGroupWorkshop(data, function (res) {
       that.setData({
         workshopList: res
       })
+      wx.hideLoading()
     })
-    that.setData({
-      groupInfo: getApp().globalData.currentGroup
-    })
+
   },
 
   /**

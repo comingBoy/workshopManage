@@ -7,17 +7,18 @@
         <view class="picker">{{staffList[staffIndex].name}}</view>
       </picker>
   </view> 
-  <view class='MesBox0'>
-    <view class='MesBox0' wx:for="{{checkpointInfo}}" id='{{index}}' bindtap='changeCheckpoint'>{{item.name}}</view>
-  </view>
+  <text style='font-size:30rpx;margin:10rpx;font-weight:600;'>检查点列表</text>
+    <view class='MesBox0' wx:for="{{checkpointInfo}}" id='{{index}}' bindtap='changeCheckpoint'>
+      {{item.name}}
+    </view>
 </view>
 
 <view wx:if='{{changeFlag0 == false}}' class='changeInfo'>
   <text class='changeTitle'>{{changeWhat[index0]}}</text>
   <view class='changeCtx'>
     <input class='changeInput' bindinput="input0" value='{{changeCtx}}' placeholder='{{workshopInfo.workshopName}}'></input>
-    <button bindtap='changeSave0'>修改</button>
-    <button bindtap='delWorkshop'>删除</button>
+    <button bindtap='changeSave0' class='changeSave'>修改</button>
+    <button bindtap='delWorkshop' class='delWorkshop'>删除</button>
   </view>
 </view>
 
@@ -26,18 +27,18 @@
   <input class='changeInput' bindinput="input" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].name}}'></input>
   <text class='changeTitle'>更改每月检查次数</text>
   <input class='changeInput' bindinput="input1" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].times}}'></input>
-  <button bindtap='changeSave'>修改</button>
-  <button bindtap='delCheckpoint'>删除</button>
+  <button bindtap='changeSave' class='changeSave'>修改</button>
+  <button bindtap='delCheckpoint' class='delCheckpoint'>删除</button>
 </view>
 
 <view hidden='{{newFlag0}}' class='changeInfo'>
   <text class='changeTitle'>新建检查点</text>
   <view class='changeCtx'>
-    <input class='changeInput' bindinput="input" value='{{changeCtx}}'></input>
-    <button  bindtap='newCheckpoint0'>确认</button>
+    <input class='changeInput' bindinput="input" value='{{changeCtx}}' placeholder='请输入检查点名称'></input>
+    <button  bindtap='newCheckpoint0' style='background-color: white;'>确认</button>
   </view>
 </view>
 
 
-<button hidden='{{newFlag}}' bindtap='newCheckpoint'>新建检查点</button>
-<button bindtap='goBack'>返回</button>
+<button hidden='{{newFlag}}' bindtap='newCheckpoint' class='newCheckpoint'>新建检查点</button>
+<button bindtap='goBack' class='return'>返回</button>

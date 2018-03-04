@@ -1,6 +1,7 @@
 /* pages/group/group.wxss */
 .groupBanner{
   margin:17rpx;
+  font-size: 35rpx;
 }
 .workshopList{
   width: 100%;

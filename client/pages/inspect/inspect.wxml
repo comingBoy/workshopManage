@@ -16,6 +16,9 @@
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
         <text class='textBox'>待修复个数：{{item.error}}</text> 
       </view>
+      <view class='workshop' wx:if='{{myWorkshop.length == 0}}'>
+        <text>暂无检查点</text>
+      </view>
     </view>
   </view>
 </view>
