@@ -81,6 +81,7 @@
   background-color:white;
   border-radius:23rpx;
   margin-top: 25rpx;
+  margin-bottom: 25rpx;
   height: 70rpx;
 }
 

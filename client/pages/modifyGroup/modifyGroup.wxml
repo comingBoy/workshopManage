@@ -23,5 +23,5 @@
   </view>
 </view>
 
-<button bindtap='delGroup' >删除部门</button>
-<button bindtap='finishBuild' >确认修改</button> 
+<button bindtap='delGroup' class='button'>删除部门</button>
+<button bindtap='finishBuild' class='button'>确认修改</button> 

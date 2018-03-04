@@ -4,9 +4,8 @@
   flex-direction:column;
   align-items:center;
   box-sizing:border-box;
-  margin-bottom:100rpx;
-  margin-top:50rpx;
   background-color:#fff;
+  margin-bottom: 10rpx;
 }
 
 .MesBox{
@@ -14,8 +13,9 @@
   flex-direction:row;
   justify-content: center;
   align-items:center;
-  border-bottom:solid 0.5rpx #ddd;
-  font-size: 45rpx;
+  font-size:35rpx;
+  margin:10rpx 0;
+  font-weight:600;
 }
 
 .MesBox0{
@@ -23,13 +23,43 @@
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  width:100%;
   border-bottom:solid 0.5rpx #ddd;
-  font-size:40rpx;
-  margin-top:15rpx;
+  font-size:30rpx;
+  margin-top:10rpx;
+  margin-bottom:10rpx;
 }
 
 .changeInput{
   border-bottom: solid #ddd 2rpx;
   height:60rpx;
+}
+
+.newCheckpoint{
+  background-color:white;
+  margin:10rpx auto;
+}
+
+.return{
+  background-color:white;
+  margin:10rpx auto;
+}
+
+.changeInfo{
+  background-color: white;
+}
+
+.changeSave{
+  background-color: white;
+}
+
+.changeTitle{
+  font-size: 35rpx;
+}
+
+.delWorkshop{
+  background-color: white;
+}
+
+.delCheckpoint{
+  background-color: white;
 }

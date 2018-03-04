@@ -72,7 +72,18 @@ Page({
           notReadMessage: notReadMessage
         })
       } else if (res.status == 0) {
-        util.showModel("提示", "暂无留言！")
+        wx:wx.showModal({
+          title: '提示',
+          content: '暂无留言',
+          showCancel: false,
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta: 1,
+              })
+            }
+          },
+        })
       } else if (res.status == -1) {
         util.showModel("提示", "获取失败，请重试！")
       } else {

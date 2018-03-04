@@ -3,7 +3,6 @@ var mysqlHelper = require("./mysqlHelper.js")
 module.exports = {
     //加入部门
   async joinGroup(args) {
-    console.log(args)
     let sql = 'INSERT INTO memberdb(groupId,openId,label) VALUE(?,?,?)'
     let params = [args.groupId, args.openId, args.label]
     let result = await mysqlHelper.query(sql, params)

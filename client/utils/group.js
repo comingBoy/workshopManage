@@ -52,14 +52,14 @@ module.exports = {
           }
         }
         net.request(data, configure, function (res) {
-          console.log(res)
           if (res.data.result.status == 1) {
+            var group = res.data.result.res
             wx.showModal({
               title: '提示',
               content: '创建成功',
               showCancel: false,
               success: function (res) {
-                getApp().globalData.currentGroup = res.res
+                getApp().globalData.currentGroup = group
                 if (res.confirm) {
                   wx.reLaunch({
                     url: '../group/group',

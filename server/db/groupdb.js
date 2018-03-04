@@ -12,7 +12,7 @@ module.exports = {
   },
   
   async newGroup(args) {
-    let sql = 'INSERT INTO groupdb(groupName,groupCode,groupCover) VALUE(?,?,?,?)'
+    let sql = 'INSERT INTO groupdb(groupName,groupCode,groupCover) VALUE(?,?,?)'
     let params = [args.groupName, args.groupCode, args.groupCover]
     let result = await mysqlHelper.query(sql, params)
     return result
@@ -40,5 +40,11 @@ module.exports = {
     return result
   },
 
+  async getLastGroup(args) {
+    let sql = 'SELECT * FROM groupdb where groupId in(select max(groupId) from groupdb)'
+    let params = []
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 
 }

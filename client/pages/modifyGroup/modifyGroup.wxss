@@ -30,12 +30,13 @@
 }
 
 .text{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 30rpx;
-  height: 60rpx;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  font-size:30rpx;
+  height:60rpx;
+  white-space:nowrap;
+  margin-right:10rpx;
 }
 
 .inputid{
@@ -70,4 +71,8 @@
   color: #fff;
   margin-bottom: 25rpx;
   font-size: 40rpx;
+}
+
+.button{
+  background-color: white;
 }

@@ -70,11 +70,11 @@
       {{errorList[inspectInfo.error]}}
       </view>
     </view>
-    <view class='checkBox'> 隐患图片</view>
-    <view wx:if='{{inspectInfo.photo == ""}}'>无隐患图片</view>
+    <view class='checkBox'> 图片</view>
+    <view wx:if='{{inspectInfo.photo == ""}}'>无图片</view>
     <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
-    <view class='checkBox'> 故障描述</view>
-      <view wx:if='{{inspectInfo.description == ""}}'>无故障描述</view>
+    <view class='checkBox'> 描述</view>
+      <view wx:if='{{inspectInfo.description == ""}}'>无描述</view>
     <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
   </view>
 
@@ -90,11 +90,11 @@
       {{errorList[inspectInfo.error]}}
       </view>
     </view>
-    <view class='checkBox'> 隐患图片</view>
-    <view wx:if='{{inspectInfo.photo == ""}}'>无隐患图片</view>
+    <view class='checkBox'> 图片</view>
+    <view wx:if='{{inspectInfo.photo == ""}}'>无图片</view>
     <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
-    <view class='checkBox'> 故障描述</view>
-      <view wx:if='{{inspectInfo.description == ""}}'>无故障描述</view>
+    <view class='checkBox'> 描述</view>
+      <view wx:if='{{inspectInfo.description == ""}}'>无描述</view>
     <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
 
     <view class='checkBox'> 修复图片</view>

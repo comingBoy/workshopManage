@@ -1,7 +1,9 @@
 <!--pages/messageDetail/messageDetail.wxml-->
 <view class='messageBox'>
   <view class='message' wx:for='{{showMessage.message}}'>
-    <view class='time'>{{item.date}}</view>
+    <view class='time'>
+      <text style='background-color: #ccc;padding:3rpx;border-radius:6rpx;'>{{item.date}}</text>
+    </view>
     <view class='context'>
       <view class='avatar'>
         <image src='{{showMessage.superiorInfo.avatar}}' mode='aspectFit' class='imgSize'></image>

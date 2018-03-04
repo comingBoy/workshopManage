@@ -33,22 +33,32 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#333333",
     "list": [
       {
         "pagePath": "pages/group/group",
-        "text": "车间"
+        "text": "车间",
+        "iconPath": "./images/工作车间未被选中.png",
+        "selectedIconPath": "./images/工作车间被选中.png"
       },
       {
         "pagePath": "pages/staffList/staffList",
-        "text": "成员"
+        "text": "成员",
+        "iconPath": "./images/成员未被选中.png",
+        "selectedIconPath": "./images/成员被选中.png"
       },
       {
         "pagePath": "pages/inspect/inspect",
-        "text": "检查"
+        "text": "检查",
+        "iconPath": "./images/检查未被选中.png",
+        "selectedIconPath": "./images/检查被选中.png"
       },
       {
         "pagePath": "pages/myInfo/myInfo",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "./images/我的未被选中.png",
+        "selectedIconPath": "./images/我的被选中.png"
       }
     ]
   }

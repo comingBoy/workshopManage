@@ -1,0 +1,10 @@
+1.部门界面
+
+车间、成员、检查、我的四个界面 页面说明 
+
+页面背景: backgroudcolor: #f5f5f5
+页面中所有块级元素背景为白色 backgroudcolor: white
+
+页面顶部说明块 
+高度height: 100rpx
+字体大小 font-size: 35rpx

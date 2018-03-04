@@ -7,18 +7,24 @@
         <view class='returnBox'>
           <image src="../../images/return.png" class='returnImage' bindtap='chooseCover' bindtap='back'></image>
         </view>
-        <view class='groupBanner'>       
+        <view wx:if='{{isAdmin}}' class='groupBanner' bindtap='modifyGroup'>       
           <text >{{groupInfo.groupName}}</text>
-          <image wx:if='{{isAdmin}}' class='modify0' src='../../images/modify.png' mode='aspectFill'  bindtap='modifyGroup'></image>
+          <image class='modify0' src='../../images/modify.png' mode='aspectFit'></image>
+        </view>
+        <view wx:else class='groupBanner'>
+          <text >{{groupInfo.groupName}}</text>
         </view>
       </view>
 
     <!--车间列表-->
     <view class='workshopList'>
       <view class='workshop' wx:for='{{workshopList}}' id='{{index}}' bindtap='toWorkshop'>
-        <view class='workshopName'>
+        <view wx:if='{{isAdmin}}' class='workshopName' catchtap='modifyWorkshop' id='{{index}}'>
           <text >{{item.workshopName}}</text>
-          <image wx:if='{{isAdmin}}' class='modify' src='../../images/modify.png' mode='aspectFill' catchtap='modifyWorkshop' id='{{index}}'></image>
+          <image class='modify' src='../../images/modify.png' mode='aspectFill'></image>
+        </view>
+        <view wx:else class='workshopName'>
+          <text >{{item.workshopName}}</text>
         </view>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
@@ -26,11 +32,11 @@
         <text class='textBox'>{{statusList[item.error > 0 ? 1 : 0]}}</text>
       </view>
       <!--新建车间-->
-      <view wx:if='{{isAdmin}}' lass='workshop' bindtap='toNewWorkshop'>
+      <view wx:if='{{isAdmin}}' class='workshop' bindtap='toNewWorkshop'>
         <image src='../../images/add.png' class='add' mode='aspectFill'></image>
         <text class='textBox0'>创建车间</text>
       </view>
     </view>
   </view>
-  <button wx:if='{{isAdmin}}' bindtap='delGroup'>删除部门</button>
+  <button wx:if='{{isAdmin}}' bindtap='delGroup' class='delGroup'>删除部门</button>
 </view>
