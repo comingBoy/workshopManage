@@ -75,6 +75,7 @@
   font-size: 35rpx;
   width: 90%;
   border-bottom: solid 2rpx #ddd;
+  padding-bottom: 15rpx;
 }
 
 .text{

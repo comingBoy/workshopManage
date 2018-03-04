@@ -31,6 +31,9 @@ Page({
         util.showModel("提示", "请求出错！")
       }
     })
+    wx.setNavigationBarTitle({
+      title: this.data.showMessage.superiorInfo.name,
+    })
   },
 
   /**
