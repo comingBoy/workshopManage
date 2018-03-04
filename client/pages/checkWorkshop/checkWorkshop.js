@@ -165,7 +165,8 @@ Page({
 
   inspectSubmit: function (e) {
     var that = this
-    var photo, description
+    var photo = that.data.photo
+    var description = that.data.description
     if (that.data.photo == "../../images/camera.png") photo = "null"
     if (that.data.description == "" || that.data.description == null) description = "null"
     var data = {
