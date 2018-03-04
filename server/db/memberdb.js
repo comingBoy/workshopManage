@@ -49,4 +49,11 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async getMyGroup(args) {
+    let sql = 'SELECT * FROM memberdb where openId = ?'
+    let params = [args.openId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
 }

@@ -34,6 +34,8 @@ router.post('/message', controllers.message.post)
 
 router.get('/getAllGroup', controllers.group.getAllGroup)
 
+router.post('/getMyGroup', controllers.group.getMyGroup)
+
 router.post('/newGroup', controllers.group.newGroup)
 
 router.post('/verify', controllers.staff.verify)

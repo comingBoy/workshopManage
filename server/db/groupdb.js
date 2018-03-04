@@ -10,6 +10,13 @@ module.exports = {
     let result = await mysqlHelper.query(sql, params)
     return result
   },
+
+  async getGroupInfo(args) {
+    let sql = 'SELECT * FROM groupdb where groupId = ?'
+    let params = [args.groupId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
   
   async newGroup(args) {
     let sql = 'INSERT INTO groupdb(groupName,groupCode,groupCover) VALUE(?,?,?)'

@@ -66,3 +66,25 @@
   padding-bottom:35rpx;
   font-size: 35rpx; 
 }
+
+.text0{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  width: 90%;
+  border-bottom: solid 2rpx #ddd;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  margin-top:20rpx;
+  width:90%;
+  background-color:white;
+  padding:15rpx;
+}
