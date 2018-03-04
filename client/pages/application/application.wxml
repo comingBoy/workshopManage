@@ -4,7 +4,7 @@
 <view>{{groupName}}</view>
 <!--头像-->
 <view class='headBox'>
-<image background-size="cover" class="imageSize"src="../../images/cimu.jpg" bindtap='changeHead'></image>
+<image background-size="cover" class="imageSize" src='{{avatar}}'></image>
 </view>
 <!--姓名-->
 <view class='putinBox'>

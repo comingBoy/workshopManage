@@ -40,46 +40,42 @@ module.exports = {
     })
   },
   //新建部门
-  newGroup: function(data, urls, callback) {
+  newGroup: function(data) {
     if (data.groupName) {
-      if (data.adminId) {
-        if (data.groupCode){
-          var data = data
-          var configure = {
-            url: config.service.newGroupUrl,
-            method: 'POST',
-            header: {
-              'content-type': 'application/json'
-            }
+      if (data.groupCode){
+        var data = data
+        var configure = {
+          url: config.service.newGroupUrl,
+          method: 'POST',
+          header: {
+            'content-type': 'application/json'
           }
-          net.request(data, configure, function (res) {
-            if (res.data.result.status == 1) {
-              wx.showModal({
-                title: '提示',
-                content: '创建成功',
-                showCancel: false,
-                success: function (res) {
-                  if (res.confirm) {
-                    wx.reLaunch({
-                      url: urls,
-                    })
-                  }
+        }
+        net.request(data, configure, function (res) {
+          console.log(res)
+          if (res.data.result.status == 1) {
+            wx.showModal({
+              title: '提示',
+              content: '创建成功',
+              showCancel: false,
+              success: function (res) {
+                getApp().globalData.currentGroup = res.res
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '../group/group',
+                  })
                 }
-              })
-            } else if (res.data.result.status == -1) {
-              util.showModel('提示', '创建失败，请重试！')
-            } else {
-              util.showModel('提示', '请求出错！')
-            }
-            callback(res.data.result)
-          })
-        }
-        else {
-          util.showModel('提示', '部门码不能为空！')
-        }
+              }
+            })
+          } else if (res.data.result.status == -1) {
+            util.showModel('提示', '创建失败，请重试！')
+          } else {
+            util.showModel('提示', '请求出错！')
+          }
+        })
       }
       else {
-        util.showModel('提示', '未知用户！')
+        util.showModel('提示', '部门码不能为空！')
       }
     }
     else {
@@ -98,7 +94,6 @@ module.exports = {
     }
     if (data.groupCode) {
       net.request(data, configure, function (res) {
-        console.log(res)
         if (res.data.result.status == 1) {
           wx.showModal({
             title: '提示',
@@ -226,6 +221,6 @@ module.exports = {
     net.request(data, configure, function (res) {
       callback(res.data.result)
     })
-  },        
+  }, 
 
 }

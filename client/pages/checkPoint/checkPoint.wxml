@@ -24,6 +24,7 @@
         </view>
         <text class='textBox'>状态：{{statusList[item.error]}}</text> 
         <text class='textBox'>本月任务：{{item.inspectTimes}}/{{item.totalTimes}}</text> 
+        <text class='textBox'>{{((item.inspectTimes >= item.totalTimes) && (item.error != 1)) ? "已完成" : "未完成"}}</text>
       </view>
       <!--新建车间-->
       <view class='workshop' bindtap='toNewCheckpoint'>

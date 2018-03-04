@@ -3,12 +3,14 @@ var group = require("../../utils/group.js")
 var ApplicationMes = null
 var urls = null
 var groupIndex = null
+var net = require('../../utils/net.js')
 Page({
 
   /**
   * 页面的初始数据
   */
   data: {
+    avatar: '',
     name: null,
     Tel: null,
     finishFlag: false,
@@ -21,6 +23,7 @@ Page({
     this.setData({
       name: getApp().globalData.myInfo.name,
       Tel: getApp().globalData.myInfo.telNum,
+      avatar: getApp().globalData.myInfo.avatar
     })
 
     //初始化申请参数
@@ -29,6 +32,7 @@ Page({
       groupId: getApp().globalData.groupList[groupIndex].groupId,
       openId: getApp().globalData.myInfo.openId,
       groupCode: null,
+      label: 1
     }
   },
 

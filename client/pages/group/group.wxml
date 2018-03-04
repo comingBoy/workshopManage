@@ -22,7 +22,8 @@
         </view>
         <text class='groupAdmin'>负责人:{{item.name}}</text>
         <text class='textBox'>检查点个数：{{item.totalCheckpoints}}</text>
-        <text class='textBox'>待修复个数：{{item.error}}</text> 
+        <text class='textBox'>待修复个数：{{item.error}}</text>
+        <text class='textBox'>{{statusList[item.error > 0 ? 1 : 0]}}</text>
       </view>
       <!--新建车间-->
       <view class='workshop' bindtap='toNewWorkshop'>

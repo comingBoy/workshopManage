@@ -23,8 +23,6 @@ Page({
       workshopName: null,
       openId: null,
       checkpointNum: null,
-      times: null,
-      openId: null,
       groupId: null,
     } 
     var that = this
@@ -32,16 +30,25 @@ Page({
       groupId: getApp().globalData.currentGroup.groupId
     }
     group.getStaff(data, function (res) {
+      if (res.status == 1) {
+        var staffList = new Array()
+        staffList.push.apply(staffList, res.admin)
+        staffList.push.apply(staffList, res.superior)
+        staffList.push.apply(staffList, res.staff)
+        staffList.unshift({
+          name: "暂无",
+          openId: '-1'
+        })
 
-      var staffList = res
-      staffList.unshift({
-        name: "暂无",
-        openId: '-1'
-      }) 
-
-      that.setData({
-        staffList: res,
-      })
+        that.setData({
+          staffList: staffList,
+        })
+      } else if (res.status == -1) {
+        util.showModel("提示","获取失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+      
     })
     workshopInfo.groupId = getApp().globalData.currentGroup.groupId
   },
@@ -102,7 +109,7 @@ Page({
   },
   getCheckpointNum: function (e) {
     workshopInfo.checkpointNum = e.detail.value
-    if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
+    if (workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
       this.setData({
         flag: true
       })
@@ -112,17 +119,7 @@ Page({
   },
   getWorkshopName: function (e) {
     workshopInfo.workshopName = e.detail.value
-    if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
-      this.setData({
-        flag: true
-      })
-    } else {
-      this.setData({ flag: false })
-    }
-  },
-  getTimes: function (e) {
-    workshopInfo.times = e.detail.value
-    if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
+    if (workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
       this.setData({
         flag: true
       })
@@ -132,7 +129,7 @@ Page({
   },
 
   newWorkshop: function (e) {
-    if (workshopInfo.times != null && workshopInfo.times != "" && workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
+    if (workshopInfo.checkpointNum != null && workshopInfo.checkpointNum != "" && workshopInfo.workshopName != null && workshopInfo.workshopName != "") {
       if(workshopInfo.openId == null) workshopInfo.openId = '-1'
       workshop.newWorkshop(workshopInfo,urls)
     } else {

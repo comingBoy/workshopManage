@@ -12,25 +12,12 @@ module.exports = {
   },
   
   async newGroup(args) {
-    let sql = 'INSERT INTO groupdb(groupName,adminId,groupCode,groupCover) VALUE(?,?,?,?)'
-    let params = [args.groupName, args.adminId, args.groupCode, args.groupCover]
+    let sql = 'INSERT INTO groupdb(groupName,groupCode,groupCover) VALUE(?,?,?,?)'
+    let params = [args.groupName, args.groupCode, args.groupCover]
     let result = await mysqlHelper.query(sql, params)
     return result
   },
-  //获取管理员
-  async getAdmin(args) {
-    let sql = 'SELECT adminId FROM groupdb where groupId = ?'
-    let params = [args.groupId]
-    let result = await mysqlHelper.query(sql, params)
-    return result
-  },
-  //查看我管理的部门
-  async getAdminGroup(args) {
-    let sql = 'SELECT groupId FROM groupdb where adminId = ?'
-    let params = [args.adminId]
-    let result = await mysqlHelper.query(sql, params)
-    return result
-  },
+
   //获取部门码
   async getGroupCode(args) {
     let sql = 'SELECT groupCode FROM groupdb where groupId = ?'

@@ -9,18 +9,26 @@ module.exports = {
     if(typeof(res)=='object' && res.length > 0){
       for (var i = 0; i < res.length; i++) {
         var data = {
-          openId : res[i].adminId
+          groupId : res[i].groupId
         }
-        var res0 = await staffdb.getStaffByOpenId(data)
-        res[i].adminName = res0[0].name
+        var res0 = await memberdb.getAdmin(data)
+        if (typeof (res0) == 'object') {
+          res[i].adminName = new Array()
+          for (var j = 0; j < res0.length; j++) {
+            var res1 = await staffdb.getStaffByOpenId(res0[j])
+            if (typeof (res1) == 'object') {
+              status = 1
+              res[i].adminName.push(res1[0].name)
+            } else {
+              status = -1
+              break
+            }
+          }
+        } else {
+          statu = -1
+          break
+        }
       }
-    }
-    var status
-    let t = typeof (res)
-    if (t == 'object') {
-      res.length > 0 ? status = 1 : status = 0
-    } else {
-      status = -1
     }
     let result0 = {
       res: res,
@@ -47,7 +55,7 @@ module.exports = {
     let t = typeof (res)
     t = 'object' ? status = 1 : status = -1
     let result0 = {
-      res: res,
+      res: res0[len - 1],
       status: status
     }
     ctx.body = {
@@ -57,16 +65,11 @@ module.exports = {
 
   joinGroup: async ctx => {
     let req = ctx.request.body
-    //初始化等级为1 员工
-    req.label = 1
-    console.log(req)
     var result0
     var status
     let res = await groupdb.getGroupCode(req)
     if (res[0].groupCode == req.groupCode) {
-      console.log(req)
       let res0 = await memberdb.joinGroup(req)
-      console.log(res0)
       let t = typeof (res0)
       t = 'object' ? status = 1 : status = -1
       result0 = {
@@ -128,17 +131,21 @@ module.exports = {
     let res = await memberdb.getStaff(req)
     var staff = []
     var admin = []
+    var adminList = []
     var superior = []
+    var superiorList = []
     var status = 1, tmp
     for (let i = 0; i < res.length; i++) {
       tmp = await staffdb.getStaffByOpenId(res[i])
       if (typeof(tmp) == 'object') {
         if (res[i].label == 0) {
           admin.push(tmp[0])
+          adminList.push(tmp[0].openId)
         } else if (res[i].label == 1) {
           staff.push(tmp[0])
         } else {
           superior.push(tmp[0])
+          superiorList.push(tmp[0].openId)
         }
       } else {
         status = -1
@@ -148,7 +155,9 @@ module.exports = {
     let result0 = {
       staff: staff,
       admin: admin,
+      adminList: adminList,
       superior: superior,
+      superiorList: superiorList,
       status: status
     }
     ctx.body = {
@@ -197,7 +206,7 @@ module.exports = {
     }
   },
 
-    setLevel: async ctx => {
+  setLevel: async ctx => {
     let req = ctx.request.body
     let res = await memberdb.setLevel(req)
     let t = typeof (res)
@@ -209,5 +218,5 @@ module.exports = {
     ctx.body = {
       result: result0
     }
-  }
+  },
 }

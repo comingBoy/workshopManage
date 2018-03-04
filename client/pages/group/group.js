@@ -18,7 +18,9 @@ Page({
    */
   data: {
     workshopList: null,
-    groupInfo: null
+    groupInfo: null,
+    isAdmin: false,
+    statusList: ["正常","存在故障"]
   },
 
   modifyWorkshop: function(e) {
@@ -30,16 +32,40 @@ Page({
   },
 
   modifyGroup: function() {
+    wx.navigateTo({
+      url: '../modifyGroup/modifyGroup',
+    })  
+  },
 
+  delGroup: function () {
     var that = this
-    var openId = getApp().globalData.myInfo.openId
-    if (openId == that.data.groupInfo.adminId) {
-      wx.navigateTo({
-        url: '../modifyGroup/modifyGroup',
-      })
-    } else {
-      util.showModel("提示","没有管理员权限！")
+    var data = {
+      groupId: getApp().globalData.currentGroup.groupId
     }
+    wx.showModal({
+      title: '提示',
+      content: '确定删除？',
+      success: function (res) {
+        if (res.confirm) {
+          group.delGroup(data, function (res) {
+            if (res.status == 1) {
+              wx.showModal({
+                title: '提示',
+                content: '删除成功！',
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.redirectTo({
+                      url: '../index0index0',
+                    })
+                  }
+                }
+              })
+            }
+          })
+        }
+      }
+    })   
   },
   /**
    * 生命周期函数--监听页面加载

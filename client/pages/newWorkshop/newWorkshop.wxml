@@ -10,10 +10,6 @@
       <text class='label'>检查点个数:</text>
       <input class="inputBox" placeholder='输入检查点个数' type='number' maxlength='2' bindinput='getCheckpointNum' confirm-type='next'></input>
     </view> 
-    <view class='newWorkshopInfo'>
-      <text class='label'>每月检查次数:</text>
-      <input class="inputBox" placeholder='输入检查次数' type='number' maxlength='2' bindinput='getTimes' confirm-type='next'></input>
-    </view> 
 
     <view class='newWorkshopInfo'>
       <text class='label'>负责人:</text>

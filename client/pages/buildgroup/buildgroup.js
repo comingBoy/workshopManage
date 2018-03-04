@@ -79,11 +79,9 @@ Page({
     }
   },
   finishBuild: function(){
-    if (groupMes.groupName != null && groupMes.groupCode != null && groupMes.groupCover != null && groupMes.groupName != "" && groupMes.groupCode != "" && groupMes.groupCode.length == 6 && password == key){
-      group.newGroup(groupMes,"../index0/index0",function(res){
-      })
-    }
-    else{
+    if (password == key){
+      group.newGroup(groupMes)
+    } else{
       util.showModel("创建失败","密码错误")
     }
   },
@@ -95,10 +93,8 @@ Page({
     groupMes = {
       groupName: null,
       groupCode: null,
-      adminId: null,
       groupCover: null,
     }
-    groupMes.adminId = getApp().globalData.myInfo.openId
   },
 
   /**

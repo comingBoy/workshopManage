@@ -24,7 +24,7 @@
 
 <view wx:if='{{changeFlag == false}}' class='changeInfo'>
   <text class='changeTitle'>{{changeWhat[index0]}}</text>
-  <input class='changeInput' bindinput="input" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].name}}'></input>
+  <input class='changeInput' bindinput="input" placeholder='{{checkpointInfo[index].name}}'></input>
   <text class='changeTitle'>更改每月检查次数</text>
   <input class='changeInput' bindinput="input1" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].times}}'></input>
   <button bindtap='changeSave' class='changeSave'>修改</button>
