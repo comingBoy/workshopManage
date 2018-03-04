@@ -53,5 +53,5 @@
   </view>
 </view>
 <modal hidden="{{hideMessage}}" title="留言" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
-    <input type='text'placeholder="请输入内容" bindinput='getMessage' auto-focus/>  
+    <input type='text'placeholder="请输入内容" value='{{message.message}}' bindinput='getMessage' auto-focus/>  
 </modal> 

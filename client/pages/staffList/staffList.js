@@ -174,32 +174,36 @@ Page({
 
   confirm: function () {
     var that = this
-    this.setData({
-      hideMessage: true
-    })
+    
     var data = that.data.message
-    data.date = util.sGetDate()
-    staff.leaveMessage(data, function (res) {
-      if (res.status == 1) {
-        util.showModel("提示","留言成功!")
-      } else if (res.status == -1) {
-        util.showModel("提示", "留言失败，请重试!")
-      } else {
-        util.showModel("提示", "请求出错!")
-      }
-      var message = {
-        date: '',
-        groupId: getApp().globalData.currentGroup.groupId,
-        superiorId: getApp().globalData.myInfo.openId,
-        staffId: '',
-        message: '',
-        ifRead: 0
-      }
+    if (data.message == null || data.message == '') {
+      util.showModel("提示","留言不为空！")
+    } else {
       that.setData({
-        message: message
+        hideMessage: true
       })
-    })
-
+      data.date = util.sGetDate()
+      staff.leaveMessage(data, function (res) {
+        if (res.status == 1) {
+          util.showModel("提示", "留言成功!")
+        } else if (res.status == -1) {
+          util.showModel("提示", "留言失败，请重试!")
+        } else {
+          util.showModel("提示", "请求出错!")
+        }
+        var message = {
+          date: '',
+          groupId: getApp().globalData.currentGroup.groupId,
+          superiorId: getApp().globalData.myInfo.openId,
+          staffId: '',
+          message: '',
+          ifRead: 0
+        }
+        that.setData({
+          message: message
+        })
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
