@@ -167,36 +167,40 @@ Page({
     var that = this
     var photo = that.data.photo
     var description = that.data.description
-    if (that.data.photo == "../../images/camera.png") photo = "null"
-    if (that.data.description == "" || that.data.description == null) description = "null"
-    var data = {
-      date: util.getDate(),
-      workshopId: getApp().globalData.workshopInfo.workshopId,
-      openId: getApp().globalData.userInfo.openId,
-      admin: 0,
-      checkpointId: that.data.checkpointInfo.checkpointId,
-      checkpointName: that.data.checkpointInfo.checkpointName,
-      error: that.data.errorIndex,
-      description: description,
-      photo: photo
-    }
-    inspect.inspect(data, function (res) {
-      if (res.status == 1) {
-        util.showModel("提示","提交成功")
-        that.setData({
-          errorIndex: 0,
-          description: '',
-          photo: "../../images/camera.png",
-          initText: "请输入文本",
-          initTextValue: "",
-        })
-        that.refresh()
-      } else if (res.status == -1) {
-        util.showModel("提示", "提交失败，请重试！")
-      } else {
-        util.showModel("提示", "请求出错！")
+    if (that.data.errorIndex == 0) {
+      if (that.data.photo == "../../images/camera.png") photo = "null"
+      if (that.data.description == "" || that.data.description == null) description = "null"
+      var data = {
+        date: util.getDate(),
+        workshopId: getApp().globalData.workshopInfo.workshopId,
+        openId: getApp().globalData.userInfo.openId,
+        admin: 0,
+        checkpointId: that.data.checkpointInfo.checkpointId,
+        checkpointName: that.data.checkpointInfo.checkpointName,
+        error: that.data.errorIndex,
+        description: description,
+        photo: photo
       }
-    })
+      inspect.inspect(data, function (res) {
+        if (res.status == 1) {
+          util.showModel("提示", "提交成功")
+          that.setData({
+            errorIndex: 0,
+            description: '',
+            photo: "../../images/camera.png",
+            initText: "请输入文本",
+            initTextValue: "",
+          })
+          that.refresh()
+        } else if (res.status == -1) {
+          util.showModel("提示", "提交失败，请重试！")
+        } else {
+          util.showModel("提示", "请求出错！")
+        }
+      })
+    } else {
+      util.showModel("提示","存在隐患时须提交完整检查报告！")
+    }
   },
   /**
    * 提交修复报告

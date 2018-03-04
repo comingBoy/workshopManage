@@ -84,9 +84,9 @@ Page({
     var currentGroup = getApp().globalData.currentGroup
     var data = {
       groupId: currentGroup.groupId,
-      groupName: '',
+      groupName: that.data.groupName,
       groupCover: that.data.groupCover,
-      groupCode: ''
+      groupCode: that.data.groupCode
     }
     var modify = true
     if ((that.data.groupName == '' || that.data.groupName == null) && (that.data.groupCode == '' || that.data.groupCode == null) && (that.data.groupCover == getApp().globalData.currentGroup.groupCover)) {
