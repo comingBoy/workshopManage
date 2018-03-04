@@ -36,7 +36,6 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
@@ -67,7 +66,6 @@ module.exports = {
           }
         }
         net.request(data, configure, function (res) {
-          console.log(res)
           if (res.data.result.status == 1) {
             var group = res.data.result.res
             wx.showModal({
