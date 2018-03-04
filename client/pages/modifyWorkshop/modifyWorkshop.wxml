@@ -35,6 +35,7 @@
   <text class='changeTitle'>新建检查点</text>
   <view class='changeCtx'>
     <input class='changeInput' bindinput="input" value='{{changeCtx}}' placeholder='请输入检查点名称'></input>
+    <input class='changeInput' bindinput='input1'  placeholder='请输入检查次数'></input>
     <button  bindtap='newCheckpoint0' style='background-color: white;'>确认</button>
   </view>
 </view>
