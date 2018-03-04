@@ -69,7 +69,7 @@ Page({
       } else if (res.status == -1) {
         util.showModel("提示","获取失败，请重试！")
       } else {
-        util.showModel("提示", "请求出错！")
+        util.showModel("提示", "请求出错")
       }
     })
     var workshopId = options.workshopId
