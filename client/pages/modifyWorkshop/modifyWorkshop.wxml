@@ -16,7 +16,7 @@
 <view wx:if='{{changeFlag0 == false}}' class='changeInfo'>
   <text class='changeTitle'>{{changeWhat[index0]}}</text>
   <view class='changeCtx'>
-    <input class='changeInput' bindinput="input0" value='{{changeCtx}}' placeholder='{{workshopInfo.workshopName}}'></input>
+    <input class='changeInput' bindinput="input0" value='' placeholder='{{workshopInfo.workshopName}}'></input>
     <button bindtap='changeSave0' class='changeSave'>修改</button>
     <button bindtap='delWorkshop' class='delWorkshop'>删除</button>
   </view>
@@ -26,7 +26,7 @@
   <text class='changeTitle'>{{changeWhat[index0]}}</text>
   <input class='changeInput' bindinput="input" placeholder='{{checkpointInfo[index].name}}'></input>
   <text class='changeTitle'>更改每月检查次数</text>
-  <input class='changeInput' bindinput="input1" value='{{changeCtx}}' placeholder='{{checkpointInfo[index].times}}'></input>
+  <input class='changeInput' bindinput="input1" value='' placeholder='{{checkpointInfo[index].times}}'></input>
   <button bindtap='changeSave' class='changeSave'>修改</button>
   <button bindtap='delCheckpoint' class='delCheckpoint'>删除</button>
 </view>
@@ -34,7 +34,7 @@
 <view hidden='{{newFlag0}}' class='changeInfo'>
   <text class='changeTitle'>新建检查点</text>
   <view class='changeCtx'>
-    <input class='changeInput' bindinput="input" value='{{changeCtx}}' placeholder='请输入检查点名称'></input>
+    <input class='changeInput' bindinput="input" value='' placeholder='请输入检查点名称'></input>
     <input class='changeInput' bindinput='input1'  placeholder='请输入检查次数'></input>
     <button  bindtap='newCheckpoint0' style='background-color: white;'>确认</button>
   </view>

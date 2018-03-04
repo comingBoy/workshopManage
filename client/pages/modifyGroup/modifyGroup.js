@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    groupInfo: '',
     groupName: '',
     groupCover: '',
     groupCode: '',
@@ -18,9 +19,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      groupName: getApp().globalData.currentGroup.groupName,
-      groupCover: getApp().globalData.currentGroup.groupCover,
-      groupCode: getApp().globalData.currentGroup.groupCode,
+      groupInfo: getApp().globalData.currentGroup,
+      groupCover: getApp().globalData.currentGroup.groupCover
     })
   },
 
@@ -32,11 +32,10 @@ Page({
       success: function (res) {
         if (res.confirm) {
           var data = {
-            groupId: getApp().globalData.currentGroup.groupId
+            groupId: that.data.groupInfo.groupId
           }
           group.delGroup(data, function (res) {
             if (res.status == 1) {
-              getApp().globalData.currentGroup
               wx.showModal({
                 title: '提示',
                 content: '删除成功！',
@@ -85,42 +84,45 @@ Page({
     var currentGroup = getApp().globalData.currentGroup
     var data = {
       groupId: currentGroup.groupId,
-      groupName: currentGroup.groupName,
+      groupName: '',
       groupCover: that.data.groupCover,
-      groupCode: currentGroup.groupCode
+      groupCode: ''
     }
-    if (that.data.groupName != '' && that.data.groupName != null) {
-      data.groupName = that.data.groupName
-    }
-    if (that.data.groupCode != '' && that.data.groupCode != null && that.data.groupCode.length == 6) {
-      data.groupCode = that.data.groupCode
+    var modify = true
+    if ((that.data.groupName == '' || that.data.groupName == null) && (that.data.groupCode == '' || that.data.groupCode == null) && (that.data.groupCover == getApp().globalData.currentGroup.groupCover)) {
+      util.showModel("提示","请对至少一项进行修改！")
+      modify = false
     } else if (that.data.groupCode != '' && that.data.groupCode != null && that.data.groupCode.length != 6) {
-      util.showModel("提示","部门码为6位！")
-    } else {
-      data.groupCode = currentGroup.groupCode
+      util.showModel("提示", "部门码为6位！")
+      modify = false
     }
-    group.modifyGroup(data, function(res) {
-      if (res.status == 1) {
-        getApp().globalData.currentGroup.groupName = data.groupName
-        getApp().globalData.currentGroup.groupCover = data.groupCover
-        getApp().globalData.currentGroup.groupCode = data.groupCode
-        wx.showModal({
-          title: '提示',
-          content: '修改成功！',
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateBack({
-                delta: 1,
-              })
+
+    if (modify) {
+      if (that.data.groupName == '' || that.data.groupName == null) data.groupName = that.data.groupInfo.groupName
+      if (that.data.groupCode == '' || that.data.groupCode == null) data.groupCode = that.data.groupInfo.groupCode
+      group.modifyGroup(data, function (res) {
+        if (res.status == 1) {
+          getApp().globalData.currentGroup.groupName = data.groupName
+          getApp().globalData.currentGroup.groupCover = data.groupCover
+          getApp().globalData.currentGroup.groupCode = data.groupCode
+          wx.showModal({
+            title: '提示',
+            content: '修改成功！',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack({
+                  delta: 1,
+                })
+              }
             }
-          }
-        })
-      } else if (res.status == -1) {
-        util.showModel("提示","修改失败，请重试！")
-      } else {
-        util.showModel("提示","请求出错！")
-      }
-    })
+          })
+        } else if (res.status == -1) {
+          util.showModel("提示", "修改失败，请重试！")
+        } else {
+          util.showModel("提示", "请求出错！")
+        }
+      })
+    }
   },
 
   /**

@@ -171,6 +171,8 @@ Page({
               util.showModel("提示", "创建成功！")
               that.setData({
                 checkpointInfo: res.res,
+                checkpointName: '',
+                times: '',
                 newFlag0: true,
                 newFlag: false
               })
@@ -304,6 +306,8 @@ Page({
       this.setData({
         changeFlag0: true,
         changeFlag: false,
+        newFlag0: true,
+        newFlag: false,
         index0: 1,
         checkpointId: checkpointId,
         index: e.currentTarget.id
@@ -351,7 +355,7 @@ Page({
     var times = that.data.times
     if ((checkpointName == '' || checkpointName == null) && (times == '' || times == null)) {
       modify = false
-      util.showModel("提示", "检查点名和检查次数不能为空！")
+      util.showModel("提示", "请对至少一项进行修改！")
     }
     if (checkpointName == that.data.checkpointInfo[that.data.index].name && times == that.data.checkpointInfo[that.data.index].times) {
       modify = false
