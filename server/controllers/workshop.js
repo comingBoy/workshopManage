@@ -326,7 +326,7 @@ module.exports = {
   delWorkshop: async ctx => {
     var req, res, res0, t, t0, status, result0
     req = ctx.request.body
-    res = await workshopdb.delWorkshopInfo(req)
+    res = await workshopdb.deleteWorkshop(req)
     res0 = await checkpointdb.delAllCheckpoint(req)
     t = typeof (res)
     t0 = typeof (res0)

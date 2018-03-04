@@ -9,7 +9,7 @@
       <view class='nameBox'>{{item.name}}</view>
       <view class='tellBox'>{{item.telNum}}</view>
     </view>
-    <view wx:if='{{isSuperior}}' class='DeleteBox' bindtap="leaveMessage" id='{{index}}'>留言</view>
+    <view wx:if='{{isSuperior || isAdmin}}' class='DeleteBox' bindtap="leaveMessage" id='{{index}}'>留言</view>
   </view>
 </view>
 <view style='display: flex; flex-direction: column;'>
@@ -24,6 +24,7 @@
     </view>
     <view wx:if='{{isAdmin}}' class='setLevel' bindtap='setStaff' id='{{index}}'>设为员工</view>
     <view wx:if='{{isAdmin}}' class='DeleteBox' bindtap="deleteSuperior" id='{{index}}'>删除</view>
+    <view wx:if='{{isSuperior || isAdmin}}' class='DeleteBox' bindtap="leaveMessage1" id='{{index}}'>留言</view>
   </view>
   <view wx:if='{{superiorList.length == 0}}'>
     <view class='null'>
@@ -43,7 +44,7 @@
     </view>
     <view wx:if='{{isAdmin}}' class='setLevel' bindtap='setSuperior' id='{{index}}'>设为上级</view>
     <view wx:if='{{isAdmin}}' class='DeleteBox' bindtap="deleteStaff" id='{{index}}'>删除</view>
-    <view wx:if='{{isSuperior}}' class='DeleteBox' bindtap="leaveMessage0" id='{{index}}'>留言</view>
+    <view wx:if='{{isSuperior || isAdmin}}' class='DeleteBox' bindtap="leaveMessage0" id='{{index}}'>留言</view>
   </view>
   <view wx:if='{{staffList.length == 0}}'>
     <view class='null'>

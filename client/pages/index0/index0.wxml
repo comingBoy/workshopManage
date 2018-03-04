@@ -10,7 +10,7 @@
     <!--新增部门-->
     
     <view class='groupInfo' bindtap="enterBiuldGroup">
-      <image  src='../../images/add.png' class='add' mode='aspectFill'></image>
+      <image  src='../../images/add.png' class='add' mode='aspectFit'></image>
       <text class='addInfo'>创建部门</text>
     </view>
   </view>

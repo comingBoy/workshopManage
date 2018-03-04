@@ -17,7 +17,7 @@
         <text class='textBox'>待修复个数：{{item.error}}</text> 
       </view>
       <view class='workshop' wx:if='{{myWorkshop.length == 0}}'>
-        <text>暂无检查点</text>
+        <text>暂无负责车间</text>
       </view>
     </view>
   </view>

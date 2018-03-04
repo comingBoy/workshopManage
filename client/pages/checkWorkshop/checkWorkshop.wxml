@@ -23,7 +23,7 @@
       </view>
       <view class='checkBox'> 上传图片</view>
       <image src="{{photo}}" class='cameraImage' mode='aspectFit' bindtap='choosePhoto'></image>
-      <view class='checkBox'> 故障描述</view>
+      <view class='checkBox'> 描述</view>
       <textarea class="textArea" placeholder="{{initText}}" value="{{initTextValue}}" bindinput='textInput' />
       <button class='finish' bindtap='inspectSubmit'>确认提交</button>
     </view>

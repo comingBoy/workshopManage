@@ -33,7 +33,6 @@ Page({
       if (res.status == 1) {
         var staffList = new Array()
         staffList.push.apply(staffList, res.admin)
-        staffList.push.apply(staffList, res.superior)
         staffList.push.apply(staffList, res.staff)
         staffList.unshift({
           name: "暂无",

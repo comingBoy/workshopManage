@@ -2,6 +2,11 @@
 var groupdb = require('../db/groupdb.js')
 var memberdb = require('../db/memberdb.js')
 var staffdb = require('../db/staffdb.js')
+
+function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
 module.exports = {
 
   getAllGroup: async ctx => { 
@@ -40,11 +45,15 @@ module.exports = {
   },
 
   newGroup: async ctx => {
+    while (!canNew) {
+      pending = parseInt(1000 * Math.random())
+      await sleep(pending)
+    }
+    canNew = 0
     let req = ctx.request.body
     let res = await groupdb.newGroup(req)
-    let res0 = await groupdb.getAdminGroup(req)
-    let len = res0.length
-    let groupId = res0[len - 1].groupId
+    let res0 = await groupdb.getLastGroup(req)
+    let groupId = res0[0].groupId
     let req0 = {
       openId: req.adminId,
       groupId: groupId,
@@ -55,9 +64,10 @@ module.exports = {
     let t = typeof (res)
     t = 'object' ? status = 1 : status = -1
     let result0 = {
-      res: res0[len - 1],
+      res: res0[0],
       status: status
     }
+    canNew = 1
     ctx.body = {
       result: result0
     }

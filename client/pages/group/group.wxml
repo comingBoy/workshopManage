@@ -7,9 +7,9 @@
         <view class='returnBox'>
           <image src="../../images/return.png" class='returnImage' bindtap='chooseCover' bindtap='back'></image>
         </view>
-        <view wx:if='{{isAdmin}}' class='groupBanner' bindtap='modifyGroup'>       
+        <view wx:if='{{isAdmin}}' class='groupBanner' bindtap='modifyGroup'>     
           <text >{{groupInfo.groupName}}</text>
-          <image class='modify0' src='../../images/modify.png' mode='aspectFill'></image>
+          <image class='modify0' src='../../images/modify.png' mode='aspectFit'></image>
         </view>
         <view wx:else class='groupBanner'>
           <text >{{groupInfo.groupName}}</text>
