@@ -253,9 +253,18 @@ module.exports = {
   delGroup: async ctx => {
     let req = ctx.request.body
     let res = await groupdb.delGroup(req)
+    let res0 = await memberdb.delMember(req)
     let t = typeof (res)
+    let t0 = typeof (res0)
     var status, result0
-    t == 'object' ? status = 1 : status = -1
+    if (t == 'object' && t0 == 'object') {
+      status = 1
+    } else if (t != 'object' && t0 != 'object') {
+      status = -1
+    } else {
+      status = 0
+    }
+
     result0 = {
       status: status
     }

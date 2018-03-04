@@ -23,8 +23,15 @@ module.exports = {
     return result
   },
   async delStaff(args){
-    let sql = 'DELETE FROM memberdb WHERE openid = ? AND groupId = ?'
+    let sql = 'DELETE FROM memberdb WHERE openId = ? AND groupId = ?'
     let params = [args.openId,args.groupId]
+    let result = await mysqlHelper.query(sql, params)
+    return result
+  },
+
+  async delMember(args) {
+    let sql = 'DELETE FROM memberdb WHERE groupId = ?'
+    let params = [args.groupId]
     let result = await mysqlHelper.query(sql, params)
     return result
   },

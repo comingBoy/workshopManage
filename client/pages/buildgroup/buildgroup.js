@@ -94,6 +94,7 @@ Page({
       groupName: null,
       groupCode: null,
       groupCover: null,
+      adminId: getApp().globalData.myInfo.openId
     }
   },
 

@@ -71,10 +71,10 @@
       </view>
     </view>
     <view class='checkBox'> 图片</view>
-    <view wx:if='{{inspectInfo.photo == ""}}'>无图片</view>
+    <view wx:if='{{inspectInfo.photo == "null"}}'>无图片</view>
     <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
     <view class='checkBox'> 描述</view>
-      <view wx:if='{{inspectInfo.description == ""}}'>无描述</view>
+      <view wx:if='{{inspectInfo.description == "null"}}'>无描述</view>
     <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
   </view>
 
@@ -91,17 +91,17 @@
       </view>
     </view>
     <view class='checkBox'> 图片</view>
-    <view wx:if='{{inspectInfo.photo == ""}}'>无图片</view>
+    <view wx:if='{{inspectInfo.photo == "null"}}'>无图片</view>
     <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
     <view class='checkBox'> 描述</view>
-      <view wx:if='{{inspectInfo.description == ""}}'>无描述</view>
+      <view wx:if='{{inspectInfo.description == "null"}}'>无描述</view>
     <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
 
     <view class='checkBox'> 修复图片</view>
-    <view wx:if='{{fixInfo.photo == ""}}'>无修复图片</view>
+    <view wx:if='{{fixInfo.photo == "null"}}'>无修复图片</view>
     <image wx:else src="{{fixInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
     <view class='checkBox'> 修复描述</view>
-      <view wx:if='{{fixInfo.description == ""}}'>无修复描述</view>
+      <view wx:if='{{fixInfo.description == "null"}}'>无修复描述</view>
     <textarea wx:else class="textArea"  value="{{fixInfo.description}}" disabled='true'/>
   </view>
 </view>
