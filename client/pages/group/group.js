@@ -97,14 +97,27 @@ Page({
       date: getCurrentDate(),
       groupId: getApp().globalData.currentGroup.groupId
     }
-    that.setData({
-      groupInfo: getApp().globalData.currentGroup
+    group.getStaff(data, function (res) {
+      if (res.status == 1) {
+        if (res.adminList.indexOf(getApp().globalData.myInfo.openId) != -1) {
+          that.setData({
+            isAdmin: true
+          })
+        }
+      } else if (res.status == -1) {
+        util.showModel("提示", "获取失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
     })
     workshop.getGroupWorkshop(data, function (res) {
       that.setData({
         workshopList: res
       })
       wx.hideLoading()
+    })
+    that.setData({
+      groupInfo: getApp().globalData.currentGroup
     })
 
   },
