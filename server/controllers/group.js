@@ -44,6 +44,68 @@ module.exports = {
     }
   },
 
+  getMyGroup: async ctx => {
+    let req = ctx.request.body
+    let res = await memberdb.getMyGroup(req)
+    var myGroupList = new Array()
+    var data,res0, res1
+    if (typeof (res) == 'object' && res.length > 0) {
+      for (var i = 0; i < res.length; i++) {
+        data = {
+          groupId: res[i].groupId
+        }
+        res0 = await groupdb.getGroupInfo(data)
+        if (typeof (res0) == 'object') {
+          myGroupList[i] = res0[0]
+          res0 = await memberdb.getAdmin(data)
+          if (typeof (res0) == 'object') {
+            myGroupList[i].adminName = new Array()
+            for (var j = 0; j < res0.length; j++) {
+              res1 = await staffdb.getStaffByOpenId(res0[j])
+              if (typeof (res1) == 'object') {
+                status = 1
+                myGroupList[i].adminName.push(res1[0].name)
+              } else {
+                status = -1
+                break
+              }
+            }
+          } else {
+            statu = -1
+            break
+          }
+          res[i].adminName = new Array()
+          for (var j = 0; j < res0.length; j++) {
+            var res1 = await staffdb.getStaffByOpenId(res0[j])
+            if (typeof (res1) == 'object') {
+              status = 1
+              res[i].adminName.push(res1[0].name)
+            } else {
+              status = -1
+              break
+            }
+          }
+        } else {
+          statu = -1
+          break
+        }
+      }
+    } else if (typeof (res) == 'object' && res.length == 0) {
+      status = 1
+      myGroupList = []
+    } else {
+      status = -1,
+      myGroupList = []
+    }
+    let result0 = {
+      myGroupList: myGroupList,
+      status: status
+    }
+    ctx.body = {
+      result: result0
+    }
+  },
+
   newGroup: async ctx => {
     while (!canNew) {
       pending = parseInt(1000 * Math.random())

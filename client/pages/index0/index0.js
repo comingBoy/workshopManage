@@ -8,6 +8,7 @@ Page({
    */
   data: {
     groupList:null,
+    myGroupList: ''
   },
 
   /**
@@ -39,6 +40,20 @@ Page({
       joinGroup: "../application/application",
       groupIndex: "../group/group"
     }
+    var data = {
+      openId: getApp().globalData.myInfo.openId
+    }
+    group.getMyGroup(data, function (res) {
+      if (res.status == 1) {
+        that.setData({
+          myGroupList: res.myGroupList
+        })
+      } else if (res.status == -1) {
+        util.showModel("提示","获取失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
   },
 
   /**
@@ -74,6 +89,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  toGroup: function (e) {
+    getApp().globalData.currentGroup = this.data.myGroupList[e.currentTarget.id]
+    wx.reLaunch({
+      url: '../group/group',
+    })
   },
 
   enterApplication: function (e) {

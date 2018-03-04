@@ -25,6 +25,8 @@ var config = {
 
         getAllGroupUrl: `${host}/weapp/getAllGroup`,
 
+        getMyGroupUrl: `${host}/weapp/getMyGroup`,
+
         newGroupUrl: `${host}/weapp/newGroup`,
 
         verifyUrl: `${host}/weapp/verify`,

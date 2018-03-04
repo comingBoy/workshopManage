@@ -26,6 +26,21 @@ module.exports = {
     })
   },
 
+  getMyGroup: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getMyGroupUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
   getSuperior: function (data, callback) {
     var data = data
     var configure = {
