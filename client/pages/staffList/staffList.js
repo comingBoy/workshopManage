@@ -141,6 +141,14 @@ Page({
     })
   },
 
+  leaveMessage1: function (e) {
+    var message = this.data.message
+    message.staffId = this.data.superiorList[e.currentTarget.id].openId
+    this.setData({
+      hideMessage: false
+    })
+  },
+
   getMessage: function (e) {
     var message = this.data.message
     message.message = e.detail.value
