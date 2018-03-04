@@ -26,7 +26,7 @@
         <text class='textBox'>{{statusList[item.error > 0 ? 1 : 0]}}</text>
       </view>
       <!--新建车间-->
-      <view class='workshop' bindtap='toNewWorkshop'>
+      <view wx:if='{{isAdmin}}' lass='workshop' bindtap='toNewWorkshop'>
         <image src='../../images/add.png' class='add' mode='aspectFill'></image>
         <text class='textBox0'>创建车间</text>
       </view>
