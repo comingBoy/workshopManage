@@ -56,7 +56,7 @@ Page({
                 success: function (res) {
                   if (res.confirm) {
                     wx.redirectTo({
-                      url: '../index0index0',
+                      url: '../index0/index0',
                     })
                   }
                 }
