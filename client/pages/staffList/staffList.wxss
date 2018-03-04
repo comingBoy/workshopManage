@@ -1,4 +1,8 @@
 /* pages/member/member.wxss */
+.container{
+  width: 100%;
+}
+
 .ListBox{
 padding-top: 10rpx;
 padding-bottom: 10rpx;

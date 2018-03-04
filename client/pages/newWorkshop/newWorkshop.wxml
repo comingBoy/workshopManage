@@ -14,7 +14,7 @@
     <view class='newWorkshopInfo'>
       <text class='label'>负责人:</text>
       <picker class='picker' bindchange="chooseopenId" value="{{index}}" range-key="name" range="{{staffList}}">
-        <view class="picker">
+        <view>
           {{staffList[index].name}}
         </view>
       </picker>

@@ -18,8 +18,6 @@ Page({
   chooseCover: function(){
     var that = this
     net.uploadImg(function(res){
-      console.log("选择部门封面")
-      console.log(res)
       groupMes.groupCover = res
       that.setData({
         cover: res
@@ -48,7 +46,6 @@ Page({
         finishFlag: false
       })
     }
-    console.log(groupMes.groupName);
   },
 
   getGroupCode: function (e) {
