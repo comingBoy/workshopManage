@@ -86,7 +86,6 @@ module.exports = {
     var req, res, t, status, result0
     req = ctx.request.body
     res = await inspectdb.getInspectHis(req)
-    console.log(res)
     t = typeof (res)
     t == 'object' ? status = 1 : status = -1
     result0 = {
@@ -165,9 +164,7 @@ module.exports = {
   inspect0: async ctx => {
     var req, res, t, result0, status
     req = ctx.request.body
-    console.log(req)
     res = await inspectdb.inspect(req.inspectArray)
-    console.log(res)
     t = typeof (res)
     t == 'object' ? status = 1 : status = -1
     result0 = {
@@ -181,9 +178,7 @@ module.exports = {
   getError: async ctx => {
     var req, res, t, result0, status
     req = ctx.request.body
-    console.log(req)
     res = await inspectdb.inspect(req.inspectArray)
-    console.log(res)
     t = typeof (res)
     t == 'object' ? status = 1 : status = -1
     result0 = {
