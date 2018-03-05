@@ -169,26 +169,17 @@ Page({
       checkpointId: checkpointId,
       groupId: getApp().globalData.currentGroup.groupId
     }
-    group.getSuperior(data, function (res) {
+    group.getStaff(data, function (res) {
       if (res.status == 1) {
-        var canFindId = res.res
+        var staffList = new Array()
+        staffList.push.apply(staffList, res.adminList)
+        staffList.push.apply(staffList, res.superiorList)
+        console.log(staffList)
         var ifShowFind = false
-        canFindId.push(getApp().globalData.currentGroup.adminId)
-        for (var i = 0; i < canFindId.length; i++) {
-          if (getApp().globalData.myInfo.openId == canFindId[i]) {
-            ifShowFind = true
-            break
-          }
-        }
+        if (staffList.indexOf(getApp().globalData.myInfo.openId) != -1) ifShowFind = true
         that.setData({
           ifShowFind: ifShowFind
         })
-      } else if (res.status == 0) {
-        if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId) {
-          that.setData({
-            ifShowFind: true
-          })
-        }
       } else if (res.status == -1) {
         util.showModel("提示", "请求失败，请重试！")
       } else {
