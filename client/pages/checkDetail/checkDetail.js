@@ -83,6 +83,7 @@ Page({
               that.setData({
                 ifFindDanger: !that.data.ifFindDanger
               })
+              getApp().globalData.showCheckpoint.error = 1
               that.fresh()
             }
           })
@@ -175,7 +176,7 @@ Page({
         staffList.push.apply(staffList, res.adminList)
         staffList.push.apply(staffList, res.superiorList)
         var ifShowFind = false
-        if (staffList.indexOf(getApp().globalData.myInfo.openId) != -1) ifShowFind = true
+        if (staffList.indexOf(getApp().globalData.myInfo.openId) != -1 &&that.data.checkpointInfo.error != 1) ifShowFind = true
         that.setData({
           ifShowFind: ifShowFind
         })

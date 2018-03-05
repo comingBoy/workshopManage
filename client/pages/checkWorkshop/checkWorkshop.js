@@ -37,7 +37,7 @@ Page({
     initText: "请输入文本",
     initTextValue: "",
     ifCompleteFill: null,
-    checkOver: false
+    checkOver: true
   },
 
   refresh: function () {
@@ -52,7 +52,10 @@ Page({
         if (res.res.length >= getApp().globalData.showCheckpoint.totalTimes) {
           that.setData({
             canStartCheck: false,
-            checkOver: true
+          })
+        } else {
+          that.setData({
+            checkOver: false
           })
         }
         that.setData({
@@ -71,7 +74,8 @@ Page({
           that.setData({
             ifShowError: true,
             dangerList: res.res[0],
-            canStartCheck: false
+            canStartCheck: false,
+            checkOver: false
           })
         }
       } else if (res.status == 0) {
@@ -220,6 +224,7 @@ Page({
               photo: "../../images/camera.png",
               initText: "请输入文本",
               initTextValue: "",
+              checkOver: true
             })
             that.refresh()
           } else if (res.status == -1) {
@@ -259,6 +264,7 @@ Page({
             canStartCheck: true,
             initText: "请输入文本",
             initTextValue: "",
+            checkOver: true
           })
           that.refresh()
         } else if (res.status == 0) {
