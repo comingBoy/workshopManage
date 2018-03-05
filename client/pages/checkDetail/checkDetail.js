@@ -174,7 +174,6 @@ Page({
         var staffList = new Array()
         staffList.push.apply(staffList, res.adminList)
         staffList.push.apply(staffList, res.superiorList)
-        console.log(staffList)
         var ifShowFind = false
         if (staffList.indexOf(getApp().globalData.myInfo.openId) != -1) ifShowFind = true
         that.setData({
