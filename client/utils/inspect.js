@@ -7,7 +7,6 @@ module.exports = {
   //查看车间检查
   /*
   var data = {
-  thisMonth: true,
   date: date,
   workshopId: app.globalData.currentWorkshopId
   }
@@ -22,10 +21,38 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
-      console.log(res)
       callback(res.data.result)
     })
   },
+
+  getInspectTimes: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getInspectTimesUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  getInspectById: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getInspectByIdUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
   //新建进度
   /*
   data = {
@@ -53,6 +80,11 @@ module.exports = {
     })
   },
   //车间状态检查历史
+  /*
+  data = {
+    timesId: timesId
+  }
+  */
   getInspectHis: function(data, callback) {
     var data = data
     var configure = {
@@ -65,6 +97,70 @@ module.exports = {
     net.request(data, configure, function (res) {
       callback(res.data.result)
     })
+  },
+  //修复隐患
+
+  fixError: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.fixErrorUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  //检查
+  /*
+  data = {
+    inspectArray: inspectArray
   }
+  */
+  inspect: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.inspectUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
+  inspect0: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.inspect0Url,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  getLastInspect: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getLastInspectUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
 }
 

@@ -1,65 +1,215 @@
 // pages/member/member.js
 var group = require('../../utils/group.js')
 var util = require('../../utils/util.js')
+var staff = require('../../utils/staff.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    staffList: null,
-    admin: null
+    staffList: [],
+    superiorList: [],
+    adminList: null,
+    isAdmin: false,
+    isSuperior: false,
+    hideMessage: true,
+    message: ''
   },
 
+  refresh: function () {
+    var that = this
 
-  deleteMember:function(e){
-    if (getApp().globalData.myInfo.openId == getApp().globalData.currentGroup.adminId){
-      var that = this
-      var data = {
-        openId: that.data.staffList[e.currentTarget.id].openId,
-        groupId: getApp().globalData.currentGroup.id
-      }
-      if (data.openId == getApp().globalData.currentGroup.adminId){
-        util.showModel('提示', '您删除自己干啥？？？！')
-      }else{
-        group.delStaff(data, function (res) {
-          console.log(res)
-          var staffList = that.data.staffList
-          staffList.splice(e.currentTarget.id, 1)
+    var data = {
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.getStaff(data, function (res) {
+      if (res.status == 1) {
+        if (res.adminList.indexOf(getApp().globalData.myInfo.openId) != -1) {
           that.setData({
-            staffList: staffList
+            isAdmin: true
           })
+        }
+        if (res.superiorList.indexOf(getApp().globalData.myInfo.openId) != -1) {
+          that.setData({
+            isSuperior: true
+          })
+        }
+        that.setData({
+          staffList: res.staff,
+          adminList: res.admin,
+          superiorList: res.superior,
         })
+      } else if (res.status == -1) {
+        util.showModel("提示", "获取失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
       }
-    }else{
-      util.showModel('提示', '您不是管理员！')
+      wx.hideLoading()
+    })
+  },
+
+  deleteStaff:function(e){
+    var that = this
+    var data = {
+      openId: that.data.staffList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.delStaff(data, function (res) {
+      if (res.status == 1) {
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "删除失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  deleteSuperior: function (e) {
+    var that = this
+    var data = {
+      openId: that.data.superiorList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    group.delStaff(data, function (res) {
+      if (res.status == 1) {
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "删除失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  setStaff: function (e) {
+    var that = this
+    var data = {
+      openId: that.data.superiorList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId,
+      label: 1
+    }
+    group.setLevel(data, function (res) {
+      if (res.status == 1) {
+        wx.showLoading({
+          title: '读取中',
+        })
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "设置失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  setSuperior: function (e) {
+    var that = this
+    var data = {
+      openId: that.data.staffList[e.currentTarget.id].openId,
+      groupId: getApp().globalData.currentGroup.groupId,
+      label: 2
+    }
+    group.setLevel(data, function (res) {
+      if (res.status == 1) {
+        wx.showLoading({
+          title: '读取中',
+        })
+        that.refresh()
+      } else if (res.status == -1) {
+        util.showModel("提示", "设置失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
+  },
+
+  leaveMessage: function (e) {
+    var message = this.data.message
+    message.staffId = this.data.adminList[e.currentTarget.id].openId
+    this.setData({
+      hideMessage: false
+    })
+  },
+
+  leaveMessage0: function (e) {
+    var message = this.data.message
+    message.staffId = this.data.staffList[e.currentTarget.id].openId
+    this.setData({
+      hideMessage: false
+    })
+  },
+
+  leaveMessage1: function (e) {
+    var message = this.data.message
+    message.staffId = this.data.superiorList[e.currentTarget.id].openId
+    this.setData({
+      hideMessage: false
+    })
+  },
+
+  getMessage: function (e) {
+    var message = this.data.message
+    message.message = e.detail.value
+    this.setData({
+      message: message
+    })
+  },
+
+  cancel: function () {
+    var message = {
+      date: '',
+      groupId: getApp().globalData.currentGroup.groupId,
+      superiorId: getApp().globalData.myInfo.openId,
+      staffId: '',
+      message: '',
+      ifRead: 0
+    }
+    this.setData({
+      hideMessage: true,
+      message: message
+    })
+  },
+
+  confirm: function () {
+    var that = this
+    
+    var data = that.data.message
+    if (data.message == null || data.message == '') {
+      util.showModel("提示","留言不为空！")
+    } else {
+      that.setData({
+        hideMessage: true
+      })
+      data.date = util.sGetDate()
+      staff.leaveMessage(data, function (res) {
+        if (res.status == 1) {
+          util.showModel("提示", "留言成功!")
+        } else if (res.status == -1) {
+          util.showModel("提示", "留言失败，请重试!")
+        } else {
+          util.showModel("提示", "请求出错!")
+        }
+        var message = {
+          date: '',
+          groupId: getApp().globalData.currentGroup.groupId,
+          superiorId: getApp().globalData.myInfo.openId,
+          staffId: '',
+          message: '',
+          ifRead: 0
+        }
+        that.setData({
+          message: message
+        })
+      })
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var that = this
-    console.log(getApp().globalData.currentGroup)
-    var data = {
-      groupId: getApp().globalData.currentGroup.id
-    }
-    group.getStaff(data,function(res){
-      var staffList = res
-      var admin = null
-      for(var i = 0; i < staffList.length; i++){
-        if(staffList[i].openId == getApp().globalData.currentGroup.adminId){
-          admin = staffList[i]
-          staffList.splice(i,1)
-          break
-        }
-      }
-      that.setData({
-        staffList: staffList,
-        admin: admin
-      }) 
-    })
-    
+  onLoad: function () {
+
   },
 
   /**
@@ -73,7 +223,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var message = {
+      date: '',
+      groupId: getApp().globalData.currentGroup.groupId,
+      superiorId: getApp().globalData.myInfo.openId,
+      staffId: '',
+      message: '',
+      ifRead: 0
+    }
+    this.setData({
+      message: message
+    })
+    wx.showLoading({
+      title: '读取中',
+    })
+    this.refresh()  
   },
 
   /**

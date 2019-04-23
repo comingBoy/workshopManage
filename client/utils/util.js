@@ -29,14 +29,51 @@ var showSuccess = text => wx.showToast({
 })
 
 // 显示失败提示
-var showModel = (title, content) => {
+var showModel = (title, content, callback) => {
     wx.hideToast();
 
     wx.showModal({
         title,
         content: JSON.stringify(content),
-        showCancel: false
+        showCancel: false,
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+var getDate = function() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  month = month < 10 ? '0' + month : month
+  day = day < 10? '0' + day : day
+  var date0 = year.toString() + '-' + month.toString() + '-' + day.toString()
+  return date0;
+}
+
+var sGetDate = function () {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  month = month < 10 ? '0' + month : month
+  day = day < 10 ? '0' + day : day
+  hour = hour < 10 ? '0' + hour : hour
+  min = min < 10 ? '0' + min : min
+  sec = sec < 10 ? '0' + sec : sec
+  var date0 = year.toString() + '-' + month.toString() + '-' + day.toString() + ' ' + hour.toString() + ':' + min.toString() + ':' + sec.toString()
+  return date0;
+}
+
+var mGetDate = function() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  month = month < 10 ? '0' + month : month
+  var date0 = year.toString() + '-' + month.toString()
+  return date0;
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, getDate, sGetDate, mGetDate }

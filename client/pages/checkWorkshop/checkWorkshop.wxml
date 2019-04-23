@@ -1,0 +1,54 @@
+<!--pages/checkWorkshop/checkWorkshop.wxml-->
+<view class='container'>
+  <view class='frame'>
+    <!--workshop-->
+    <view class='workshopName'>
+      {{checkpointInfo.checkpointName}}
+    </view>
+    <view class='listContainer'>
+      <text class='title'>检查记录({{checkRecord.length}}/{{checkpointInfo.totalTimes}})</text>
+      <view class='list' wx:for='{{checkRecord}}'>检查日期{{item.date}}</view>
+      <view wx:if='{{checkRecord.length==0}}' class='list'>暂无检查记录</view>
+    </view>
+    
+    <!--检查详情-->
+    <view class='fillErrorInfo' wx:if='{{ifShowError == false && canStartCheck == true}}'>
+      <view class='checkpointName'>
+        {{date0}}
+      </view>
+      <view class='error'>
+        <picker value="{{errorIndex}}"  range="{{errorList}}" bindchange="bindErrorChange">
+        {{errorList[errorIndex]}}
+        </picker>
+      </view>
+      <view class='checkBox'> 上传图片</view>
+      <image src="{{photo}}" class='cameraImage' mode='aspectFit' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 描述</view>
+      <textarea class="textArea" placeholder="{{initText}}" value="{{initTextValue}}" bindinput='textInput' />
+      <button class='finish' bindtap='inspectSubmit'>确认提交</button>
+    </view>
+    <!--显示隐患详情-->
+    <view class='fillErrorInfo' wx:if='{{ifShowError == true}}'>
+      <view class='checkpointName'>
+        {{dangerList.date}}
+      </view>
+      <view class='error'>
+        <view>
+        {{ifAdmin[dangerList.admin]}}
+        </view>
+      </view>
+      <view class='checkBox'> 隐患图片</view>
+      <image  src="{{dangerList.photo}}" class='cameraImage' mode='aspectFit'></image>
+      <view class='checkBox'> 故障描述</view>
+      <textarea class="textArea"  value="{{dangerList.description}}" disabled='true'/>
+      <view class='checkBox'> 上传修复图片</view>
+      <image src="{{photo}}" class='cameraImage' mode='aspectFit' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 填写修复描述</view>
+      <textarea class="textArea"  placeholder="请填入修复描述" value="{{description}}" bindinput='textInput'/>
+      <button class='finish' bindtap='fixInfoSubmit'>确认修复</button>
+    </view>
+  </view>
+  <view wx:if='{{checkOver == true}}' class='checkOver'>
+    <view class='text'>本月任务完成</view>
+  </view>
+</view>

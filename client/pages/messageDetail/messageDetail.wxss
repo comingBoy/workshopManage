@@ -1,0 +1,72 @@
+/* pages/messageDetail/messageDetail.wxss */
+.messageBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center
+}
+
+.message{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.time{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 25rpx;
+  white-space: nowrap;
+}
+
+.context{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top:15rpx;
+  margin-bottom:25rpx;
+}
+
+.avatar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgSize{
+  width: 85rpx;
+  height: 85rpx;
+}
+
+.triangle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.triSize{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.messageDetail{
+  display: flex;
+  flex-direction: column;
+}
+
+.messageCtx{
+  font-size: 40rpx;
+  background-color: #A2E659;
+  overflow-wrap:break-word;
+  display:flex;
+  flex-direction:column;
+  border-radius:15rpx;
+  padding:20rpx;
+}

@@ -1,64 +1,123 @@
-/* pages/workshop/workshop.wxss */
-.workshopBanner{
-  width: 100%;
-  text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
-  border-bottom: solid 2rpx #ddd;
+/* pages/checkWorkshop/checkWorkshop.wxss */
+.workshopName{
+  background-color:white;
+  width:100%;
+  text-align:center;
+  font-size:35rpx;
+  padding:12rpx;
+  color: #696969;
 }
-.examiner{
-  margin-top: 30rpx;
-  border-bottom:solid 2rpx #ddd;
-  padding-bottom: 5rpx;
+
+.listContainer{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  font-size:25rpx;
+  background-color:white;
+  margin-top:25rpx;
+  padding:20rpx 10rpx;
+  border-radius:23rpx;
 }
-.timeSelector{
-  margin-top: 30rpx;
-  border-bottom:solid 2rpx #ddd;
-  padding-bottom: 5rpx;
+
+.list{
+  margin-top:8rpx;
+  margin-bottom:20rpx;
+  border-top:solid 1rpx #ddd;
+  padding:13rpx;
+  text-align:center;
 }
-.checkTimeTable{
+
+.title{
+  color: #696969; 
+}
+.title2{
+  margin-top:19rpx;
+  font-size:23rpx;
+}
+.startCheck{
+  width:100%;
+  background-color:green;
+  text-align:center;
+  color:#fff;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+  margin-top:60rpx;
+}
+
+.dangerInfo{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 30rpx;
-  margin-bottom: 30rpx;
-  border-bottom: 200rpx;
-  border: solid 2rpx #ddd;
-  border-radius: 10rpx;
-  width: 90%;
+  justify-content:space-around;
 }
-.checkTime{
+
+.date{
+  background-color:white;
+  width:100%;
+  margin-top:25px;
+  text-align:center;
+  padding:17rpx 10rpx;
+  font-size:35rpx;
+  color:#696969;
+  border-radius:23rpx;
+}
+
+.dangerTitleBox{
+  display:flex;
+  justify-content:space-between;
+}
+
+.findDanger{
+  font-size:18rpx;
+  margin:0rpx 50rpx;
+}
+
+.fillDangerInfo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  font-size:30rpx;
+  color:#708090;
+  border:solid white;
+  margin-top:49rpx;
+  padding:20rpx 0rpx;
+  border-radius:30rpx;
+}
+
+.checkpointName{
+  font-size:30rpx;
+  margin-bottom:30rpx;
+  text-align:center;
+}
+
+.danger{
+  font-size: 25rpx;
+}
+
+.checkBox{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  font-size: 35rpx;
-  
-  width: 100%;
-  margin: 20rpx 0;
+  font-size: 25rpx;
+  width: 60%;
+  padding-top:20rpx;
 }
-.checkTimeInfo{
-  width:45%;
-  text-align:center;
-  height:60rpx;
-  line-height:25rpx;
+
+.cameraImage{
+  width:66%;
+  height:272rpx;
+  margin-top:16rpx;
 }
-.checkTimeInfodel{
-  width:10%;
-  text-align:center;
-  height:59rpx;
-  line-height:18rpx;
-  border:solid 2rpx #ddd;
-  border-radius:50rpx;
-  margin-right:10rpx;
+
+.textArea{
+  width: 77%;
+  height:204rpx;
+  background-color: #fff;
+  margin-bottom:16px;
+  border: solid 2rpx #ddd;
 }
-.addCheckTime{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-.add{
-  width: 100rpx;
-  height: 100rpx;
-  margin: 20rpx 0rpx;
+
+.finish{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
 }

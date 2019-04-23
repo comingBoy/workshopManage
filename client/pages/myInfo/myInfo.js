@@ -11,50 +11,72 @@ Page({
    */
   data: {
     myInfo: null,
-    changeWhat:[
-      "更改姓名",
-      "性别",
-      "更改工号",
-      "更改手机号",
-    ],
-    changeSex: null,
-    sex:[
-      "男",
-      "女"
-    ],
+    changeWhat:["更改姓名","性别","更改工号","更改手机号",],
+    sex:["男","女"],
     changeFlag:true,
     index: null,
+    readMessage: [],
+    notReadMessage: []
   },
 
   changeInfo:function(e){
+    var that = this
     if (e.currentTarget.id == 0){
-      this.setData({
-        index: e.currentTarget.id,
-        changeFlag: false,
-        changeSex: false,
-        changeCtx: myInfo.name,
-      })
+      if (e.currentTarget.id == that.data.index) {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: !that.data.changeFlag,
+          changeCtx: myInfo.name,
+        })
+      } else {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: false,
+          changeCtx: myInfo.name,
+        })
+      }
     } else if (e.currentTarget.id == 1){
-      this.setData({
-        index: e.currentTarget.id,
-        changeFlag: false,
-        changeSex: true,
-        changeCtx: myInfo.sex,
-      })
+      if (e.currentTarget.id == that.data.index) {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: !that.data.changeFlag,
+          changeCtx: myInfo.sex,
+        })
+      } else {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: false,
+          changeCtx: myInfo.sex,
+        })
+      }
     } else if (e.currentTarget.id == 2) {
-      this.setData({
-        index: e.currentTarget.id,
-        changeFlag: false,
-        changeSex: false,
-        changeCtx: myInfo.staffId,
-      })
+      if (e.currentTarget.id == that.data.index) {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: !that.data.changeFlag,
+          changeCtx: myInfo.staffId,
+        })
+      } else {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: false,
+          changeCtx: myInfo.staffId,
+        })
+      }
     } else if (e.currentTarget.id == 3) {
-      this.setData({
-        index: e.currentTarget.id,
-        changeFlag: false,
-        changeSex: false,
-        changeCtx: myInfo.telNumber,
-      })
+      if (e.currentTarget.id == that.data.index) {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: !that.data.changeFlag,
+          changeCtx: myInfo.telNum,
+        })
+      } else {
+        this.setData({
+          index: e.currentTarget.id,
+          changeFlag: false,
+          changeCtx: myInfo.telNum,
+        })
+      }
     }
     
   },
@@ -103,7 +125,7 @@ Page({
       if (changeInfo.length != "11") {
         util.showModel('提示', '请输入11位手机号！')
       } else {
-        myInfo.telNumber = changeInfo
+        myInfo.telNum = changeInfo
         staff.modifyUserInfo(myInfo, function () {
           getApp().globalData.myInfo = myInfo
           that.setData({
@@ -113,7 +135,6 @@ Page({
         })
       }
     }
-    console.log(myInfo)
   },
   changeAvatar:function(){
     var that = this
@@ -127,6 +148,16 @@ Page({
         })
       })
     })
+  },
+
+  checkMessage: function () {
+    wx.navigateTo({
+      url: '../message/message',
+    })
+  },
+
+  checkMessage0: function () {
+    util.showModel("提示","暂无留言！")
   },
 
   /**
@@ -150,7 +181,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this
+    var data = {
+      staffId: getApp().globalData.myInfo.openId,
+      groupId: getApp().globalData.currentGroup.groupId
+    }
+    staff.getMessage(data, function (res) {
+      if (res.status == 1) {
+        getApp().globalData.myMessage = {
+          readMessage: res.readMessage,
+          notReadMessage: res.notReadMessage
+        }
+        that.setData({
+          readMessage: res.readMessage,
+          notReadMessage: res.notReadMessage
+        })
+      } else if (res.status == -1) {
+        util.showModel("提示","获取留言失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
+      }
+    })
   },
 
   /**

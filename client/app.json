@@ -1,15 +1,13 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/index0/index0",
     "pages/group/group",
-    "pages/staff/staff",
     "pages/inspect/inspect",
     "pages/newWorkshop/newWorkshop",
     "pages/workshop/workshop",
     "pages/checkPoint/checkPoint",
     "pages/checkDetail/checkDetail",
-    "pages/groupManagement/groupManagement",
     "pages/addCgi/addCgi",
     "pages/application/application",
     "pages/buildgroup/buildgroup",
@@ -17,29 +15,51 @@
     "pages/changeTel/changeTel",
     "pages/myInfo/myInfo",
     "pages/staffList/staffList",
-    "pages/register/register"
-    
+    "pages/register/register",
+    "pages/checkWorkshop/checkWorkshop",
+    "pages/startCheck/startCheck",
+    "pages/checkRecord/checkRecord",
+    "pages/modifyWorkshop/modifyWorkshop",
+    "pages/modifyGroup/modifyGroup",
+    "pages/newCheckpoint/newCheckpoint",
+    "pages/checkpointList/checkpointList",
+    "pages/message/message",
+    "pages/messageDetail/messageDetail"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Wafer Quick Start",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
-  "tabBar":{
-    "list":[{
-      "pagePath":"pages/group/group",
-      "text":"车间"
-    },{
-      "pagePath":"pages/staffList/staffList",
-      "text":"成员"
-    },{
-      "pagePath": "pages/inspect/inspect",
-      "text": "检查"
-    },{
-      "pagePath": "pages/myInfo/myInfo",
-      "text": "我的"
-    }
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#333333",
+    "list": [
+      {
+        "pagePath": "pages/group/group",
+        "text": "车间",
+        "iconPath": "./images/工作车间未被选中.png",
+        "selectedIconPath": "./images/工作车间被选中.png"
+      },
+      {
+        "pagePath": "pages/staffList/staffList",
+        "text": "成员",
+        "iconPath": "./images/成员未被选中.png",
+        "selectedIconPath": "./images/成员被选中.png"
+      },
+      {
+        "pagePath": "pages/inspect/inspect",
+        "text": "检查",
+        "iconPath": "./images/检查未被选中.png",
+        "selectedIconPath": "./images/检查被选中.png"
+      },
+      {
+        "pagePath": "pages/myInfo/myInfo",
+        "text": "我的",
+        "iconPath": "./images/我的未被选中.png",
+        "selectedIconPath": "./images/我的被选中.png"
+      }
     ]
   }
 }

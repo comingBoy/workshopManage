@@ -3,8 +3,8 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://vpqxc4sg.qcloud.la';
-
+//var host = 'https://vpqxc4sg.qcloud.la';
+var host = 'https://934560484.qcloudmanagestaff.club';
 var config = {
 
     // 下面的地址配合云端 Demo 工作
@@ -24,6 +24,8 @@ var config = {
         uploadUrl: `${host}/weapp/upload`,
 
         getAllGroupUrl: `${host}/weapp/getAllGroup`,
+
+        getMyGroupUrl: `${host}/weapp/getMyGroup`,
 
         newGroupUrl: `${host}/weapp/newGroup`,
 
@@ -56,8 +58,63 @@ var config = {
         newWorkshopStatusUrl: `${host}/weapp/newWorkshopStatus`,
 
         getCheckpointUrl: `${host}/weapp/getCheckpoint`,
+        
+        getCheckpoint0Url: `${host}/weapp/getCheckpoint0`,
 
-        getInspectHis: `${host}/weapp/getInspectHis`,
+        getInspectHisUrl: `${host}/weapp/getInspectHis`,
+
+        getErrorUrl: `${host}/weapp/getError`,
+
+        fixErrorUrl: `${host}/weapp/fixError`,
+
+        inspectUrl: `${host}/weapp/inspect`,
+
+        inspect0Url: `${host}/weapp/inspect0`,
+
+        getFixUrl: `${host}/weapp/getFix`,
+
+        getTimesUrl: `${host}/weapp/getTimes`,
+
+        getInspectByIdUrl: `${host}/weapp/getInspectById`,
+
+        getWorkshopInfoUrl: `${host}/weapp/getWorkshopInfo`,
+
+        changeWorkshopInfoUrl: `${host}/weapp/changeWorkshopInfo`,
+
+        changeCheckpointInfoUrl: `${host}/weapp/changeCheckpointInfo`,
+
+        delWorkshopUrl: `${host}/weapp/delWorkshop`, 
+
+        delCheckpointUrl: `${host}/weapp/delCheckpoint`,
+
+        newCheckpointUrl: `${host}/weapp/newCheckpoint`,
+
+        delGroupUrl: `${host}/weapp/delGroup`,
+
+        changeOpenIdUrl: `${host}/weapp/changeOpenId`,
+
+        modifyGroupUrl: `${host}/weapp/modifyGroup`,
+
+        getCheckDetailUrl: `${host}/weapp/getCheckDetail`,
+
+        setLevelUrl: `${host}/weapp/setLevel`,
+
+        getInspectTimesUrl: `${host}/weapp/getInspectTimes`,
+
+        getLastInspectUrl: `${host}/weapp/getLastInspect`,
+
+        getSuperiorUrl: `${host}/weapp/getSuperior`,
+
+        getMessageUrl: `${host}/weapp/getMessage`,
+
+        leaveMessageUrl: `${host}/weapp/leaveMessage`,
+
+        getMyMessageUrl: `${host}/weapp/getMyMessage`,
+
+        readMessageUrl: `${host}/weapp/readMessage`,
+
+        getAdminUrl: `${host}/weapp/getAdmin`,
+
     }
 };
 

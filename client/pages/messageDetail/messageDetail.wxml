@@ -1,0 +1,21 @@
+<!--pages/messageDetail/messageDetail.wxml-->
+<view class='messageBox'>
+  <view class='message' wx:for='{{showMessage.message}}'>
+    <view class='time'>
+      <text style='background-color: #ccc;padding:3rpx;border-radius:6rpx;'>{{item.date}}</text>
+    </view>
+    <view class='context'>
+      <view class='avatar'>
+        <image src='{{showMessage.superiorInfo.avatar}}' mode='aspectFit' class='imgSize'></image>
+      </view>
+      <view class='triangle'>
+        <image src='../../images/triangle.png' mode='aspectFit' class='triSize'></image>
+      </view>
+      <view class='messageDetail'>
+        <view class='messageCtx'>
+          {{item.message}}
+        </view> 
+      </view>
+    </view>
+  </view>
+</view>

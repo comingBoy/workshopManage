@@ -1,33 +1,72 @@
 // pages/checkPoint/checkPoint.js
+
+var checkpoint = require('../../utils/checkpoint.js')
+var util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checkDate: null,
-    checkPoint: [
-      {
-        name: "检查点1",
-        state: "未检查"
-      },{
-        name: "检查点2",
-        state: "已检查(无故障)"
-      },{
-        name: "检查点3",
-        state: "已检查(存在故障)"
+    workshopInfo: null,
+    date: util.mGetDate(),
+    checkpointList: [],
+    statusList: ["正常","故障"]
+  },
+
+  bindDateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
+    this.fresh()
+  },
+
+  toCheckpoint: function (e) {
+    getApp().globalData.showCheckpoint = this.data.checkpointList[e.currentTarget.id]
+    wx.navigateTo({
+      url: '../checkDetail/checkDetail'
+    })
+  },
+
+  fresh: function () {
+    var that = this
+    that.setData({
+      workshopInfo: getApp().globalData.showWorkshop
+    })
+    var workshopId = getApp().globalData.showWorkshop.workshopId
+    var date = '^' + that.data.date
+    var data = {
+      workshopId: workshopId,
+      date: date
+    }
+    checkpoint.getCheckpoint0(data, function (res) {
+      if (res.status == 1) {
+        that.setData({
+          checkpointList: res.res
+        })
+      } else if (res.status == 0) {
+        util.showModel("提示", "尚无检查点！")
+      } else if (res.status == -1) {
+        util.showModel("提示", "请求失败，请重试！")
+      } else {
+        util.showModel("提示", "请求出错！")
       }
-    ]
+    })
+  },
+
+  toNewCheckpoint: function () {
+    wx.navigateTo({
+      url: '../newCheckpoint/newCheckpoint',
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      checkDate: getApp().globalData.checkDate
-    })
+    this.fresh()
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -40,7 +79,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.fresh()
   },
 
   /**
@@ -77,12 +116,4 @@ Page({
   onShareAppMessage: function () {
   
   },
-  toCheckDetail: function(){
-    wx.navigateTo({
-      url: '../checkDetail/checkDetail',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
-  }
 })

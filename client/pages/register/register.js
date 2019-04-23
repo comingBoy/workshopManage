@@ -6,7 +6,7 @@ var info = {
   name : null,
   staffId : null,
   sex: null,
-  telNumber: null,
+  telNum: null,
   avatar: null,
   openId: null
 }
@@ -95,13 +95,13 @@ Page({
     if(e.currentTarget.id == 0){
       info.name = e.detail.value
     } else if (e.currentTarget.id ==1){
-      info.telNumber = e.detail.value
+      info.telNum = e.detail.value
     } else if (e.currentTarget.id == 2) {
       info.staffId = e.detail.value
     } else if (e.currentTarget.id == 3) {
       info.sex = e.detail.value
     } 
-    if (info.name != "" && info.telNumber != "" && info.telNumber !=null && info.staffId != "" && info.staffId != null && info.telNumber.length == 11 && info.staffId.length == 8 && info.sex != null){
+    if (info.name != "" && info.telNum != "" && info.telNum !=null && info.staffId != "" && info.staffId != null && info.telNum.length == 11 && info.staffId.length == 8 && info.sex != null){
       this.setData({
         finishFlag: true
       })
@@ -116,7 +116,6 @@ Page({
       functions: '../index0/index0'
     }
     staff.register(info, urls, function (res) {
-      console.log(res)
       if(res.result.status == 1){
         app.globalData.myInfo = info
       }

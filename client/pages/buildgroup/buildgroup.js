@@ -18,7 +18,6 @@ Page({
   chooseCover: function(){
     var that = this
     net.uploadImg(function(res){
-      console.log(res)
       groupMes.groupCover = res
       that.setData({
         cover: res
@@ -47,7 +46,6 @@ Page({
         finishFlag: false
       })
     }
-    console.log(groupMes.groupName);
   },
 
   getGroupCode: function (e) {
@@ -62,7 +60,6 @@ Page({
         finishFlag: false
       })
     }
-    console.log(groupMes.groupCode);
   },
 
   getPassword: function(e){
@@ -79,13 +76,9 @@ Page({
     }
   },
   finishBuild: function(){
-    if (groupMes.groupName != null && groupMes.groupCode != null && groupMes.groupCover != null && groupMes.groupName != "" && groupMes.groupCode != "" && groupMes.groupCode.length == 6 && password == key){
-      console.log(groupMes)
-      group.newGroup(groupMes,"../index0/index0",function(res){
-        console.log(res)
-      })
-    }
-    else{
+    if (password == key){
+      group.newGroup(groupMes)
+    } else{
       util.showModel("创建失败","密码错误")
     }
   },
@@ -97,10 +90,9 @@ Page({
     groupMes = {
       groupName: null,
       groupCode: null,
-      adminId: null,
       groupCover: null,
+      adminId: getApp().globalData.myInfo.openId
     }
-    groupMes.adminId = getApp().globalData.myInfo.openId
   },
 
   /**

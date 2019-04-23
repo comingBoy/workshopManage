@@ -11,7 +11,7 @@ function request(data, config, callback) {
     success: function (res) {
       callback(res)
     },
-    fail: function () {
+    fail: function (res) {
       callback(res)
     }
   })
@@ -21,7 +21,7 @@ function uploadImgByCamera(callback) {
   wx.chooseImage({
     count: 1,
     sizeType: "compressed",
-    sourceType: "camera",
+//    sourceType: "camera",
     success: function (res) {
       wx.uploadFile({
         url: config.service.uploadImgUrl,
@@ -44,7 +44,7 @@ function uploadImgByAlbum(callback) {
   wx.chooseImage({
     count: 1,
     sizeType: "compressed",
-    sourceType: "album",
+//    sourceType: "album",
     success: function (res) {
       wx.uploadFile({
         url: config.service.uploadImgUrl,
@@ -67,7 +67,6 @@ function uploadImg(callback) {
   wx.chooseImage({
     count: 1,
     sizeType: "compressed",
-    sourceType: "camera",
     success: function (res) {
       wx.uploadFile({
         url: config.service.uploadImgUrl,

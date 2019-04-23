@@ -8,7 +8,6 @@ module.exports = {
   //查看部门负责车间
   getGroupWorkshop: function(data, callback) {
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getGroupWorkshopUrl,
       method: 'POST',
@@ -49,7 +48,6 @@ module.exports = {
   */
   newWorkshop: function(data, urls){
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.newWorkshopUrl,
       method: 'POST',
@@ -59,31 +57,34 @@ module.exports = {
     }
     if (data.workshopName) {
       if (data.groupId) {
-        net.request(data, configure, function (res) {
-          console.log(res)
-          if (res.data.result.status == 1) {
-            wx.showModal({
-              title: '提示',
-              content: '新建成功',
-              showCancel: false,
-              success: function (res) {
-                if (res.confirm) {
-                  wx.reLaunch({
-                    url: urls.groupIndex,
-                  })
+        if (data.checkpointNum) {
+          net.request(data, configure, function (res) {
+            if (res.data.result.status == 1) {
+              wx.showModal({
+                title: '提示',
+                content: '新建成功',
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.reLaunch({
+                      url: urls.groupIndex,
+                    })
+                  }
                 }
-              }
-            })
-          } else if (res.data.result.status == -1) {
-            util.showModel('提示', '新建失败，请重试！')
-          } else if (res.data.result.status == 2) {
-            util.showModel('提示', '新建失败，请重试！')
-          } else if (res.data.result.status == -2 || res.data.result.status == 3) {
-            util.showModel('提示', '回滚失败，请从数据库删除或联系开发人员！')
-          } else {
-            util.showModel('提示', '请求出错！')
-          }
-        })
+              })
+            } else if (res.data.result.status == -1) {
+              util.showModel('提示', '新建失败，请重试！')
+            } else if (res.data.result.status == 2) {
+              util.showModel('提示', '新建失败，请重试！')
+            } else if (res.data.result.status == -2 || res.data.result.status == 3) {
+              util.showModel('提示', '回滚失败，请从数据库删除或联系开发人员！')
+            } else {
+              util.showModel('提示', '请求出错！')
+            }
+          })
+        } else {
+          util.showModel('提示', '检查点数不能为空！')
+        }
       } else {
         util.showModel('提示', '未知部门！')
       }
@@ -91,9 +92,9 @@ module.exports = {
       util.showModel('提示', '车间名不能为空！')
     }
   },
+
   getMyWorkshop: function(data, callback){
     var data = data
-    console.log(data)
     var configure = {
       url: config.service.getMyWorkshopUrl,
       method: 'POST',
@@ -102,7 +103,100 @@ module.exports = {
       }
     }
     net.request(data, configure, function (res) {
+      if (res.data.result.status == 1) {
+      } else if (res.data.result.status == 0) {
+        wx.showModal({
+          title: '提示',
+          content: '尚无负责车间',
+          showCancel: false,
+          success: function (res) {
+          }
+        })
+      }
+      else if (res.data.result.status == -1) {
+        util.showModel('提示', '获取失败，请重试！')
+      } else {
+        util.showModel('提示', '请求出错！')
+      }
       callback(res.data.result.res)
     })
-  }
+  },
+
+  delWorkshop: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.delWorkshopUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  changeOpenId: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.changeOpenIdUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  //获取已完成次数记录
+  /*
+    data = {
+      date: date,
+      workshopId: workshopId
+    }
+  */
+  getTimes: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getTimesUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  getWorkshopInfo: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getWorkshopInfoUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  changeWorkshopInfo: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.changeWorkshopInfoUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
 }

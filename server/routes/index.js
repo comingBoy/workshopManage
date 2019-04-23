@@ -34,6 +34,8 @@ router.post('/message', controllers.message.post)
 
 router.get('/getAllGroup', controllers.group.getAllGroup)
 
+router.post('/getMyGroup', controllers.group.getMyGroup)
+
 router.post('/newGroup', controllers.group.newGroup)
 
 router.post('/verify', controllers.staff.verify)
@@ -62,7 +64,59 @@ router.post('/getMyWorkshop', controllers.workshop.getMyWorkshop)
 
 router.post('/newProgress', controllers.inspect.newProgress)
 
-router.post('/newWorkshopStatus', controllers.workshopstatus.newWorkshopStatus)
-
 router.post('/getInspectHis', controllers.inspect.getInspectHis)
+
+router.post('/getCheckpoint', controllers.checkpoint.getCheckpoint)
+
+router.post('/getCheckpoint0', controllers.checkpoint.getCheckpoint0)
+
+router.post('/getError', controllers.workshop.getError)
+
+router.post('/fixError', controllers.inspect.fixError)
+
+router.post('/inspect', controllers.inspect.inspect)
+
+router.post('/inspect0', controllers.inspect.inspect0)
+
+router.post('/getFix', controllers.workshop.getFix)
+
+router.post('/getTimes', controllers.times.getTimes)
+
+router.post('/getInspectById', controllers.inspect.getInspectById)
+
+router.post('/getWorkshopInfo', controllers.workshop.getWorkshopInfo)
+
+router.post('/changeWorkshopInfo', controllers.workshop.changeWorkshopInfo)
+
+router.post('/changeCheckpointInfo', controllers.checkpoint.changeCheckpointInfo)
+
+router.post('/delWorkshop', controllers.workshop.delWorkshop)
+
+router.post('/delCheckpoint', controllers.checkpoint.delCheckpoint)
+
+router.post('/newCheckpoint', controllers.checkpoint.newCheckpoint)
+
+router.post('/delGroup', controllers.group.delGroup)
+
+router.post('/modifyGroup', controllers.group.modifyGroup)
+
+router.post('/changeOpenId', controllers.workshop.changeOpenId)
+
+router.post('/getCheckDetail', controllers.checkpoint.getCheckDetail)
+
+router.post('/setLevel', controllers.group.setLevel)
+
+router.post('/getInspectTimes', controllers.inspect.getInspectTimes)
+
+router.post('/getLastInspect', controllers.inspect.getLastInspect)
+
+router.post('/getSuperior', controllers.group.getSuperior)
+
+router.post('/getMessage', controllers.staff.getMessage)
+
+router.post('/leaveMessage', controllers.staff.leaveMessage)
+
+router.post('/getMyMessage', controllers.staff.getMyMessage)
+
+router.post('/readMessage', controllers.staff.readMessage)
 module.exports = router

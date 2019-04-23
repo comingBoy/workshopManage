@@ -1,0 +1,17 @@
+<!--pages/newCheckpoint/newCheckpoint.wxml-->
+
+<view class='container'>
+  <view class='frame'>
+<!--车间信息表-->
+    <view class='newWorkshopInfo'>
+      <text class='label'>检查点名:</text>
+      <input class="inputBox" placeholder='输入检查点名' type='text' bindinput='getCheckpointName' confirm-type='next'></input>
+    </view> 
+    <view class='newWorkshopInfo'>
+      <text class='label'>每月检查次数:</text>
+      <input class="inputBox" placeholder='输入检查次数' type='number' maxlength='2' bindinput='getTimes' confirm-type='next'></input>
+    </view> 
+  </view>
+<!--提交按钮-->
+  <view bindtap='newCheckpoint' class='build'>确认创立</view> 
+</view>

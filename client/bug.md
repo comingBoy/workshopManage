@@ -1,0 +1,1 @@
+1.2018-1-22 发现IOS系统不支持修改chooseImage组件的sourceType(album 从相册选图，camera 使用相机，默认二者都有)属性 ,utils/net.js文件中注释了uploadImg函数

@@ -1,0 +1,132 @@
+/* pages/checkWorkshop/checkWorkshop.wxss */
+.workshopName{
+  background-color:white;
+  width:100%;
+  text-align:center;
+  font-size:35rpx;
+  padding:12rpx;
+}
+
+.listContainer{
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  font-size:25rpx;
+  background-color:white;
+  margin-top:25rpx;
+  padding:20rpx 10rpx;
+  border-radius:23rpx;
+}
+
+.list{
+  margin-top:8rpx;
+  border-top:solid 1rpx #ddd;
+  padding:13rpx;
+  text-align:center;
+}
+
+.title{
+  color: #696969; 
+}
+.title2{
+  margin-top:19rpx;
+  font-size:23rpx;
+}
+.startCheck{
+  width:100%;
+  background-color:green;
+  text-align:center;
+  color:#fff;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+  margin-top:60rpx;
+}
+
+.dangerInfo{
+  display: flex;
+  justify-content:space-around;
+}
+
+.canNotStartCheck{
+  width:100%;
+  background-color:white;
+  text-align:center;
+  color:#c0c0c0;
+  padding-top:35rpx;
+  padding-bottom:35rpx;
+  font-size:35rpx;
+  margin-top:60rpx;
+}
+
+.fillErrorInfo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:90%;
+  font-size:30rpx;
+  color:#708090;
+  border:solid white;
+  margin-top:49rpx;
+  padding:20rpx 0rpx;
+  border-radius:30rpx;
+}
+
+.checkpointName{
+  font-size:30rpx;
+  margin-bottom:30rpx;
+  text-align:center;
+}
+
+.error{
+  font-size: 25rpx;
+}
+
+.checkBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 25rpx;
+  width: 60%;
+  padding-top:20rpx;
+}
+
+.cameraImage{
+  width:66%;
+  height:272rpx;
+  margin-top:16rpx;
+}
+
+.textArea{
+  width: 77%;
+  height:204rpx;
+  background-color: #fff;
+  margin-bottom:16px;
+  border: solid 2rpx #ddd;
+}
+
+.finish{
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.checkOver{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  background-color:white;
+  border-radius:23rpx;
+  margin-top: 25rpx;
+  height: 70rpx;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 35rpx;
+  margin-top: 10rpx;
+}

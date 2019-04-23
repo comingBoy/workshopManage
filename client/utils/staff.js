@@ -51,7 +51,7 @@ module.exports = {
     if (data.name) {
       if (data.sex) {
         if (data.staffId) {
-          if (data.telNumber) {
+          if (data.telNum) {
             net.request(data, configure, function (res) {
               if (res.data.result.status == 1) {
                 wx.showModal({
@@ -99,7 +99,7 @@ module.exports = {
     if (data.name) {
       if (data.sex) {
         if (data.staffId) {
-          if (data.telNumber) {
+          if (data.telNum) {
             net.request(data, configure, function (res) {
               if (res.data.result.status == 1) {
                 wx.showModal({
@@ -149,6 +149,64 @@ module.exports = {
         util.showModel('提示', '请求出错！')
       }
       callback(res.data.result.res)
+    })
+  },
+
+  getMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  leaveMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.leaveMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      callback(res.data.result)
+    })
+  },
+
+  getMyMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.getMyMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
+    })
+  },
+
+  readMessage: function (data, callback) {
+    var data = data
+    var configure = {
+      url: config.service.readMessageUrl,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      }
+    }
+    net.request(data, configure, function (res) {
+      console.log(res)
+      callback(res.data.result)
     })
   },
   

@@ -9,26 +9,11 @@ App({
   globalData: {
     logged: false,
     userInfo: null,
-    myInfo: null
+    myInfo: null,
+    showMessage: ''
   },
   onLaunch: function () {
-    var that = this
-    qcloud.setLoginUrl(config.service.loginUrl)
-    login.login(that.globalData.logged,function(res){
-      that.globalData.logged = res.logged
-      that.globalData.userInfo = res.userInfo
-      console.log(that.globalData.userInfo)
-      var urls = {
-        index: "../index0/index0",
-        register: "../register/register"
-      }  
-      staff.verifyUserInfo(that.globalData.userInfo.openId, urls, function (res){
-        if(res.length != 0){
-          that.globalData.myInfo = res[0]
-        }
-        console.log(that.globalData.myInfo)
-      })
-    })
+
   },
     
 })

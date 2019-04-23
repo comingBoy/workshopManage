@@ -1,33 +1,135 @@
 /* pages/checkPoint/checkPoint.wxss */
-.checkDateBanner{
-  width: 100%;
-  text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
-  border-bottom: solid 2rpx #ddd;
+.groupBanner{
+  width:100%;
+  height:100rpx;
+  line-height:100rpx;
+  letter-spacing:6rpx;
+  margin-right:63rpx;
+  text-align:center;
 }
-.checkPointList{
-  width: 100%;
-  margin-top: 50rpx;
-  padding-bottom: 50rpx;
+.workshopList{
+width: 100%;
+margin-top: 50rpx;
+padding-bottom: 50rpx;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: space-between;
+border-bottom: solid 2rpx #ddd;
+}
+.workshop{
+  width:44%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-right:17rpx;
+  margin-left:17rpx;
+  margin-bottom:50rpx;
+  background-color:#fff;
+  border-radius:25rpx;
+  height:316rpx;
+  border:solid #c0c0c0 1rpx;
+  color:#696969;
+  padding-top:30rpx;
+}
+
+.workshopName{
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  justify-content:center;
+  padding-left:31rpx;
+  height:51rpx;
+  line-height:52rpx;
+}
+
+.modify{
+  height:37rpx;
+  width:29rpx;
+  margin-top:10rpx;
+  margin-left:10rpx;
+}
+
+.modify0{
+  height:37rpx;
+  width:29rpx;
+  margin-top:24rpx;
+  margin-left:10rpx;
+}
+
+.returnImage{
+  width:100%;
+}
+
+.returnBox{
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  width:11%;
+  height:58rpx;
+  margin-bottom:25rpx;
+  padding-top:23rpx;
+}
+
+.bannerBox{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  width: 111%;
+  flex-direction:column;
+  justify-content: space-between;
   border-bottom: solid 2rpx #ddd;
+  background-color:white;
+
 }
-.checkPoint{
-    display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  font-size: 35rpx;
-  
-  width: 100%;
-  margin: 20rpx 0;
+
+.groupAdmin{
+width: 100%;
+height: 50rpx;
+background-color: #fff;
+text-align: center;
+line-height: 49rpx;
+font-size: 29rpx;
+font-family: "微软雅黑";
+padding-top: 15rpx;
+padding-bottom: 10rpx;
+color: #c0c0c0;
 }
-.checkPointName{
-  margin-left: 30rpx;
+.textBox{
+width: 100%;
+height: 50rpx;
+background-color: #fff;
+text-align: center;
+line-height: 49rpx;
+font-size: 30rpx;
+font-family: "楷书";
+color: #708090;
 }
-.checkPointState{
-  margin-left: 30rpx;
+
+.textBox0{
+width: 100%;
+height: 50rpx;
+background-color: #fff;
+text-align: center;
+line-height: 49rpx;
+font-size: 30rpx;
+font-family: "楷书";
+color: #708090;
+padding-top:28rpx;
+
 }
+
+.add{
+width: 100rpx;
+height: 100rpx;
+margin-top: 55rpx;
+}
+
+.date{
+  background-color:white;
+  width:100%;
+  text-align:center;
+  padding:15rpx 10rpx;
+  font-size:35rpx;
+  color:#696969;
+  border-radius:23rpx;
+}
+

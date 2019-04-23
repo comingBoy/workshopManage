@@ -1,0 +1,78 @@
+/* pages/modifyGroup/modifyGroup.wxss */
+
+.bigCameraBox{
+  margin-top: 25rpx;
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  width:90%;
+  text-align: center;
+  background-color: #fff;
+  align-items:center;
+  padding-bottom:50rpx;
+  border-radius:0 0 25rpx 25rpx;
+
+}
+
+.putin {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  width: 52%;
+}
+
+.putin0{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  font-size:30rpx;
+  height:60rpx;
+  white-space:nowrap;
+  margin-right:10rpx;
+}
+
+.inputid{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom:1px solid #ddd; 
+  height: 60rpx;
+  color: #c0c0c0;
+  font-size: 25rpx;
+}
+
+
+.cameraBox{
+  display:flex;
+  flex-direction:column;
+  flex-wrap:wrap;
+  width:100%;
+  text-align: center;
+  background-color: #d8d8d8;
+  margin-bottom: 25rpx;
+  align-items:center;
+}
+
+.cameraImage{
+  width: 52%;
+  height: 250rpx;
+}
+
+.wordSize{
+  color: #fff;
+  margin-bottom: 25rpx;
+  font-size: 40rpx;
+}
+
+.button{
+  background-color: white;
+}

@@ -1,47 +1,69 @@
-<!--pages/workshop/workshop.wxml-->
+<!--pages/checkWorkshop/checkWorkshop.wxml-->
 <view class='container'>
   <view class='frame'>
-    <!--车间名-->
-    <view class='workshopBanner'>
-      {{workshop.workshopName}}
+    <!--workshop-->
+    <view class='workshopName'>
+      {{workshopInfo.workshopName}}
     </view>
-    <!--检查者-->
-    <view class='examiner'>
-      检查人:{{workshop.name}}
-    </view>
-    <!--时间栏-->
-    <view class='timeSelector'>
-      <picker mode = "date" value="{{date}}" fields = "month" start = "2017-12" end = "2100-01" bindchange="bindDateChange">
-        {{date}}
+    <view class='date'>
+      <picker mode="date" value="{{date}}" start="2017-09" end="2100-09" fields='month' bindchange="bindDateChange">
+        <view class="picker">
+          {{date}}
+        </view>
       </picker>
     </view>
-    <!--需要检查的日期表-->
-    <view class='checkTimeTable'>
-      <view wx:for='{{checkTime}}'  class='checkTime'>
-        <text class='checkTimeInfo' id='{{index}}' bindtap='toCheckPoint'>
-          {{item.date}}日 {{item.weekday}}
-        </text>
-        <text class='checkTimeInfo' id='{{index}}' bindtap='toCheckPoint'>
-          检查进度:0/8
-        </text>
-        <text  class='checkTimeInfodel' bindtap='delCheckTime'>
-        -
-        </text>
+    <view class='listContainer'>
+      <text class='title'>检查记录({{workshopInfo.inspectTimes}}/{{workshopInfo.totalTimes}})</text>
+      <view class='list' wx:for='{{checkRecord}}' id='{{index}}' bindtap='toCheckRecord'>检查日期{{item.date}}</view>
+      <view wx:if='{{checkRecord.length==0}}' class='list'>暂无检查记录</view>
+    </view>
+    <view class='listContainer'>
+      <text class='title'>隐患记录</text>
+      <view class='title2'>
+        自检隐患
+      </view>
+      <view class='list' wx:for='{{dangerListByMyself}}'>
+        <view class='dangerInfo'>
+          <view class='dangerDate'>发现日期{{item.date}}  </view>
+          <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
+          <view class='dangerError'>{{errorList[item.error]}}</view>
+        </view>
+      </view>
+      <view wx:if='{{dangerListByMyself.length==0}}' class='list'>
+        暂无隐患记录
+      </view>
+      <view class='dangerTitleBox'>
+      <view class='title2'>
+        管理员发现隐患
+      </view>
+      <button class='findDanger' bindtap='findDanger'>添加</button>
+      </view>
+      <view class='list' wx:for='{{dangerListByAdmin}}'>
+        <view class='dangerInfo'>
+          <view class='dangerDate'>发现日期{{item.date}}  </view>
+          <view class='dangerCheckpointName'>{{item.checkpointName}}</view>
+          <view class='dangerError'>{{errorList[item.error]}}</view>
+        </view>
+      </view>
+      <view wx:if='{{dangerListByAdmin.length==0}}' class='list'>
+        暂无隐患记录
       </view>
     </view>
-    <!--管理员增加检查日期-->
-    <view class='addCheckTime'>
-      <image src='../../images/add.png' class='add' bindtap='addCheckTime'>
-      </image>
-      <text>管理员可添加检查日期</text>
-      <view hidden='{{hiddenFlag}}'style='margin-top:30rpx'>
-        <text >添加检查日期(点击修改)</text>
-        <picker range='{{time}}' value='index' bindchange="bindPickerChange" style='margin-top:30rpx;text-align:center;'>
-          {{time[index]}}日 
+    <!--发现隐患界面-->
+    <view class='fillDangerInfo' hidden='{{ifFindDanger}}'>
+      <view class='checkpointName'>
+        <picker value="{{checkpointIndex}}" range='{{checkpointList}}' range-key='name' bindchange='chooseCheckpoint'>
+        {{checkpointList[checkpointIndex].name}}  
         </picker>
-        <button bindtap='confirmAdd' style='margin-top:30rpx'>确认添加</button>
       </view>
-      
+      <view class='danger'>
+        发现故障
+      </view>
+      <view class='checkBox'> 上传故障图片</view>
+      <image src="{{dangerInfo.photo}}" class='cameraImage' mode='aspectFill' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 故障描述</view>
+      <textarea class="textArea" placeholder="{{initText}}" value="{{dangerInfo.description}}" bindinput='textInput' />
+      <button class='finish' bindtap='dangerSubmit'>确认提交</button>
     </view>
   </view>
 </view>

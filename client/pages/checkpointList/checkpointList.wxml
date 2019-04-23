@@ -1,0 +1,25 @@
+<!--pages/checkpointList/checkpointList.wxml-->
+<view class='container'>
+  <!--框架-->
+  <view class='frame'>
+    <!--部门名称banner-->
+      <view class='bannerBox'>
+        <view class='groupBanner'>      
+          <text >{{workshopInfo.workshopName}}</text>
+        </view>
+      </view>
+
+    <!--检查点列表-->
+    <view class='workshopList'>
+      <view class='workshop' wx:for='{{checkpointList}}' id='{{index}}' bindtap='toCheck'>
+        <view class='workshopName'>
+          <text >{{item.checkpointName}}</text>
+        </view>
+        <text class='textBox'>状态：{{item.error == 1 ? "故障" : "正常"}}</text> 
+        <text class='textBox'>本月任务：{{item.inspectTimes}}/{{item.totalTimes}}</text>
+        <text class='textBox'>{{((item.inspectTimes >= item.totalTimes) && (item.error != 1)) ? "已完成" : "未完成"}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+

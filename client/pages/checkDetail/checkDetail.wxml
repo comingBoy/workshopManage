@@ -1,22 +1,107 @@
 <!--pages/checkDetail/checkDetail.wxml-->
 <view class='container'>
   <view class='frame'>
-    <!--车间名-->
-    <view class='workShopName'>
-      车间名： {{workShopName}}
+    <!--workshop-->
+    <view class='workshopName'>
+      {{checkpointInfo.checkpointName}}
     </view>
-    <!--检查点-->
-    <view class='checkPoint'>
-      检查点： {{checkPoint}}
+    <view class='listContainer'>
+      <text class='title'>检查记录({{checkpointInfo.inspectTimes}}/{{checkpointInfo.totalTimes}})</text>
+      <view class='list' wx:for='{{checkRecord}}' id='{{index}}' bindtap='toCheckRecord'>检查日期：{{item.date}}</view>
+      <view wx:if='{{checkRecord.length==0}}' class='list'>暂无检查记录</view>
     </view>
-    <!--检查点状态-->
-    <view class='checkState'>
-      状态： {{checkState}}
+    <view class='listContainer'>
+      <text class='title'>隐患记录</text>
+      <view class='title2'>
+        自检隐患
+      </view>
+      <view class='list' wx:for='{{staffError}}'>
+        <view class='dangerInfo' bindtap='getStaffError' id='{{index}}'>
+          <view class='dangerDate'>发现日期：{{item.date}}</view>
+          <view class='dangerError'>状态：{{errorList[item.error]}}</view>
+        </view>
+      </view>
+      <view wx:if='{{staffError.length == 0}}' class='list'>
+        暂无隐患记录
+      </view>
+      <view class='dangerTitleBox'>
+        <view class='title2'>
+          管理员发现隐患
+        </view>
+        <button wx:if='{{ifShowFind}}' class='findDanger' bindtap='findDanger'>添加</button>
+      </view>
+      <view class='list' wx:for='{{adminError}}'>
+        <view class='dangerInfo' bindtap='getAdminError' id='{{index}}'>
+          <view class='dangerDate'>发现日期：{{item.date}}  </view>
+          <view class='dangerError'>状态：{{errorList[item.error]}}</view>
+        </view>
+      </view>
+      <view wx:if='{{adminError.length == 0}}' class='list'>
+        暂无隐患记录
+      </view>
     </view>
-    <!--详情-->
-    <view class='detail'>
-      <image class='checkPointImage' src='../../images/cimu.jpg'></image>
-      <text class='detailReport'>没毛病</text> 
+    <!--发现隐患界面-->
+    <view class='fillDangerInfo' hidden='{{ifFindDanger}}'>
+      <view class='checkpointName'>
+        <picker value="{{checkpointIndex}}" range='{{checkpointList}}' range-key='name' bindchange='chooseCheckpoint'>
+        {{checkpointList[checkpointIndex].name}}  
+        </picker>
+      </view>
+      <view class='danger'>
+        发现故障
+      </view>
+      <view class='checkBox'> 上传故障图片</view>
+      <image src="{{dangerInfo.photo}}" class='cameraImage' mode='aspectFit' bindtap='choosePhoto'></image>
+      <view class='checkBox'> 故障描述</view>
+      <textarea class="textArea" placeholder="{{initText}}" value="{{dangerInfo.description}}" bindinput='textInput' />
+      <button class='finish' bindtap='dangerSubmit'>确认提交</button>
     </view>
+  </view>
+
+  <view class='fillCheckInfo' hidden='{{ifShow0}}'>
+    <view class='checkpointName'>
+      {{inspectInfo.checkpointName}}
+    </view>
+    <view class='date0'>
+      {{inspectInfo.date}}
+    </view>
+    <view class='error'>
+      <view>
+      {{errorList[inspectInfo.error]}}
+      </view>
+    </view>
+    <view class='checkBox'> 图片</view>
+    <view wx:if='{{inspectInfo.photo == "null"}}'>无图片</view>
+    <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
+    <view class='checkBox'> 描述</view>
+      <view wx:if='{{inspectInfo.description == "null"}}'>无描述</view>
+    <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
+  </view>
+
+  <view class='fillCheckInfo' hidden='{{ifShow}}'>
+    <view class='checkpointName'>
+      {{inspectInfo.checkpointName}}
+    </view>
+    <view class='date0'>
+      {{inspectInfo.date}}
+    </view>
+    <view class='error'>
+      <view>
+      {{errorList[inspectInfo.error]}}
+      </view>
+    </view>
+    <view class='checkBox'> 图片</view>
+    <view wx:if='{{inspectInfo.photo == "null"}}'>无图片</view>
+    <image wx:else src="{{inspectInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
+    <view class='checkBox'> 描述</view>
+      <view wx:if='{{inspectInfo.description == "null"}}'>无描述</view>
+    <textarea wx:else class="textArea"  value="{{inspectInfo.description}}" disabled='true'/>
+
+    <view class='checkBox'> 修复图片</view>
+    <view wx:if='{{fixInfo.photo == "null"}}'>无修复图片</view>
+    <image wx:else src="{{fixInfo.photo}}" class='cameraImage' mode='aspectFit'></image>
+    <view class='checkBox'> 修复描述</view>
+      <view wx:if='{{fixInfo.description == "null"}}'>无修复描述</view>
+    <textarea wx:else class="textArea"  value="{{fixInfo.description}}" disabled='true'/>
   </view>
 </view>
